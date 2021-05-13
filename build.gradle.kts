@@ -17,7 +17,7 @@ plugins {
 }
 
 application {
-    mainClass.set("cl.uchile.dcc.scrabble.gui.Scrabble")
+    mainClass.set("cl.uchile.dcc.scrabble.gui.cl.uchile.dcc.scrabble.gui.Scrabble")
 }
 
 repositories {
@@ -36,6 +36,8 @@ dependencies {
         name = "annotations",
         version = jbAnnotationsVersion
     )
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    implementation("junit:junit:4.13.1")
     testImplementation(
         group = "org.junit.jupiter", name = "junit-jupiter-api",
         version = junitVersion
