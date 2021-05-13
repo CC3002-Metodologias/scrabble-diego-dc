@@ -6,11 +6,8 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
 public interface ScrabbleType {
 
+    // Transformation of a ScrabbleType to Java String.
     String STtoString();
-    STString toSTString();
-    STBoolean toSTBoolean();
-    STNumber toSTFloat();
-    STNumber toSTInt();
-    STNumber toSTBinary();
 
+    STString toSTString();
 }

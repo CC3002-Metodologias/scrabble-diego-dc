@@ -9,18 +9,18 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
  */
 public class STInt extends STNumber{
 
-    private int myInt;
+    private Integer myInt;
 
     // Getter & Setter
-    public int getMyInt() {
+    public Integer getMyInt() {
         return myInt;
     }
-    public void setMyInt(int myInt) {
+    public void setMyInt(Integer myInt) {
         this.myInt = myInt;
     }
 
     // Constructor for our Class STInt
-    public STInt(int newInt)
+    public STInt(Integer newInt)
     {
         this.myInt = newInt;
     }
@@ -44,32 +44,56 @@ public class STInt extends STNumber{
 
     @Override
     public String STtoString() {
-        return null;
+        return getMyInt().toString();
     }
 
     @Override
     public STString toSTString() {
-        return null;
+        STString STStringTransform = new STString(this.getMyInt().toString());
+        return STStringTransform;
     }
 
-    @Override
-    public STBoolean toSTBoolean() {
-        return null;
-    }
-
-    @Override
     public STNumber toSTFloat() {
-        return null;
+        STFloat STFloatTransform = new STFloat(Double.valueOf(this.getMyInt()));
+        return STFloatTransform;
     }
 
-    @Override
-    public STNumber toSTInt() {
-        return null;
+    public STInt toSTInt() {
+        return this;
     }
 
-    @Override
-    public STNumber toSTBinary() {
-        return null;
+    public STBinary toSTBinary() {
+        String myBinary;
+        Integer i = Math.abs(getMyInt());
+        myBinary = Integer.toBinaryString(i);
+        if(getMyInt() < 0)
+        {
+            myBinary = TwosComplement(myBinary);
+        }
+        STBinary newSTBinary = new STBinary(myBinary);
+        return newSTBinary;
+    }
+
+    private String TwosComplement(String str)
+    {
+        int n = str.length();
+        char[] ch = new char[n];
+        int i;
+        for (i = n-1 ; i >= 0 ; i--)
+            if (ch[i] == '1')
+                break;
+        if (i == -1)
+            return '1' + str;
+        for (int k = i-1 ; k >= 0; k--)
+        {
+            //Just flip the values
+            if (ch[k] == '1')
+                ch[k] = '0';
+            else
+                ch[k] = '1';
+        }
+        String newStr = new String(ch);
+        return newStr;
     }
 
 }

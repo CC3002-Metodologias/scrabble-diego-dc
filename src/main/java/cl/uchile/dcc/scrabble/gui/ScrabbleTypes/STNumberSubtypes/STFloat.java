@@ -9,18 +9,18 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
  */
 public class STFloat extends STNumber{
 
-    private double myDouble;
+    private Double myDouble;
 
     // Getter & Setter
-    public double getMyDouble() {
+    public Double getMyDouble() {
         return myDouble;
     }
-    public void setMyDouble(double myDouble) {
+    public void setMyDouble(Double myDouble) {
         this.myDouble = myDouble;
     }
 
     // Constructor for our class
-    public STFloat(double newFloat)
+    public STFloat(Double newFloat)
     {
         this.myDouble = newFloat;
     }
@@ -44,31 +44,18 @@ public class STFloat extends STNumber{
 
     @Override
     public String STtoString() {
-        return null;
+        return getMyDouble().toString();
     }
 
     @Override
     public STString toSTString() {
-        return null;
+        STString STStringTransform = new STString(this.getMyDouble().toString());
+        return STStringTransform;
     }
 
-    @Override
-    public STBoolean toSTBoolean() {
-        return null;
-    }
-
-    @Override
     public STNumber toSTFloat() {
-        return null;
+        return this;
     }
 
-    @Override
-    public STNumber toSTInt() {
-        return null;
-    }
 
-    @Override
-    public STNumber toSTBinary() {
-        return null;
-    }
 }

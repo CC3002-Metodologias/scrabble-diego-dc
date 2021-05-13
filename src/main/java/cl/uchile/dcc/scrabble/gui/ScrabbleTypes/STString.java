@@ -4,7 +4,7 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
  * A new ScrabbleType STString -> references a Java String.
  */
 
-public class STString implements ScrabbleType{
+public class STString implements ScrabbleType {
 
     private String myString;
 
@@ -12,15 +12,20 @@ public class STString implements ScrabbleType{
     public String getMyString() {
         return myString;
     }
+
     public void setMyString(String myString) {
         this.myString = myString;
     }
 
     // Creates a new STString
-    public STString(String newString)
-    {
+    public STString(String newString) {
+        if(newString == null)
+        {
+            this.setMyString("");
+        }
         this.myString = newString;
     }
+
     @Override
     public boolean equals(Object o) {
         // self check
@@ -40,31 +45,13 @@ public class STString implements ScrabbleType{
 
     @Override
     public String STtoString() {
-        return null;
+        return getMyString();
     }
 
     @Override
     public STString toSTString() {
-        return null;
-    }
-
-    @Override
-    public STBoolean toSTBoolean() {
-        return null;
-    }
-
-    @Override
-    public STNumber toSTFloat() {
-        return null;
-    }
-
-    @Override
-    public STNumber toSTInt() {
-        return null;
-    }
-
-    @Override
-    public STNumber toSTBinary() {
-        return null;
+        return this;
     }
 }
+
+

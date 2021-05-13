@@ -44,31 +44,24 @@ public class STBinary extends STNumber {
 
     @Override
     public String STtoString() {
-        return null;
+        return getMyString();
     }
 
     @Override
     public STString toSTString() {
+        STString STStringTransform = new STString(this.getMyString().toString());
+        return STStringTransform;
+    }
+
+    public STFloat toSTFloat() {
         return null;
     }
 
-    @Override
-    public STBoolean toSTBoolean() {
-        return null;
-    }
-
-    @Override
-    public STNumber toSTFloat() {
-        return null;
-    }
-
-    @Override
     public STNumber toSTInt() {
         return null;
     }
 
-    @Override
     public STNumber toSTBinary() {
-        return null;
+        return this;
     }
 }
