@@ -17,12 +17,13 @@ public class STString implements ScrabbleType {
         this.myString = myString;
     }
 
-    // Creates a new STString
+    // Constructor of our class STString
+    public STString() {
+        this.myString = "";
+    }
+
+    // Constructor of our class STString
     public STString(String newString) {
-        if(newString == null)
-        {
-            this.setMyString("");
-        }
         this.myString = newString;
     }
 

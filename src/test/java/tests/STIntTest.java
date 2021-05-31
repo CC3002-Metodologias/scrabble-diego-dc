@@ -11,10 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class STIntTest {
     private STInt stInt;
+    private STInt zeroInt = new STInt(0);
+    private STInt negativestInt;
 
     @BeforeEach
     void setUp() {
-        stInt = new STInt(2);
+        stInt = new STInt(134);
+        negativestInt = new STInt(-21);
     }
 
     @Test
@@ -42,7 +45,11 @@ class STIntTest {
 
     @Test
     void toSTBinary() {
-        STBinary stBinary = new STBinary("10");
-        assertEquals(stInt.toSTBinary(), stBinary);
+        STBinary stBinary = new STBinary("00000000000000000000000010000110");
+        STBinary stBinary2 = new STBinary("00000000000000000000000000000000");
+        STBinary stBinary3 = new STBinary("11111111111111111111111111101011");
+        assertEquals(stInt.toSTBinary(), stBinary, "expected:" + (stInt.toSTBinary()).getMyString());
+        assertEquals(zeroInt.toSTBinary(), stBinary2, "expected:" + (zeroInt.toSTBinary()).getMyString());
+        assertEquals(negativestInt.toSTBinary(), stBinary3, "expected:" + (negativestInt.toSTBinary()).getMyString());
     }
 }

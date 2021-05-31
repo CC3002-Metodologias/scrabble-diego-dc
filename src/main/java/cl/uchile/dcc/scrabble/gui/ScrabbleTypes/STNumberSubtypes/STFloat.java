@@ -9,19 +9,23 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
  */
 public class STFloat extends STNumber{
 
-    private Double myDouble;
+    private double myDouble;
 
     // Getter & Setter
-    public Double getMyDouble() {
+    public double getMyDouble() {
         return myDouble;
     }
-    public void setMyDouble(Double myDouble) {
+    public void setMyDouble(double myDouble) {
         this.myDouble = myDouble;
     }
 
-    // Constructor for our class
-    public STFloat(Double newFloat)
-    {
+    // Default constructor
+    public STFloat(){
+        this.myDouble = 0.0;
+    }
+
+    // Constructor parameterized  for our class
+    public STFloat(double newFloat){
         this.myDouble = newFloat;
     }
 
@@ -44,17 +48,105 @@ public class STFloat extends STNumber{
 
     @Override
     public String STtoString() {
-        return getMyDouble().toString();
+        Double i = getMyDouble();
+        return i.toString();
     }
 
     @Override
     public STString toSTString() {
-        STString STStringTransform = new STString(this.getMyDouble().toString());
+        STString STStringTransform = new STString(this.STtoString());
         return STStringTransform;
     }
 
     public STNumber toSTFloat() {
         return this;
+    }
+
+    @Override
+    public STNumber add(STNumber numberToAdd) {
+        STNumber result;
+        result = numberToAdd.addToFloat(this);
+        return result;
+    }
+
+    @Override
+    public STNumber subtract(STNumber numberToSubtract) {
+        STNumber result;
+        result = numberToSubtract.subtractToFloat(this);
+        return result;
+    }
+
+
+    @Override
+    public STNumber multiply(STNumber numberToMultiply) {
+        STNumber result;
+        result = numberToMultiply.multiplyToFloat(this);
+        return result;
+    }
+
+    @Override
+    public STNumber divide(STNumber numberToDivide) {
+        STNumber result;
+        result = numberToDivide.divideToFloat(this);
+        return result;
+    }
+
+
+    @Override
+    public STNumber addToInteger(STInt scrabbleInt) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleInt.getMyInt() + this.getMyDouble());
+        return result;
+    }
+
+    @Override
+    public STNumber addToFloat(STFloat scrabbleFloat) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() + this.getMyDouble());
+        return result;
+    }
+
+
+    @Override
+    public STNumber subtractToInteger(STInt scrabbleInt) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleInt.getMyInt() - this.getMyDouble());
+        return result;
+    }
+
+    @Override
+    public STNumber subtractToFloat(STFloat scrabbleFloat) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() - this.getMyDouble());
+        return result;
+    }
+
+    @Override
+    public STNumber multiplyToInteger(STInt scrabbleInt) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleInt.getMyInt() * this.getMyDouble());
+        return result;
+    }
+
+    @Override
+    public STNumber multiplyToFloat(STFloat scrabbleFloat) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() * this.getMyDouble());
+        return result;
+    }
+
+    @Override
+    public STNumber divideToInteger(STInt scrabbleInt) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleInt.getMyInt() / this.getMyDouble());
+        return result;
+    }
+
+    @Override
+    public STNumber divideToFloat(STFloat scrabbleFloat) {
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() / this.getMyDouble());
+        return result;
     }
 
 

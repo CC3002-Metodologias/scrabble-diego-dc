@@ -6,18 +6,24 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
 public class STBoolean implements ScrabbleType{
 
-    private Boolean myBoolean;
+    private boolean myBoolean;
 
     // Getter & Setter
-    public Boolean getMyBoolean() {
+    public boolean getMyBoolean() {
         return myBoolean;
     }
     public void setMyBoolean(boolean myBoolean) {
         this.myBoolean = myBoolean;
     }
 
-    // Creates a new STBoolean
-    public STBoolean(Boolean newBoolean)
+    // Default Constructor parameterized of our class
+    public STBoolean()
+    {
+        this.myBoolean = false;
+    }
+
+    // Constructor parameterized of our class
+    public STBoolean(boolean newBoolean)
     {
         this.myBoolean = newBoolean;
     }
@@ -40,12 +46,13 @@ public class STBoolean implements ScrabbleType{
 
     @Override
     public String STtoString() {
-        return getMyBoolean().toString();
+        Boolean i = getMyBoolean();
+        return i.toString();
     }
 
     @Override
     public STString toSTString() {
-        STString STStringTransform = new STString(this.getMyBoolean().toString());
+        STString STStringTransform = new STString(this.STtoString());
         return STStringTransform;
     }
 
