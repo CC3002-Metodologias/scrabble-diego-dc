@@ -53,6 +53,19 @@ public class STString implements ScrabbleType {
     public STString toSTString() {
         return this;
     }
+
+    public STString add(ScrabbleType STToAdd){
+        STString result;
+        result = STToAdd.addToString(this);
+        return result;
+    }
+
+    @Override
+    public STString addToString(STString scrabbleStr) {
+        STString result = new STString();
+        result.setMyString(scrabbleStr.getMyString() + this.getMyString());
+        return result;
+    }
 }
 
 

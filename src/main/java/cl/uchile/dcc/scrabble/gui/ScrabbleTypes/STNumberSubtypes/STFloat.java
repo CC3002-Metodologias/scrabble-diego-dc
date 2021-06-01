@@ -58,33 +58,36 @@ public class STFloat extends STNumber{
         return STStringTransform;
     }
 
+    @Override
+    public STString addToString(STString scrabbleStr) {
+        STString result = new STString();
+        STString thisToString = this.toSTString();
+        result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
+        return result;
+    }
+
     public STNumber toSTFloat() {
         return this;
     }
 
-    @Override
     public STNumber add(STNumber numberToAdd) {
         STNumber result;
         result = numberToAdd.addToFloat(this);
         return result;
     }
 
-    @Override
     public STNumber subtract(STNumber numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToFloat(this);
         return result;
     }
 
-
-    @Override
     public STNumber multiply(STNumber numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToFloat(this);
         return result;
     }
 
-    @Override
     public STNumber divide(STNumber numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToFloat(this);

@@ -62,6 +62,14 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return STStringTransform;
     }
 
+    @Override
+    public STString addToString(STString scrabbleStr) {
+        STString result = new STString();
+        STString thisToString = this.toSTString();
+        result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
+        return result;
+    }
+
     public STFloat toSTFloat() {
         STFloat STFloatTransform = new STFloat(Double.valueOf(this.getMyInt()));
         return STFloatTransform;
@@ -79,7 +87,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         {
             StringBuffer strBf = new StringBuffer();
             strBf.append(myBinary);
-            myBinary = findTwoscomplement(strBf);
+            myBinary = findTwosComplement(strBf);
         }
         STBinary newSTBinary = new STBinary(myBinary);
         return newSTBinary;
@@ -100,7 +108,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return binary;
     }
 
-    static String findTwoscomplement(StringBuffer str)
+    static String findTwosComplement(StringBuffer str)
     {
         int n = str.length();
 
@@ -128,28 +136,24 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return str.toString();
     }
 
-    @Override
     public STNumber add(STNumber numberToAdd) {
         STNumber result;
         result = numberToAdd.addToInteger(this);
         return result;
     }
 
-    @Override
     public STNumber subtract(STNumber numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToInteger(this);
         return result;
     }
 
-    @Override
     public STNumber multiply(STNumber numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToInteger(this);
         return result;
     }
 
-    @Override
     public STNumber divide(STNumber numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToInteger(this);

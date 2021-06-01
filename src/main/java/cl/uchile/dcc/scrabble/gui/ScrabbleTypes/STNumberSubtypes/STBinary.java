@@ -1,14 +1,11 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.INumberBinaryCompatible;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
+import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 
 /**
  * A new ScrabbleType STBinary -> references a Java String with only 0's & 1's.
  */
-public class STBinary extends STNumber implements INumberBinaryCompatible {
+public class STBinary extends STNumber implements INumberBinaryCompatible, IScrabbleTypeLogicalOperationCompatible {
 
     private String myString;
 
@@ -59,6 +56,14 @@ public class STBinary extends STNumber implements INumberBinaryCompatible {
     public STString toSTString() {
         STString STStringTransform = new STString(this.getMyString().toString());
         return STStringTransform;
+    }
+
+    @Override
+    public STString addToString(STString scrabbleStr) {
+        STString result = new STString();
+        STString thisToString = this.toSTString();
+        result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
+        return result;
     }
 
     public STFloat toSTFloat() {
@@ -115,29 +120,25 @@ public class STBinary extends STNumber implements INumberBinaryCompatible {
         return bit == '0' ? 0 : 1;
     }
 
-    @Override
-    public STNumber add(int numberToAdd) {
+    public STNumber add(INumberBinaryCompatible numberToAdd) {
         STNumber result;
         result = numberToAdd.addToBinary(this);
         return result;
     }
 
-    @Override
-    public STNumber subtract(STNumber numberToSubtract) {
+    public STNumber subtract(INumberBinaryCompatible numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToBinary(this);
         return result;
     }
 
-    @Override
-    public STNumber multiply(STNumber numberToMultiply) {
+    public STNumber multiply(INumberBinaryCompatible numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToBinary(this);
         return result;
     }
 
-    @Override
-    public STNumber divide(STNumber numberToDivide) {
+    public STNumber divide(INumberBinaryCompatible numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToBinary(this);
         return result;
@@ -146,61 +147,205 @@ public class STBinary extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STNumber addToInteger(STInt scrabbleInt) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = new STInt();
+        result.setMyInt(scrabbleInt.getMyInt() + binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber addToFloat(STFloat scrabbleFloat) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() + binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber addToBinary(STBinary scrabbleBinary) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = scrabbleBinary.toSTInt();
+        result.setMyInt(result.getMyInt() + binaryLikeInt.getMyInt());
+        return result.toSTBinary();
     }
 
     @Override
     public STNumber subtractToInteger(STInt scrabbleInt) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = new STInt();
+        result.setMyInt(scrabbleInt.getMyInt() - binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber subtractToFloat(STFloat scrabbleFloat) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() - binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber subtractToBinary(STBinary scrabbleBinary) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = scrabbleBinary.toSTInt();
+        result.setMyInt(result.getMyInt() - binaryLikeInt.getMyInt());
+        return result.toSTBinary();
     }
 
     @Override
     public STNumber multiplyToInteger(STInt scrabbleInt) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = new STInt();
+        result.setMyInt(scrabbleInt.getMyInt() * binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber multiplyToFloat(STFloat scrabbleFloat) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() * binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber multiplyToBinary(STBinary scrabbleBinary) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = scrabbleBinary.toSTInt();
+        result.setMyInt(result.getMyInt() / binaryLikeInt.getMyInt());
+        return result.toSTBinary();
     }
 
     @Override
     public STNumber divideToInteger(STInt scrabbleInt) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = new STInt();
+        result.setMyInt(scrabbleInt.getMyInt() / binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber divideToFloat(STFloat scrabbleFloat) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STFloat result = new STFloat();
+        result.setMyDouble(scrabbleFloat.getMyDouble() / binaryLikeInt.getMyInt());
+        return result;
     }
 
     @Override
     public STNumber divideToBinary(STBinary scrabbleBinary) {
-        return null;
+        STInt binaryLikeInt;
+        binaryLikeInt = this.toSTInt();
+        STInt result = scrabbleBinary.toSTInt();
+        result.setMyInt(result.getMyInt() / binaryLikeInt.getMyInt());
+        return result.toSTBinary();
+    }
+
+    @Override
+    public void negation() {
+        StringBuffer strBf = new StringBuffer();
+        strBf.append(this.getMyString());
+        for(int i = 0; i < strBf.length(); i++)
+        {
+            if(strBf.charAt(i) == '0')
+            {
+                strBf.replace(i, i+1, "1");
+            }
+            if(strBf.charAt(i) == '1')
+            {
+                strBf.replace(i,i+1,"0");
+            }
+        }
+        this.setMyString(strBf.toString());
+    }
+
+    @Override
+    public IScrabbleTypeLogicalOperationCompatible conjunction(IScrabbleTypeLogicalOperationCompatible scrabbleType) {
+        IScrabbleTypeLogicalOperationCompatible result;
+        result = scrabbleType.conjunctionToBinary(this);
+        return result;
+    }
+
+    @Override
+    public IScrabbleTypeLogicalOperationCompatible disjunction(IScrabbleTypeLogicalOperationCompatible scrabbleType) {
+        IScrabbleTypeLogicalOperationCompatible result;
+        result = scrabbleType.disjunctionToBinary(this);
+        return result;
+    }
+
+    @Override
+    public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
+        STBinary result = new STBinary();
+        StringBuffer strBf = new StringBuffer();
+        StringBuffer strBf2 = new StringBuffer();
+        strBf.append(this.getMyString());
+        strBf2.append(this.getMyString());
+        for(int i = 0; i < strBf.length(); i++)
+        {
+            if(strBf.charAt(i) == '1' && strBf2.charAt(i) == '0')
+            {
+                strBf.replace(i, i+1, "0");
+            }
+        }
+        result.setMyString(strBf.toString());
+        return result;
+    }
+
+    @Override
+    public IScrabbleTypeLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
+        if(scrabbleBool.getMyBoolean() == false)
+        {
+            String str = "00000000000000000000000000000000";
+            this.setMyString(str);
+        }
+        return this;
+    }
+
+    @Override
+    public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
+        STBinary result = new STBinary();
+        StringBuffer strBf = new StringBuffer();
+        StringBuffer strBf2 = new StringBuffer();
+        strBf.append(this.getMyString());
+        strBf2.append(this.getMyString());
+        for(int i = 0; i < strBf.length(); i++)
+        {
+            if(strBf.charAt(i) == '0' && strBf2.charAt(i) == '1')
+            {
+                strBf.replace(i, i + 1, "0");
+            }
+        }
+        result.setMyString(strBf.toString());
+        return result;
+    }
+
+    @Override
+    public IScrabbleTypeLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
+        if(scrabbleBool.getMyBoolean() == true)
+        {
+            StringBuffer strBf = new StringBuffer();
+            strBf.append(this.getMyString());
+            for(int i = 0; i < strBf.length(); i++)
+            {
+                if(strBf.charAt(i) == '0')
+                {
+                    strBf.replace(i, i+1, "1");
+                }
+            }
+            this.setMyString(strBf.toString());
+        }
+        return this;
     }
 }
