@@ -5,7 +5,7 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 /**
  * A new ScrabbleType STBinary -> references a Java String with only 0's & 1's.
  */
-public class STBinary extends STNumber implements INumberBinaryCompatible, IScrabbleTypeLogicalOperationCompatible {
+public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLogicalOperationCompatible {
 
     private String myString;
 
@@ -66,6 +66,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, IScra
         return result;
     }
 
+    @Override
     public STFloat toSTFloat() {
         Integer i = BinaryToInt(this.getMyString());
         STFloat STFloatTransform = new STFloat(Float.valueOf(i));
@@ -254,7 +255,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, IScra
     }
 
     @Override
-    public void negation() {
+    public ISTLogicalOperationCompatible negation() {
+        STBinary result = new STBinary();
         StringBuffer strBf = new StringBuffer();
         strBf.append(this.getMyString());
         for(int i = 0; i < strBf.length(); i++)
@@ -268,19 +270,20 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, IScra
                 strBf.replace(i,i+1,"0");
             }
         }
-        this.setMyString(strBf.toString());
+        result.setMyString(strBf.toString());
+        return result;
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible conjunction(IScrabbleTypeLogicalOperationCompatible scrabbleType) {
-        IScrabbleTypeLogicalOperationCompatible result;
+    public ISTLogicalOperationCompatible conjunction(ISTLogicalOperationCompatible scrabbleType) {
+        ISTLogicalOperationCompatible result;
         result = scrabbleType.conjunctionToBinary(this);
         return result;
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible disjunction(IScrabbleTypeLogicalOperationCompatible scrabbleType) {
-        IScrabbleTypeLogicalOperationCompatible result;
+    public ISTLogicalOperationCompatible disjunction(ISTLogicalOperationCompatible scrabbleType) {
+        ISTLogicalOperationCompatible result;
         result = scrabbleType.disjunctionToBinary(this);
         return result;
     }
@@ -304,7 +307,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, IScra
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
+    public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
         if(scrabbleBool.getMyBoolean() == false)
         {
             String str = "00000000000000000000000000000000";
@@ -332,7 +335,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, IScra
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
+    public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
         if(scrabbleBool.getMyBoolean() == true)
         {
             StringBuffer strBf = new StringBuffer();

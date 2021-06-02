@@ -2,25 +2,45 @@ package tests;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class STStringTest {
-    private STString stString;
+class STStringTest extends AbstractScrabbleTypeTests{
+    private STString aSTString;
+    private STString emptySTString = new STString("");
 
     @BeforeEach
     void setUp()
     {
-        stString = new STString("hello, world!");
+        aSTString = new STString("hello, world!");
     }
 
-    @org.junit.jupiter.api.Test
-    void STtoString() {
-        assertEquals(stString.STtoString(), "hello, world!");
+    @Override
+    protected void ConstructorTest() {
+        var expectedSTStr = new STString("hello, world!");
+        var expectedNoParameterSTStr = new STString();
+        checkConstructor(expectedSTStr, aSTString);
+        checkConstructor(expectedNoParameterSTStr, emptySTString);
     }
 
-    @org.junit.jupiter.api.Test
-    void toSTString() {
-        assertEquals(stString, stString.toSTString());
+    @Override
+    @Test
+    protected void STtoString() {
+        checkSTtoString("hello, world!", aSTString);
     }
+
+    @Override
+    @Test
+    protected void toSTString() {
+        var actual = aSTString.toSTString();
+        checkToSTString(aSTString, actual);
+    }
+
+    @Override
+    @Test
+    protected void addToString() {
+        STString completeStr = new STString("My String is: hello, world!");
+        STString str = new STString("My String is: ");
+        checkAddToString(completeStr, str, aSTString);
+    }
+
 }

@@ -4,7 +4,7 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 
-public interface IScrabbleTypeNumber {
+public interface ISTNumber extends ScrabbleType {
 
     STNumber addToInteger(STInt scrabbleInt);
     STNumber addToFloat(STFloat scrabbleFloat);

@@ -66,7 +66,8 @@ public class STFloat extends STNumber{
         return result;
     }
 
-    public STNumber toSTFloat() {
+    @Override
+    public STFloat toSTFloat() {
         return this;
     }
 

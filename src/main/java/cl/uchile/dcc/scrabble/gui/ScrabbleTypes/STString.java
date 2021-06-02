@@ -60,6 +60,7 @@ public class STString implements ScrabbleType {
         return result;
     }
 
+
     @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();

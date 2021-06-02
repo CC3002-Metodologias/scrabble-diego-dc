@@ -6,7 +6,7 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
  * A new ScrabbleType STBoolean -> references a Java Boolean.
  */
 
-public class STBoolean implements ScrabbleType, IScrabbleTypeLogicalOperationCompatible{
+public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
 
     private boolean myBoolean;
 
@@ -71,20 +71,22 @@ public class STBoolean implements ScrabbleType, IScrabbleTypeLogicalOperationCom
     }
 
     @Override
-    public void negation(){
-        this.setMyBoolean(!this.getMyBoolean());
+    public ISTLogicalOperationCompatible negation(){
+        STBoolean result = new STBoolean();
+        result.setMyBoolean(!this.getMyBoolean());
+        return result;
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible conjunction(IScrabbleTypeLogicalOperationCompatible scrabbleType) {
-        IScrabbleTypeLogicalOperationCompatible result;
+    public ISTLogicalOperationCompatible conjunction(ISTLogicalOperationCompatible scrabbleType) {
+        ISTLogicalOperationCompatible result;
         result = scrabbleType.conjunctionToBoolean(this);
         return result;
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible disjunction(IScrabbleTypeLogicalOperationCompatible scrabbleType) {
-        IScrabbleTypeLogicalOperationCompatible result;
+    public ISTLogicalOperationCompatible disjunction(ISTLogicalOperationCompatible scrabbleType) {
+        ISTLogicalOperationCompatible result;
         result = scrabbleType.disjunctionToBoolean(this);
         return result;
     }
@@ -100,7 +102,7 @@ public class STBoolean implements ScrabbleType, IScrabbleTypeLogicalOperationCom
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
+    public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
         STBoolean result = new STBoolean();
         result.setMyBoolean(scrabbleBool.getMyBoolean() && this.getMyBoolean());
         return result;
@@ -125,7 +127,7 @@ public class STBoolean implements ScrabbleType, IScrabbleTypeLogicalOperationCom
     }
 
     @Override
-    public IScrabbleTypeLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
+    public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
         STBoolean result = new STBoolean();
         result.setMyBoolean(scrabbleBool.getMyBoolean() || this.getMyBoolean());
         return result;

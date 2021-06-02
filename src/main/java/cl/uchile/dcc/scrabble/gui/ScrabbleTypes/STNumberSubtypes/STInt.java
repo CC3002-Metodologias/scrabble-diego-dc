@@ -1,7 +1,5 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.INumberBinaryCompatible;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 
@@ -70,6 +68,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return result;
     }
 
+    @Override
     public STFloat toSTFloat() {
         STFloat STFloatTransform = new STFloat(Double.valueOf(this.getMyInt()));
         return STFloatTransform;
