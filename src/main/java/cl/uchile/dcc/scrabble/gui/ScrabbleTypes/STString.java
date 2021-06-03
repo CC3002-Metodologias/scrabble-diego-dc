@@ -17,12 +17,13 @@ public class STString implements ScrabbleType {
         this.myString = myString;
     }
 
-    // Creates a new STString
+    // Constructor of our class STString
+    public STString() {
+        this.myString = "";
+    }
+
+    // Constructor of our class STString
     public STString(String newString) {
-        if(newString == null)
-        {
-            this.setMyString("");
-        }
         this.myString = newString;
     }
 
@@ -51,6 +52,20 @@ public class STString implements ScrabbleType {
     @Override
     public STString toSTString() {
         return this;
+    }
+
+    public STString add(ScrabbleType STToAdd){
+        STString result;
+        result = STToAdd.addToString(this);
+        return result;
+    }
+
+
+    @Override
+    public STString addToString(STString scrabbleStr) {
+        STString result = new STString();
+        result.setMyString(scrabbleStr.getMyString() + this.getMyString());
+        return result;
     }
 }
 
