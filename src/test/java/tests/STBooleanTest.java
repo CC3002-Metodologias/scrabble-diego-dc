@@ -81,13 +81,13 @@ class STBooleanTest extends AbstractLogicOpTest {
         // bool|binary
         checkConjunction(stBinary, trueSTBoolean, stBinary); // true (1) and 00000000000000000000000000110110 = 00000000000000000000000000110110
         checkConjunction(stBinaryZero, falseSTBoolean, stBinary); // false (0) and 00000000000000000000000000110110 = 00000000000000000000000000000000
-        //DISJUNCTION (or)
-        //bool|bool
+        // DISJUNCTION (or)
+        // bool|bool
         checkDisjunction(TstBoolean, trueSTBoolean, trueSTBoolean); // true or true = true
         checkDisjunction(TstBoolean, trueSTBoolean, falseSTBoolean); // true or false = true
         checkDisjunction(TstBoolean, falseSTBoolean, trueSTBoolean); // false or true = true
         checkDisjunction(FstBoolean, falseSTBoolean, falseSTBoolean); // false or false = false
-        //bool|binary
+        // bool|binary
         checkDisjunction(stBinaryOnes, trueSTBoolean, stBinary); // true (1) or 00000000000000000000000000110110 = 11111111111111111111111111111111
         checkDisjunction(stBinary, falseSTBoolean, stBinary); // false (0) and 00000000000000000000000000110110 = 00000000000000000000000000110110
 

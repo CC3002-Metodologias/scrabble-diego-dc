@@ -11,7 +11,7 @@ public abstract class AbstractLogicOpTest extends AbstractScrabbleTypeTests{
     {
         ISTLogicalOperationCompatible actual = actualToNegate.negation();
         assertEquals(expected, actual,
-                "Negation Failed. Expected: " + expected.STtoString() + "Actual: " + actual.STtoString());
+                "Negation Failed. Expected: " + expected.STtoString() + ", Actual: " + actual.STtoString());
     }
 
     protected void checkConjunction(ISTLogicalOperationCompatible expected,

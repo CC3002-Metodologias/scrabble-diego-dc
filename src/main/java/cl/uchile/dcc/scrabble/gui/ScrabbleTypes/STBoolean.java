@@ -93,12 +93,13 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
 
     @Override
     public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
+        STBinary result = new STBinary();
         if(this.getMyBoolean() == false)
         {
-            String str = "00000000000000000000000000000000";
-            scrabbleBinary.setMyString(str);
+            return result;
         }
-        return scrabbleBinary;
+        result.setMyString(scrabbleBinary.getMyString());
+        return result;
     }
 
     @Override
@@ -110,6 +111,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
 
     @Override
     public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
+        STBinary result = new STBinary();
         if(this.getMyBoolean() == true)
         {
             StringBuffer strBf = new StringBuffer();
@@ -121,9 +123,11 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
                     strBf.replace(i, i+1, "1");
                 }
             }
-            scrabbleBinary.setMyString(strBf.toString());
+            result.setMyString(strBf.toString());
+            return result;
         }
-        return scrabbleBinary;
+        result.setMyString(scrabbleBinary.getMyString());
+        return result;
     }
 
     @Override

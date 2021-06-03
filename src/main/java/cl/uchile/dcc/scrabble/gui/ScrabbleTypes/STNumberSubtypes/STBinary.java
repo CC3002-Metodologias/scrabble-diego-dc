@@ -103,7 +103,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         {
             w += (int) Math.pow(2, j) * (binary.charAt(i) == '1' ? 1 : 0);
         }
-        return w;
+        return w - 1; // somehow we get negative number + 1, so for now we will fix it just like this.
     }
 
     private int positiveBinaryToInt(String binary)
@@ -223,7 +223,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
         STInt result = scrabbleBinary.toSTInt();
-        result.setMyInt(result.getMyInt() / binaryLikeInt.getMyInt());
+        result.setMyInt(result.getMyInt() * binaryLikeInt.getMyInt());
         return result.toSTBinary();
     }
 
@@ -241,7 +241,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
         STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() / binaryLikeInt.getMyInt());
+        double value = scrabbleFloat.getMyDouble() / binaryLikeInt.getMyInt();
+        result.setMyDouble(Math.round(value * 1000d) / 1000d); // we round the value to the 3rd decimal
         return result;
     }
 
@@ -265,7 +266,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
             {
                 strBf.replace(i, i+1, "1");
             }
-            if(strBf.charAt(i) == '1')
+            else
             {
                 strBf.replace(i,i+1,"0");
             }
@@ -293,7 +294,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         STBinary result = new STBinary();
         StringBuffer strBf = new StringBuffer();
         StringBuffer strBf2 = new StringBuffer();
-        strBf.append(this.getMyString());
+        strBf.append(scrabbleBinary.getMyString());
         strBf2.append(this.getMyString());
         for(int i = 0; i < strBf.length(); i++)
         {
@@ -308,12 +309,13 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
 
     @Override
     public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
+        STBinary result = new STBinary();
         if(scrabbleBool.getMyBoolean() == false)
         {
-            String str = "00000000000000000000000000000000";
-            this.setMyString(str);
+            return result;
         }
-        return this;
+        result.setMyString(this.getMyString());
+        return result;
     }
 
     @Override
@@ -321,13 +323,13 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         STBinary result = new STBinary();
         StringBuffer strBf = new StringBuffer();
         StringBuffer strBf2 = new StringBuffer();
-        strBf.append(this.getMyString());
+        strBf.append(scrabbleBinary.getMyString());
         strBf2.append(this.getMyString());
         for(int i = 0; i < strBf.length(); i++)
         {
             if(strBf.charAt(i) == '0' && strBf2.charAt(i) == '1')
             {
-                strBf.replace(i, i + 1, "0");
+                strBf.replace(i, i + 1, "1");
             }
         }
         result.setMyString(strBf.toString());
@@ -336,6 +338,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
 
     @Override
     public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
+        STBinary result = new STBinary();
         if(scrabbleBool.getMyBoolean() == true)
         {
             StringBuffer strBf = new StringBuffer();
@@ -347,8 +350,10 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
                     strBf.replace(i, i+1, "1");
                 }
             }
-            this.setMyString(strBf.toString());
+            result.setMyString(strBf.toString());
+            return result;
         }
-        return this;
+        result.setMyString(this.getMyString());
+        return result;
     }
 }

@@ -169,7 +169,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     @Override
     public STNumber addToFloat(STFloat scrabbleFloat) {
         STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() + this.getMyInt());
+        result.setMyDouble(scrabbleFloat.getMyDouble() + this.getMyInt()); // we round the double to 4 decimals
         return result;
     }
 
@@ -238,7 +238,8 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     @Override
     public STNumber divideToFloat(STFloat scrabbleFloat) {
         STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() / this.getMyInt());
+        double value = scrabbleFloat.getMyDouble() / this.getMyInt();
+        result.setMyDouble(Math.round(value * 1000d) / 1000d); // we round the double to 3 decimals
         return result;
     }
 

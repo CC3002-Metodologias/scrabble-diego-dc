@@ -3,6 +3,7 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
+import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 
 /**
  * A new ScrabbleType STFloat -> references a Java double.
@@ -142,14 +143,16 @@ public class STFloat extends STNumber{
     @Override
     public STNumber divideToInteger(STInt scrabbleInt) {
         STFloat result = new STFloat();
-        result.setMyDouble(scrabbleInt.getMyInt() / this.getMyDouble());
+        double value = scrabbleInt.getMyInt() / this.getMyDouble();
+        result.setMyDouble(Math.round(value * 1000d) / 1000d);
         return result;
     }
 
     @Override
     public STNumber divideToFloat(STFloat scrabbleFloat) {
         STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() / this.getMyDouble());
+        double value = scrabbleFloat.getMyDouble() / this.getMyDouble();
+        result.setMyDouble(Math.round(value * 1000d) / 1000d);
         return result;
     }
 

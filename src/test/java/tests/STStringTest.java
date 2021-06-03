@@ -3,6 +3,7 @@ package tests;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class STStringTest extends AbstractScrabbleTypeTests{
     private STString aSTString;
@@ -15,9 +16,11 @@ class STStringTest extends AbstractScrabbleTypeTests{
     }
 
     @Override
+    @Test
     protected void ConstructorTest() {
         var expectedSTStr = new STString("hello, world!");
         var expectedNoParameterSTStr = new STString();
+        checkConstructor(aSTString, aSTString);
         checkConstructor(expectedSTStr, aSTString);
         checkConstructor(expectedNoParameterSTStr, emptySTString);
     }
@@ -41,6 +44,14 @@ class STStringTest extends AbstractScrabbleTypeTests{
         STString completeStr = new STString("My String is: hello, world!");
         STString str = new STString("My String is: ");
         checkAddToString(completeStr, str, aSTString);
+    }
+
+    @Test
+    void OperationTest()
+    {
+        STString completeSTR = new STString("My string is: hello, world!");
+        STString str = new STString("My string is: ");
+        assertEquals(completeSTR, str.add(aSTString), "Addition Failed. Expected: " + completeSTR.STtoString() + ", Actual: " + str.add(aSTString).STtoString());
     }
 
 }
