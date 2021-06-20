@@ -6,26 +6,36 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 
 /**
- * A new ScrabbleType STFloat -> references a Java double.
+ * A new ScrabbleType-Float, reference to a double.
+ *
+ * @author Diego Caviedes A.
  */
 public class STFloat extends STNumber{
 
     private double myDouble;
 
-    // Getter & Setter
+    /** Getter. Returns referenced double of this STFloat. */
     public double getMyDouble() {
         return myDouble;
     }
+
+    /** Setter. Sets the given double to this STFloat. */
     public void setMyDouble(double myDouble) {
         this.myDouble = myDouble;
     }
 
-    // Default constructor
+    /**
+     * Default Constructor of a STFloat
+     * Creates a STFloat with a (double) 0.0 value as default.
+     */
     public STFloat(){
         this.myDouble = 0.0;
     }
 
-    // Constructor parameterized  for our class
+    /**
+     * Parameterized Constructor for a STFloat
+     * Creates a STFloat with a given double value.
+     */
     public STFloat(double newFloat){
         this.myDouble = newFloat;
     }
@@ -72,24 +82,29 @@ public class STFloat extends STNumber{
         return this;
     }
 
+
+    /** Addition Operation - allows any type of STNumber */
     public STNumber add(STNumber numberToAdd) {
         STNumber result;
         result = numberToAdd.addToFloat(this);
         return result;
     }
 
+    /** Subtraction Operation - allows any type of STNumber */
     public STNumber subtract(STNumber numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToFloat(this);
         return result;
     }
 
+    /** Multiplication Operation - allows any type of STNumber */
     public STNumber multiply(STNumber numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToFloat(this);
         return result;
     }
 
+    /** Division Operation - allows any type of STNumber */
     public STNumber divide(STNumber numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToFloat(this);

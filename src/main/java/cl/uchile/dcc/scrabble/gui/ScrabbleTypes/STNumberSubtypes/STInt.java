@@ -4,28 +4,39 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 
 /**
- * A new ScrabbleType STInt -> references a Java int.
+ * A new ScrabbleType-Int, reference to an int.
+ *
+ * @author Diego Caviedes A.
  */
+
 public class STInt extends STNumber implements INumberBinaryCompatible {
 
     private int myInt;
 
-    // Getter & Setter
+    /** Getter. Returns referenced int of this STInt */
     public int getMyInt() {
         return myInt;
     }
+
+    /** Setter. Sets the given int to this STInts. */
     public void setMyInt(int myInt) {
         this.myInt = myInt;
     }
 
-    // Default Constructor
+    /**
+     * Default Constructor of a STInt
+     * Creates a STInt with a (int) 0 value as default.
+     */
     public STInt()
     {
         this.myInt = 0;
     }
 
 
-    // Constructor parameterized for our Class STInt
+    /**
+     * Parameterized Constructor for a STInt
+     * Creates a STInt with a given int value.
+     */
     public STInt(int newInt)
     {
         this.myInt = newInt;
@@ -74,10 +85,16 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return STFloatTransform;
     }
 
+    /** Transformation of this STInt to a STInt */
     public STInt toSTInt() {
         return this;
     }
 
+    /**
+     * Transformation of this STInt to a STBinary
+     * @return
+     *      A STBinary, represented as a 32bit binary on a Java String.
+     */
     public STBinary toSTBinary() {
         String myBinary;
         Integer i = Math.abs(getMyInt());
@@ -92,6 +109,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return newSTBinary;
     }
 
+    /** Returns a String representing a 32bit binary number from an int */
     private String intToBinaryString (int n) {
         String binary = "";
         for(int i = 0; i < 32; ++i, n/=2) {
@@ -107,6 +125,14 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return binary;
     }
 
+    /**
+     * Returns a negative version of a given binary using twoComplement.
+     * @param str
+     *      A StringBuffer with a positive Binary, representing the
+     *      absolute value of a negative int we want to transform.
+     * @return
+     *      A String with a 32bits binary.
+     */
     static String findTwosComplement(StringBuffer str)
     {
         int n = str.length();
@@ -135,24 +161,28 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return str.toString();
     }
 
+    /** Addition Operation - allows any type of STNumber */
     public STNumber add(STNumber numberToAdd) {
         STNumber result;
         result = numberToAdd.addToInteger(this);
         return result;
     }
 
+    /** Subtraction Operation - allows any type of STNumber */
     public STNumber subtract(STNumber numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToInteger(this);
         return result;
     }
 
+    /** Multiplication Operation - allows any type of STNumber */
     public STNumber multiply(STNumber numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToInteger(this);
         return result;
     }
 
+    /** Division Operation - allows any type of STNumber */
     public STNumber divide(STNumber numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToInteger(this);

@@ -3,28 +3,38 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 
 /**
- * A new ScrabbleType STBoolean -> references a Java Boolean.
+ * A new ScrabbleType-Boolean, reference to a boolean.
+ *
+ * @author Diego Caviedes A.
  */
 
 public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
 
     private boolean myBoolean;
 
-    // Getter & Setter
+    /** Getter. Returns referenced boolean of this STBoolean */
     public boolean getMyBoolean() {
         return myBoolean;
     }
+
+    /** Setter. Sets the given boolean to this STBoolean */
     public void setMyBoolean(boolean myBoolean) {
         this.myBoolean = myBoolean;
     }
 
-    // Default Constructor parameterized of our class
+    /**
+     * Default Constructor for a STSBoolean
+     * Creates a STBoolean with a false value as default.
+     */
     public STBoolean()
     {
         this.myBoolean = false;
     }
 
-    // Constructor parameterized of our class
+    /**
+     * Parameterized Constructor for a STSBoolean
+     * Creates a STBoolean with a given boolean value.
+     */
     public STBoolean(boolean newBoolean)
     {
         this.myBoolean = newBoolean;
@@ -58,6 +68,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
         return STStringTransform;
     }
 
+    /** Transformation of this STBoolean to a STBoolean */
     public STBoolean toSTBoolean() {
         return this;
     }
@@ -91,6 +102,17 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Conjunction to a binary is bit to bit.
+     * If boolean false -> 0
+     * If boolean true -> 1
+     * @param scrabbleBinary
+     *      Binary Operated with this STBoolean
+     * @return
+     *      A STSBinary as result of the operation.
+     */
     @Override
     public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
         STBinary result = new STBinary();
@@ -109,6 +131,17 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Disjunction to a binary is bit to bit.
+     * If boolean false -> 0
+     * If boolean true -> 1
+     * @param scrabbleBinary
+     *      Binary Operated with this STBoolean
+     * @return
+     *      A STSBinary as result of the operation.
+     */
     @Override
     public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
         STBinary result = new STBinary();

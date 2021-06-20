@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cl.uchile.dcc.scrabble.gui.ScrabbleTypes</OriginalElement>
+  <nodes>
+    <node x="126.0" y="164.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible</node>
+    <node x="-7.0590277777777715" y="164.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean</node>
+    <node x="399.0" y="164.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible</node>
+    <node x="-143.0" y="164.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString</node>
+    <node x="601.03125" y="247.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt</node>
+    <node x="639.0" y="164.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber</node>
+    <node x="788.40625" y="247.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat</node>
+    <node x="391.65625" y="247.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary</node>
+    <node x="637.0" y="81.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTNumber</node>
+    <node x="218.25" y="0.0">cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible" relationship="REALIZATION">
+      <point x="-21.0" y="-15.5" />
+      <point x="622.03125" y="205.5" />
+      <point x="509.0" y="205.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber" relationship="GENERALIZATION">
+      <point x="35.333333333333336" y="-15.5" />
+      <point x="479.98958333333337" y="216.0" />
+      <point x="699.0" y="216.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="509.0" y="51.0" />
+      <point x="321.0" y="51.0" />
+      <point x="34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType" relationship="REALIZATION">
+      <point x="-29.75" y="-15.5" />
+      <point x="22.69097222222223" y="51.0" />
+      <point x="252.5" y="51.0" />
+      <point x="-34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTNumber" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible" relationship="REALIZATION">
+      <point x="-35.33333333333334" y="-15.5" />
+      <point x="409.32291666666663" y="226.0" />
+      <point x="252.5" y="226.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="837.90625" y="216.0" />
+      <point x="699.0" y="216.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="252.5" y="90.0" />
+      <point x="321.0" y="90.0" />
+      <point x="34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="-90.5" y="51.0" />
+      <point x="252.5" y="51.0" />
+      <point x="-34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTNumber" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="699.0" y="51.0" />
+      <point x="321.0" y="51.0" />
+      <point x="34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber" relationship="GENERALIZATION">
+      <point x="21.0" y="-15.5" />
+      <point x="664.03125" y="216.0" />
+      <point x="699.0" y="216.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible" relationship="REALIZATION">
+      <point x="29.75" y="-15.5" />
+      <point x="82.19097222222223" y="226.0" />
+      <point x="252.5" y="226.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary" target="cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible" relationship="REALIZATION">
+      <point x="-7.105427357601002E-15" y="-15.5" />
+      <point x="444.65625" y="206.5" />
+      <point x="509.0" y="206.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="329.0" y="139.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

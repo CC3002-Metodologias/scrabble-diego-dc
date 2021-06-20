@@ -3,28 +3,38 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 
 /**
- * A new ScrabbleType STBinary -> references a Java String with only 0's & 1's.
+ * A new ScrabbleType-Binary, references to a Java String with only 0's & 1's.
+ *
+ * @author Diego Caviedes A.
  */
+
 public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLogicalOperationCompatible {
 
     private String myString;
 
-    // Getter & Setter
+    /** Getter. Returns referenced Java String of this STBinary. */
     public String getMyString() {
         return myString;
     }
+
+    /** Setter. Sets the given 32bit binary as a Java String to this STBinary. */
     public void setMyString(String myString) {
         this.myString = myString;
     }
 
-    // Default Constructor of our class.
+    /**
+     * Default Constructor of a STBinary
+     * Creates a STBinary with a 0 in binary as a Java String value as default.
+     */
     public STBinary()
     {
         this.myString = "00000000000000000000000000000000";
     }
 
-
-    // Constructor parameterized of our class.
+    /**
+     * Parameterized Constructor for a STBinary
+     * Creates a STBinary with a given binary as Java String value.
+     */
     public STBinary(String newString)
     {
         this.myString = newString;
@@ -73,18 +83,20 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return STFloatTransform;
     }
 
+    /** Transformation of this STBinary to a STInt */
     public STInt toSTInt() {
         int i = BinaryToInt(this.getMyString());
         STInt STIntTransform = new STInt(i);
         return STIntTransform;
     }
 
+    /** Transformation of this STBinary to a STBinary */
     public STBinary toSTBinary() {
         return this;
     }
 
 
-    // BinaryToInt receives a String which contains a Binary and returns the int this binary represents.
+    /** BinaryToInt receives a String which contains a Binary and returns the int this binary represents. */
     public int BinaryToInt(String binary) {
         if(bitToInt(binary.charAt(0))==0)
         {
@@ -96,6 +108,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         }
     }
 
+    /** Transforms a negative binary contained in a String to an int */
     private int negativeBinaryToInt(String binary) {
         int n = binary.length() - 1;
         int w = - bitToInt(binary.charAt(0)) * (int) Math.pow(2, n);
@@ -106,6 +119,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return w - 1; // somehow we get negative number + 1, so for now we will fix it just like this.
     }
 
+    /** Transforms a positive binary contained in a String to an int */
     private int positiveBinaryToInt(String binary)
     {
         int w = 0;
@@ -116,29 +130,34 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return w;
     }
 
+    /** flips values of a given bit from a binary */
     private int bitToInt(char bit)
     {
         return bit == '0' ? 0 : 1;
     }
 
+    /** Addition Operation - only allows STNumbers Compatible with STBinaries */
     public STNumber add(INumberBinaryCompatible numberToAdd) {
         STNumber result;
         result = numberToAdd.addToBinary(this);
         return result;
     }
 
+    /** Subtraction Operation - only allows STNumbers Compatible with STBinaries */
     public STNumber subtract(INumberBinaryCompatible numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToBinary(this);
         return result;
     }
 
+    /** Multiplication Operation - only allows STNumbers Compatible with STBinaries */
     public STNumber multiply(INumberBinaryCompatible numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToBinary(this);
         return result;
     }
 
+    /** Division Operation - only allows STNumbers Compatible with STBinaries */
     public STNumber divide(INumberBinaryCompatible numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToBinary(this);
@@ -255,6 +274,14 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return result.toSTBinary();
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Negation of this binary consists in the flipping of every bit to the opposite value
+     *
+     * @return
+     *      new String containing the new binary.
+     */
     @Override
     public ISTLogicalOperationCompatible negation() {
         STBinary result = new STBinary();
@@ -289,6 +316,18 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Conjunction between binaries are bit to bit.
+     * Consists on the evaluation of the tuples (B1_i, B2_i)
+     * true = 1 and false = 0.
+     *
+     * @param scrabbleBinary
+     *      STBinary operated with this STBinary.
+     * @return
+     *      a new STBinary with the result of the conjunction.
+     */
     @Override
     public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
         STBinary result = new STBinary();
@@ -307,6 +346,17 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Conjunction to a binary is bit to bit.
+     * If boolean false -> 0
+     * If boolean true -> 1
+     * @param scrabbleBool
+     *      Binary Operated with this STBoolean
+     * @return
+     *      A STSBinary as result of the operation.
+     */
     @Override
     public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
         STBinary result = new STBinary();
@@ -318,6 +368,18 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Conjunction between binaries are bit to bit.
+     * Consists on the evaluation of the tuples (B1_i, B2_i)
+     * true = 1 and false = 0.
+     *
+     * @param scrabbleBinary
+     *      STBinary operated with this STBinary.
+     * @return
+     *      a new STBinary with the result of the conjunction.
+     */
     @Override
     public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
         STBinary result = new STBinary();
@@ -336,6 +398,18 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return result;
     }
 
+
+    /**
+     * {@inheritDoc}
+     *
+     * Disjunction to a binary is bit to bit.
+     * If boolean false -> 0
+     * If boolean true -> 1
+     * @param scrabbleBool
+     *      Binary Operated with this STBoolean
+     * @return
+     *      A STSBinary as result of the operation.
+     */
     @Override
     public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
         STBinary result = new STBinary();

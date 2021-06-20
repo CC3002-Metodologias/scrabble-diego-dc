@@ -1,28 +1,37 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
 /**
- * A new ScrabbleType STString -> references a Java String.
+ * A ScrabbleType-String, reference to a Java String.
+ *
+ * @author Diego Caviedes A.
  */
 
 public class STString implements ScrabbleType {
 
     private String myString;
 
-    // Getter & Setter
+    /** Getter. Returns the referenced Java String of this STString. */
     public String getMyString() {
         return myString;
     }
 
+    /** Setter. Sets the given Java String to this STString. */
     public void setMyString(String myString) {
         this.myString = myString;
     }
 
-    // Constructor of our class STString
+    /**
+     * Default Constructor for a STString.
+     * Creates a STString with an empty Java String.
+     */
     public STString() {
         this.myString = "";
     }
 
-    // Constructor of our class STString
+    /**
+     * Parameterized Constructor for a STString.
+     * Creates STString with a given Java String.
+     */
     public STString(String newString) {
         this.myString = newString;
     }
@@ -54,6 +63,7 @@ public class STString implements ScrabbleType {
         return this;
     }
 
+    /** Addition Operation - allows any ScrabbleType */
     public STString add(ScrabbleType STToAdd){
         STString result;
         result = STToAdd.addToString(this);
