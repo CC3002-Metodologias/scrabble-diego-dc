@@ -86,6 +86,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     }
 
     /** Transformation of this STInt to a STInt */
+    @Override
     public STInt toSTInt() {
         return this;
     }
@@ -95,6 +96,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
      * @return
      *      A STBinary, represented as a 32bit binary on a Java String.
      */
+    @Override
     public STBinary toSTBinary() {
         String myBinary;
         Integer i = Math.abs(getMyInt());

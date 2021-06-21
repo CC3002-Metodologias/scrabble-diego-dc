@@ -84,6 +84,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     /** Transformation of this STBinary to a STInt */
+    @Override
     public STInt toSTInt() {
         int i = BinaryToInt(this.getMyString());
         STInt STIntTransform = new STInt(i);
@@ -91,6 +92,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     /** Transformation of this STBinary to a STBinary */
+    @Override
     public STBinary toSTBinary() {
         return this;
     }

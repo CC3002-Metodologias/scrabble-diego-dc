@@ -20,4 +20,6 @@ public interface ScrabbleType {
 
     /** Addition Operation of a ScrabbleType with a ScrabbleType-String. */
     STString addToString(STString scrabbleStr);
+
+    ScrabbleType GetResult();
 }
