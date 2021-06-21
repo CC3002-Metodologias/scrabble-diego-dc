@@ -6,29 +6,13 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class STOperation implements ScrabbleType{
+public abstract class STOperation implements ScrabbleNode{
     protected List<ScrabbleType> children = new ArrayList<>();
 
-    @Override
-    public String STtoString() {
-        return null;
-    }
 
     @Override
-    public STString toSTString() {
+    public ScrabbleNode GetResult() {
         return null;
     }
-
-    @Override
-    public STString addToString(STString scrabbleStr) {
-        return null;
-    }
-
-    @Override
-    public ScrabbleType GetResult() {
-        return null;
-    }
-
-
 
 }
