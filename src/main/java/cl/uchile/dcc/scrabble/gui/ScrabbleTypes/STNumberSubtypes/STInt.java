@@ -70,6 +70,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return STStringTransform;
     }
 
+
     @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();
@@ -284,6 +285,8 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return result.toSTBinary();
     }
 
+    // ------------------------------ Null Methods --------------------------
+
     @Override
     public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
         return null;
@@ -312,6 +315,16 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public ScrabbleType disjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType negation() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTBoolean() {
         return null;
     }
 }

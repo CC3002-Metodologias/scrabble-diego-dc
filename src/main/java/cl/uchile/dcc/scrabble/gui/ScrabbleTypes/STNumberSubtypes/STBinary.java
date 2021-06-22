@@ -68,6 +68,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return STStringTransform;
     }
 
+
+
     @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();
@@ -433,4 +435,10 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return result;
     }
 
+    // ------------------------------ Null Methods --------------------------
+
+    @Override
+    public ScrabbleType toSTBoolean() {
+        return null;
+    }
 }

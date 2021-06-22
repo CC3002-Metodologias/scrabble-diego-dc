@@ -67,6 +67,11 @@ public class STFloat extends STNumber{
     }
 
     @Override
+    public ScrabbleType toSTBoolean() {
+        return null;
+    }
+
+    @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();
         STString thisToString = this.toSTString();
@@ -168,6 +173,18 @@ public class STFloat extends STNumber{
         return result;
     }
 
+    // ------------------------------ Null Methods --------------------------
+
+    @Override
+    public ScrabbleType toSTInt() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTBinary() {
+        return null;
+    }
+
     @Override
     public STNumber addToBinary(STBinary scrabbleBinary) {
         return null;
@@ -216,6 +233,11 @@ public class STFloat extends STNumber{
 
     @Override
     public ScrabbleType disjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType negation() {
         return null;
     }
 }

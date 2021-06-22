@@ -34,6 +34,11 @@ public class Constant implements AST_IConstant {
     }
 
     @Override
+    public String printNode() {
+        return this.myST.STtoString();
+    }
+
+    @Override
     public ScrabbleType toST() {
         return myST;
     }
@@ -71,6 +76,42 @@ public class Constant implements AST_IConstant {
     @Override
     public Constant divide(Constant y) {
         Constant result = new Constant(this.myST.divide(y.toST()));
+        return result;
+    }
+
+    @Override
+    public Constant negation() {
+        Constant result = new Constant(this.myST.negation());
+        return result;
+    }
+
+    @Override
+    public Constant toSTString() {
+        Constant result = new Constant(this.myST.toSTString());
+        return result;
+    }
+
+    @Override
+    public Constant toSTBoolean() {
+        Constant result = new Constant(this.myST.toSTBoolean());
+        return result;
+    }
+
+    @Override
+    public Constant toSTFloat() {
+        Constant result = new Constant(this.myST.toSTFloat());
+        return result;
+    }
+
+    @Override
+    public Constant toSTInt() {
+        Constant result = new Constant(this.myST.toSTInt());
+        return result;
+    }
+
+    @Override
+    public Constant toSTBinary() {
+        Constant result = new Constant(this.myST.toSTBinary());
         return result;
     }
 

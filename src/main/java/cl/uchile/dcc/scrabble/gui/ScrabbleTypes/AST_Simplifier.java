@@ -1,9 +1,12 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
 import cl.uchile.dcc.scrabble.gui.AST.*;
+import cl.uchile.dcc.scrabble.gui.Scrabble;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
+
+
 
 public interface AST_Simplifier {
 
@@ -18,6 +21,8 @@ public interface AST_Simplifier {
     ScrabbleType conjunction(ScrabbleType n);
 
     ScrabbleType disjunction(ScrabbleType n);
+
+    ScrabbleType negation();
 
     STNumber addToInteger(STInt scrabbleInt);
 
@@ -50,4 +55,14 @@ public interface AST_Simplifier {
     STBinary disjunctionToBinary(STBinary scrabbleBinary);
 
     ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool);
+
+    ScrabbleType toSTString();
+
+    ScrabbleType toSTBoolean();
+
+    ScrabbleType toSTFloat();
+
+    ScrabbleType toSTInt();
+
+    ScrabbleType toSTBinary();
 }

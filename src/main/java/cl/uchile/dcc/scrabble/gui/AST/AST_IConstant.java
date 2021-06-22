@@ -6,7 +6,6 @@ public interface AST_IConstant extends AST_Operator{
 
     ScrabbleType toST();
 
-
     Constant conjunction(Constant y);
 
     Constant disjunction(Constant y);
@@ -18,4 +17,16 @@ public interface AST_IConstant extends AST_Operator{
     Constant multiply(Constant y);
 
     Constant divide(Constant y);
+
+    Constant negation();
+
+    Constant toSTString();
+
+    Constant toSTBoolean();
+
+    Constant toSTFloat();
+
+    Constant toSTInt();
+
+    Constant toSTBinary();
 }

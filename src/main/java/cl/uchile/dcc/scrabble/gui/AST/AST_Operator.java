@@ -5,4 +5,6 @@ public interface AST_Operator {
 
     Constant GetResult();
 
+    String printNode();
+
 }

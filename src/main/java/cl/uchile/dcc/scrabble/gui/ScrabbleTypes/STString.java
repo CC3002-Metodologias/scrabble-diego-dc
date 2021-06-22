@@ -67,11 +67,42 @@ public class STString implements ScrabbleType {
         return this;
     }
 
+
     /** Addition Operation - allows any ScrabbleType */
     public STString add(ScrabbleType STToAdd){
         STString result;
         result = STToAdd.addToString(this);
         return result;
+    }
+
+
+    @Override
+    public STString addToString(STString scrabbleStr) {
+        STString result = new STString();
+        result.setMyString(scrabbleStr.getMyString() + this.getMyString());
+        return result;
+    }
+
+    // ------------------------------ Null Methods --------------------------
+
+    @Override
+    public ScrabbleType toSTBoolean() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTFloat() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTInt() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTBinary() {
+        return null;
     }
 
     @Override
@@ -96,6 +127,11 @@ public class STString implements ScrabbleType {
 
     @Override
     public ScrabbleType disjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType negation() {
         return null;
     }
 
@@ -177,14 +213,6 @@ public class STString implements ScrabbleType {
     @Override
     public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
         return null;
-    }
-
-
-    @Override
-    public STString addToString(STString scrabbleStr) {
-        STString result = new STString();
-        result.setMyString(scrabbleStr.getMyString() + this.getMyString());
-        return result;
     }
 }
 
