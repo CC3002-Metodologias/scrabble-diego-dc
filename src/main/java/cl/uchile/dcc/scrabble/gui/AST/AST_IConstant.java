@@ -6,21 +6,16 @@ public interface AST_IConstant extends AST_Operator{
 
     ScrabbleType toST();
 
-    StringConstant add(AST_IConstant n);
-    NumericConstant add(NumericConstant n);
-    NumericConstant add(BinaryConstant n);
 
-    NumericConstant subtract(NumericConstant n);
-    NumericConstant subtract(BinaryConstant n);
+    Constant conjunction(Constant y);
 
+    Constant disjunction(Constant y);
 
-    NumericConstant multiply(NumericConstant n);
-    NumericConstant multiply(BinaryConstant n);
+    Constant add(Constant y);
 
-    NumericConstant divide(NumericConstant n);
-    NumericConstant divide(BinaryConstant n);
+    Constant subtract(Constant y);
 
-    LogicalConstant conjunction(LogicalConstant n);
-    LogicalConstant disjunction(LogicalConstant n);
+    Constant multiply(Constant y);
 
+    Constant divide(Constant y);
 }

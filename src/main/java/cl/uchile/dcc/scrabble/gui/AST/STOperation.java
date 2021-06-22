@@ -10,7 +10,7 @@ public abstract class STOperation implements AST_Operator {
 
 
     @Override
-    public StringConstant GetResult() {
+    public Constant GetResult() {
         return null;
     }
 

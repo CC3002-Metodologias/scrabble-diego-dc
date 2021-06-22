@@ -10,8 +10,5 @@ public abstract class STNumber implements ISTNumber {
 
     abstract public STFloat toSTFloat();
 
-    /**protected abstract STNumber add(STNumber numberToAdd);
-    abstract STNumber subtract(STNumber numberToSubtract);
-    abstract STNumber multiply(STNumber numberToMultiply);
-    abstract STNumber divide(STNumber numberToDivide);**/
+
 }

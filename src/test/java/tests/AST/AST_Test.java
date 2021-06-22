@@ -1,7 +1,6 @@
 package tests.AST;
 
-import cl.uchile.dcc.scrabble.gui.AST.NumericConstant;
-import cl.uchile.dcc.scrabble.gui.AST.StringConstant;
+import cl.uchile.dcc.scrabble.gui.AST.Constant;
 import cl.uchile.dcc.scrabble.gui.AST.STAddition;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +13,13 @@ class AST_Test {
 
     @BeforeEach
     void setUp() {
-        addition = new STAddition(new NumericConstant(new STInt(1)), new NumericConstant(new STInt(1)));
+        addition = new STAddition(new Constant(new STInt(1)), new Constant(new STInt(1)));
     }
 
     @Test
     public void AST_test()
     {
-        assertEquals(new NumericConstant(new STInt(2)), addition.GetResult(), "result: " + addition.GetResult().toST().toString() );
+        Constant expected = new Constant(new STInt(2));
+        assertEquals(expected, addition.GetResult(), "Expected: " + expected.toST().STtoString() +", Actual: " + addition.GetResult().toST().STtoString());
     }
 }

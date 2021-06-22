@@ -139,53 +139,33 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     /** Addition Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber add(INumberBinaryCompatible numberToAdd) {
+    public STNumber add(ScrabbleType numberToAdd) {
         STNumber result;
         result = numberToAdd.addToBinary(this);
         return result;
     }
 
     /** Subtraction Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber subtract(INumberBinaryCompatible numberToSubtract) {
+    public STNumber subtract(ScrabbleType numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToBinary(this);
         return result;
     }
 
     /** Multiplication Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber multiply(INumberBinaryCompatible numberToMultiply) {
+    public STNumber multiply(ScrabbleType numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToBinary(this);
         return result;
     }
 
     /** Division Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber divide(INumberBinaryCompatible numberToDivide) {
+    public STNumber divide(ScrabbleType numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToBinary(this);
         return result;
     }
 
-
-    @Override
-    public STNumber add(STNumber n) {
-        return null;
-    }
-
-    @Override
-    public STNumber subtract(STNumber n) {
-        return null;
-    }
-
-    @Override
-    public STNumber multiply(STNumber n) {
-        return null;
-    }
-
-    @Override
-    public STNumber divide(STNumber n) {
-        return null;
-    }
 
     @Override
     public STNumber addToInteger(STInt scrabbleInt) {
@@ -325,14 +305,14 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     @Override
-    public ISTLogicalOperationCompatible conjunction(ISTLogicalOperationCompatible scrabbleType) {
+    public ISTLogicalOperationCompatible conjunction(ScrabbleType scrabbleType) {
         ISTLogicalOperationCompatible result;
         result = scrabbleType.conjunctionToBinary(this);
         return result;
     }
 
     @Override
-    public ISTLogicalOperationCompatible disjunction(ISTLogicalOperationCompatible scrabbleType) {
+    public ISTLogicalOperationCompatible disjunction(ScrabbleType scrabbleType) {
         ISTLogicalOperationCompatible result;
         result = scrabbleType.disjunctionToBinary(this);
         return result;
@@ -452,4 +432,5 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         result.setMyString(this.getMyString());
         return result;
     }
+
 }

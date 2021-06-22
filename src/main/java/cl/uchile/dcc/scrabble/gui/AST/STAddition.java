@@ -10,7 +10,7 @@ public class STAddition implements AST_Operator {
     }
 
     @Override
-    public StringConstant GetResult()
+    public Constant GetResult()
     {
         var X = x.GetResult();
         var Y = y.GetResult();

@@ -4,16 +4,16 @@ public class ST_OR implements AST_Operator {
     private AST_Operator x;
     private AST_Operator y;
 
-    public ST_OR(LogicalConstant x, LogicalConstant y) {
+    public ST_OR(AST_Operator x, AST_Operator y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public LogicalConstant GetResult()
+    public Constant GetResult()
     {
-        var X = (LogicalConstant)x.GetResult();
-        var Y = (LogicalConstant)y.GetResult();
+        var X = x.GetResult();
+        var Y = y.GetResult();
         return X.disjunction(Y);
     }
 
