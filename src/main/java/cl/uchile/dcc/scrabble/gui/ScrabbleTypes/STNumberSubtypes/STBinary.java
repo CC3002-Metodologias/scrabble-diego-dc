@@ -168,6 +168,26 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
 
 
     @Override
+    public STNumber add(STNumber n) {
+        return null;
+    }
+
+    @Override
+    public STNumber subtract(STNumber n) {
+        return null;
+    }
+
+    @Override
+    public STNumber multiply(STNumber n) {
+        return null;
+    }
+
+    @Override
+    public STNumber divide(STNumber n) {
+        return null;
+    }
+
+    @Override
     public STNumber addToInteger(STInt scrabbleInt) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();

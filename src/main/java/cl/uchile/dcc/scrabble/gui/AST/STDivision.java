@@ -1,47 +1,22 @@
 package cl.uchile.dcc.scrabble.gui.AST;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 
-public class STDivision implements NumericalNode                                                                             {
-    private NumericalNode x;
-    private NumericalNode y;
+public class STDivision implements AST_Operator {
+    private AST_Operator x;
+    private AST_Operator y;
 
-    public STDivision(NumericalNode x, NumericalNode y) {
+    public STDivision(NumericConstant x, NumericConstant y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public NumericalNode GetResult()
+    public NumericConstant GetResult()
     {
-        var X = x.GetResult();
-        var Y = y.GetResult();
-        return X.Divide(Y);
+        var X = (NumericConstant)x.GetResult();
+        var Y = (NumericConstant)y.GetResult();
+        return X.divide(Y);
     }
 
-    @Override
-    public String NodeToString() {
-        return null;
-    }
 
-    @Override
-    public NumericalNode Add(NumericalNode y) {
-        return null;
-    }
-
-    @Override
-    public NumericalNode Subtract(NumericalNode y) {
-        return null;
-    }
-
-    @Override
-    public NumericalNode Multiply(NumericalNode y) {
-        return null;
-    }
-
-    @Override
-    public NumericalNode Divide(NumericalNode y) {
-        return null;
-    }
 }

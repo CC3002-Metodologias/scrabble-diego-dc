@@ -1,4 +1,4 @@
-package tests.STNumberTests;
+package tests.ScrabbleTypes.STNumberTests;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
@@ -7,7 +7,6 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tests.AbstractScrabbleTypeTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

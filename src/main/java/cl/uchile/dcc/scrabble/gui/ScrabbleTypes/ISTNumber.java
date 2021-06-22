@@ -15,6 +15,12 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 
 public interface ISTNumber extends ScrabbleType {
 
+
+    STNumber add(STNumber n);
+    STNumber subtract(STNumber n);
+    STNumber multiply(STNumber n);
+    STNumber divide(STNumber n);
+
     /** Can be added to a ScrabbleType-Int */
     STNumber addToInteger(STInt scrabbleInt);
     /** Can be added to a ScrabbleType-Float */

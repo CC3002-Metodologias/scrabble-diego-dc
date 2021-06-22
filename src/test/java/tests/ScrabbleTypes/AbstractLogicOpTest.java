@@ -1,7 +1,6 @@
-package tests;
+package tests.ScrabbleTypes;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

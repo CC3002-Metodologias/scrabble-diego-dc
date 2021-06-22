@@ -1,22 +1,20 @@
 package cl.uchile.dcc.scrabble.gui.AST;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
+public class ST_OR implements AST_Operator {
+    private AST_Operator x;
+    private AST_Operator y;
 
-public class ST_OR implements LogicalNode{
-    private STNumber x;
-    private STNumber y;
-
-    public ST_OR(STNumber x, STNumber y) {
+    public ST_OR(LogicalConstant x, LogicalConstant y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public LogicalNode GetResult()
+    public LogicalConstant GetResult()
     {
-        var X = x.GetResult();
-        var Y = y.GetResult();
+        var X = (LogicalConstant)x.GetResult();
+        var Y = (LogicalConstant)y.GetResult();
         return X.disjunction(Y);
     }
+
 }

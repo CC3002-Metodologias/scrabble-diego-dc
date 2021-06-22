@@ -1,12 +1,9 @@
-package tests.STNumberTests;
+package tests.ScrabbleTypes.STNumberTests;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
-import tests.AbstractScrabbleTypeTests;
+import tests.ScrabbleTypes.AbstractScrabbleTypeTests;
 import org.junit.jupiter.api.Test;
-
-import java.util.SplittableRandom;
 
 import static org.junit.jupiter.api.Assertions.*;
 

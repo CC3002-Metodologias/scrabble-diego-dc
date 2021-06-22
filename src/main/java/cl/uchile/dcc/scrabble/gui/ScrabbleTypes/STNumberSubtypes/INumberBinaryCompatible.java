@@ -13,6 +13,11 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 
 public interface INumberBinaryCompatible extends ScrabbleType {
 
+    STNumber add(INumberBinaryCompatible n);
+    STNumber subtract(INumberBinaryCompatible n);
+    STNumber multiply(INumberBinaryCompatible n);
+    STNumber divide(INumberBinaryCompatible n);
+
     /** This type of STNumber can be transformed to STInt */
     STInt toSTInt();
 

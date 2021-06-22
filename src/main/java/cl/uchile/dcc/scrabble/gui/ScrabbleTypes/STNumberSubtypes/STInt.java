@@ -85,6 +85,26 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return STFloatTransform;
     }
 
+    @Override
+    public STNumber add(INumberBinaryCompatible n) {
+        return null;
+    }
+
+    @Override
+    public STNumber subtract(INumberBinaryCompatible n) {
+        return null;
+    }
+
+    @Override
+    public STNumber multiply(INumberBinaryCompatible n) {
+        return null;
+    }
+
+    @Override
+    public STNumber divide(INumberBinaryCompatible n) {
+        return null;
+    }
+
     /** Transformation of this STInt to a STInt */
     @Override
     public STInt toSTInt() {

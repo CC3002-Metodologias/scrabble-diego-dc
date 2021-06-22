@@ -1,4 +1,4 @@
-package tests;
+package tests.ScrabbleTypes;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
