@@ -4,9 +4,18 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 
+/**
+ * Constants represent a ScrabbleType,
+ * they will be the leaf in the AST
+ *
+ * @author Diego Caviedes C.
+ */
+
+
 public class Constant implements AST_IConstant {
     ScrabbleType myST;
 
+    /** Constructor for a Constant */
     public Constant(ScrabbleType x)
     {
         this.myST = x;

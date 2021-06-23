@@ -6,6 +6,19 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 
+/**
+ * Interfaz creada sólo con la intención de simplificar
+ * la implementación del AST a través del composite.
+ *
+ * Tras muchas pruebas no exitosas de implementar el AST/composite
+ * con las interfaces y restricciones de T1, y principalmente
+ * por falta de tiempo, no quedó otra opción que asumir las
+ * siguientes operaciones validas para todos lo ScrabbleTypes.
+ *
+ *
+ * @author Diego Caviedes A.
+ */
+
 
 
 public interface AST_Simplifier {

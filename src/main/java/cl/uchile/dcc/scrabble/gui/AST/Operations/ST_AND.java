@@ -3,10 +3,17 @@ package cl.uchile.dcc.scrabble.gui.AST.Operations;
 import cl.uchile.dcc.scrabble.gui.AST.AST_Operator;
 import cl.uchile.dcc.scrabble.gui.AST.Constant;
 
+/**
+ * Binary Operator Node for AST
+ *
+ * @author Diego Caviedes A.
+ */
+
 public class ST_AND implements AST_Operator {
     private AST_Operator x;
     private AST_Operator y;
 
+    /** Constructor for operator ST_AND */
     public ST_AND(AST_Operator x, AST_Operator y) {
         this.x = x;
         this.y = y;
