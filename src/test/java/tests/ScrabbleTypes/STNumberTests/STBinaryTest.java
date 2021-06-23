@@ -1,4 +1,4 @@
-package tests.STNumberTests;
+package tests.ScrabbleTypes.STNumberTests;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
@@ -8,10 +8,7 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tests.AbstractLogicOpTest;
-import tests.AbstractScrabbleTypeTests;
-
-import java.security.SecureRandom;
+import tests.ScrabbleTypes.AbstractLogicOpTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package tests;
+package tests.ScrabbleTypes;
 
 import cl.uchile.dcc.scrabble.gui.Scrabble;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;

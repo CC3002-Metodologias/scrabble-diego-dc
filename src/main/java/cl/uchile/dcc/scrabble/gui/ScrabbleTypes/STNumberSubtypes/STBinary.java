@@ -68,6 +68,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         return STStringTransform;
     }
 
+
+
     @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();
@@ -84,6 +86,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     /** Transformation of this STBinary to a STInt */
+    @Override
     public STInt toSTInt() {
         int i = BinaryToInt(this.getMyString());
         STInt STIntTransform = new STInt(i);
@@ -91,6 +94,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     /** Transformation of this STBinary to a STBinary */
+    @Override
     public STBinary toSTBinary() {
         return this;
     }
@@ -137,28 +141,28 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     /** Addition Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber add(INumberBinaryCompatible numberToAdd) {
+    public STNumber add(ScrabbleType numberToAdd) {
         STNumber result;
         result = numberToAdd.addToBinary(this);
         return result;
     }
 
     /** Subtraction Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber subtract(INumberBinaryCompatible numberToSubtract) {
+    public STNumber subtract(ScrabbleType numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToBinary(this);
         return result;
     }
 
     /** Multiplication Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber multiply(INumberBinaryCompatible numberToMultiply) {
+    public STNumber multiply(ScrabbleType numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToBinary(this);
         return result;
     }
 
     /** Division Operation - only allows STNumbers Compatible with STBinaries */
-    public STNumber divide(INumberBinaryCompatible numberToDivide) {
+    public STNumber divide(ScrabbleType numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToBinary(this);
         return result;
@@ -303,14 +307,14 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     }
 
     @Override
-    public ISTLogicalOperationCompatible conjunction(ISTLogicalOperationCompatible scrabbleType) {
+    public ISTLogicalOperationCompatible conjunction(ScrabbleType scrabbleType) {
         ISTLogicalOperationCompatible result;
         result = scrabbleType.conjunctionToBinary(this);
         return result;
     }
 
     @Override
-    public ISTLogicalOperationCompatible disjunction(ISTLogicalOperationCompatible scrabbleType) {
+    public ISTLogicalOperationCompatible disjunction(ScrabbleType scrabbleType) {
         ISTLogicalOperationCompatible result;
         result = scrabbleType.disjunctionToBinary(this);
         return result;
@@ -429,5 +433,12 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
         }
         result.setMyString(this.getMyString());
         return result;
+    }
+
+    // ------------------------------ Null Methods --------------------------
+
+    @Override
+    public ScrabbleType toSTBoolean() {
+        return null;
     }
 }

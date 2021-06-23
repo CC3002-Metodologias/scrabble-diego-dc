@@ -1,4 +1,4 @@
-package tests;
+package tests.ScrabbleTypes;
 
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;

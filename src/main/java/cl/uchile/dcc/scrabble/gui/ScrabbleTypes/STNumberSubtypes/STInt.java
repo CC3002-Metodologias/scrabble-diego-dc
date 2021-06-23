@@ -1,7 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
+import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 
 /**
  * A new ScrabbleType-Int, reference to an int.
@@ -71,6 +70,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return STStringTransform;
     }
 
+
     @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();
@@ -85,7 +85,9 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return STFloatTransform;
     }
 
+
     /** Transformation of this STInt to a STInt */
+    @Override
     public STInt toSTInt() {
         return this;
     }
@@ -95,6 +97,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
      * @return
      *      A STBinary, represented as a 32bit binary on a Java String.
      */
+    @Override
     public STBinary toSTBinary() {
         String myBinary;
         Integer i = Math.abs(getMyInt());
@@ -162,28 +165,28 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     }
 
     /** Addition Operation - allows any type of STNumber */
-    public STNumber add(STNumber numberToAdd) {
+    public STNumber add(ScrabbleType numberToAdd) {
         STNumber result;
         result = numberToAdd.addToInteger(this);
         return result;
     }
 
     /** Subtraction Operation - allows any type of STNumber */
-    public STNumber subtract(STNumber numberToSubtract) {
+    public STNumber subtract(ScrabbleType numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToInteger(this);
         return result;
     }
 
     /** Multiplication Operation - allows any type of STNumber */
-    public STNumber multiply(STNumber numberToMultiply) {
+    public STNumber multiply(ScrabbleType numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToInteger(this);
         return result;
     }
 
     /** Division Operation - allows any type of STNumber */
-    public STNumber divide(STNumber numberToDivide) {
+    public STNumber divide(ScrabbleType numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToInteger(this);
         return result;
@@ -282,5 +285,46 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return result.toSTBinary();
     }
 
+    // ------------------------------ Null Methods --------------------------
 
+    @Override
+    public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
+        return null;
+    }
+
+    @Override
+    public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
+        return null;
+    }
+
+
+    @Override
+    public ScrabbleType conjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType disjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType negation() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTBoolean() {
+        return null;
+    }
 }

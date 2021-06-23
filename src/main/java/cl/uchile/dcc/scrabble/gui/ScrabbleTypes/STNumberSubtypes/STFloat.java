@@ -1,9 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
+import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 
 /**
  * A new ScrabbleType-Float, reference to a double.
@@ -70,6 +67,11 @@ public class STFloat extends STNumber{
     }
 
     @Override
+    public ScrabbleType toSTBoolean() {
+        return null;
+    }
+
+    @Override
     public STString addToString(STString scrabbleStr) {
         STString result = new STString();
         STString thisToString = this.toSTString();
@@ -84,28 +86,28 @@ public class STFloat extends STNumber{
 
 
     /** Addition Operation - allows any type of STNumber */
-    public STNumber add(STNumber numberToAdd) {
+    public STNumber add(ScrabbleType numberToAdd) {
         STNumber result;
         result = numberToAdd.addToFloat(this);
         return result;
     }
 
     /** Subtraction Operation - allows any type of STNumber */
-    public STNumber subtract(STNumber numberToSubtract) {
+    public STNumber subtract(ScrabbleType numberToSubtract) {
         STNumber result;
         result = numberToSubtract.subtractToFloat(this);
         return result;
     }
 
     /** Multiplication Operation - allows any type of STNumber */
-    public STNumber multiply(STNumber numberToMultiply) {
+    public STNumber multiply(ScrabbleType numberToMultiply) {
         STNumber result;
         result = numberToMultiply.multiplyToFloat(this);
         return result;
     }
 
     /** Division Operation - allows any type of STNumber */
-    public STNumber divide(STNumber numberToDivide) {
+    public STNumber divide(ScrabbleType numberToDivide) {
         STNumber result;
         result = numberToDivide.divideToFloat(this);
         return result;
@@ -171,5 +173,71 @@ public class STFloat extends STNumber{
         return result;
     }
 
+    // ------------------------------ Null Methods --------------------------
 
+    @Override
+    public ScrabbleType toSTInt() {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType toSTBinary() {
+        return null;
+    }
+
+    @Override
+    public STNumber addToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public STNumber subtractToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public STNumber multiplyToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public STNumber divideToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
+        return null;
+    }
+
+    @Override
+    public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
+        return null;
+    }
+
+    @Override
+    public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
+        return null;
+    }
+
+
+    @Override
+    public ScrabbleType conjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType disjunction(ScrabbleType n) {
+        return null;
+    }
+
+    @Override
+    public ScrabbleType negation() {
+        return null;
+    }
 }

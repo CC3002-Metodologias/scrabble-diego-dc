@@ -10,7 +10,7 @@ package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
  * @author Diego Caviedes A.
  */
 
-public interface ScrabbleType {
+public interface ScrabbleType extends AST_Simplifier{
 
     /** Transformation of a ScrabbleType to a Java String. */
     String STtoString();

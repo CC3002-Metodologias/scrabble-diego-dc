@@ -16,9 +16,9 @@ public interface ISTLogicalOperationCompatible extends ScrabbleType{
     ISTLogicalOperationCompatible negation();
 
     /** Binary operation, Logical Conjunction */
-    ISTLogicalOperationCompatible conjunction(ISTLogicalOperationCompatible scrabbleType);
+    //ISTLogicalOperationCompatible conjunction(ISTLogicalOperationCompatible scrabbleType);
     /** Binary operation, Logical Disjunction */
-    ISTLogicalOperationCompatible disjunction(ISTLogicalOperationCompatible scrabbleType);
+    //ISTLogicalOperationCompatible disjunction(ISTLogicalOperationCompatible scrabbleType);
 
 
     /** Operates a Conjunction with a ScrabbleType-Binary */

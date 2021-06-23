@@ -13,15 +13,23 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
 
 public interface INumberBinaryCompatible extends ScrabbleType {
 
-    /** Operates an Addition to a ScrabbelType-Binary */
+
+
+    /** This type of STNumber can be transformed to STInt */
+    STInt toSTInt();
+
+    /** This type of STNumber can be transformed to STBinary */
+    STBinary toSTBinary();
+
+    /** Operates an Addition to a ScrabbleType-Binary */
     STNumber addToBinary(STBinary scrabbleBinary);
 
     /** Operates a Subtraction to a ScrabbleType-Binary */
     STNumber subtractToBinary(STBinary scrabbleBinary);
 
-    /** Operates a Multiplication to a ScrabbelType-Binary */
+    /** Operates a Multiplication to a ScrabbleType-Binary */
     STNumber multiplyToBinary(STBinary scrabbleBinary);
 
-    /** Operates a Division to a ScrabbelType-Binary */
+    /** Operates a Division to a ScrabbleType-Binary */
     STNumber divideToBinary(STBinary scrabbleBinary);
 }
