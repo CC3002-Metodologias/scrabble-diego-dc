@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.ScrabbleTypeFlyweight;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 
 /**
@@ -8,6 +9,37 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
  * @author Diego Caviedes A.
  */
 public class STFloat extends STNumber{
+
+    public static class float_builder {
+        double myValue;
+
+        public float_builder() {
+            this.myValue = 0.0;
+        }
+
+        public float_builder(double newDouble) {
+            this.myValue = newDouble;
+        }
+
+        /**
+         * Public constructor for a STFloat.
+         * The purpose is to save Memory:
+         * will only create a STInt if there is no other
+         * STInt created with the same value before.
+         */
+        public STFloat build() {
+            // check if there is already an STInt with this value created.
+            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
+            // if not
+            if (result == null) {
+                // Create a new STInt and add to the Dictionary.
+                result = new STFloat(myValue);
+                ScrabbleTypeFlyweight.addElement(myValue, result);
+            }
+            // it can only be a STInt
+            return (STFloat)result;
+        }
+    }
 
     private double myDouble;
 
@@ -25,7 +57,7 @@ public class STFloat extends STNumber{
      * Default Constructor of a STFloat
      * Creates a STFloat with a (double) 0.0 value as default.
      */
-    public STFloat(){
+    private STFloat(){
         this.myDouble = 0.0;
     }
 
@@ -33,7 +65,7 @@ public class STFloat extends STNumber{
      * Parameterized Constructor for a STFloat
      * Creates a STFloat with a given double value.
      */
-    public STFloat(double newFloat){
+    private STFloat(double newFloat){
         this.myDouble = newFloat;
     }
 
@@ -62,7 +94,7 @@ public class STFloat extends STNumber{
 
     @Override
     public STString toSTString() {
-        STString STStringTransform = new STString(this.STtoString());
+        STString STStringTransform = new STString.string_builder(this.STtoString()).build();
         return STStringTransform;
     }
 
@@ -73,7 +105,7 @@ public class STFloat extends STNumber{
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString();
+        STString result = new STString.string_builder().build();
         STString thisToString = this.toSTString();
         result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
         return result;

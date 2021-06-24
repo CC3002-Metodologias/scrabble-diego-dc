@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.ScrabbleTypeFlyweight;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
@@ -11,6 +12,37 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
  */
 
 public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
+
+    public static class boolean_builder {
+        boolean myValue;
+
+        public boolean_builder() {
+            this.myValue = false;
+        }
+
+        public boolean_builder(boolean newBoolean) {
+            this.myValue = newBoolean;
+        }
+
+        /**
+         * Public constructor for a STFloat.
+         * The purpose is to save Memory:
+         * will only create a STInt if there is no other
+         * STInt created with the same value before.
+         */
+        public STBoolean build() {
+            // check if there is already an STInt with this value created.
+            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
+            // if not
+            if (result == null) {
+                // Create a new STInt and add to the Dictionary.
+                result = new STBoolean(myValue);
+                ScrabbleTypeFlyweight.addElement(myValue, result);
+            }
+            // it can only be a STInt
+            return (STBoolean)result;
+        }
+    }
 
     private boolean myBoolean;
 
@@ -28,7 +60,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
      * Default Constructor for a STSBoolean
      * Creates a STBoolean with a false value as default.
      */
-    public STBoolean()
+    private STBoolean()
     {
         this.myBoolean = false;
     }
@@ -37,7 +69,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
      * Parameterized Constructor for a STSBoolean
      * Creates a STBoolean with a given boolean value.
      */
-    public STBoolean(boolean newBoolean)
+    private STBoolean(boolean newBoolean)
     {
         this.myBoolean = newBoolean;
     }
@@ -66,7 +98,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
 
     @Override
     public STString toSTString() {
-        STString STStringTransform = new STString(this.STtoString());
+        STString STStringTransform = new STString.string_builder(this.STtoString()).build();
         return STStringTransform;
     }
 
@@ -79,7 +111,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString();
+        STString result = new STString.string_builder().build();
         STString thisToString = this.toSTString();
         result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
         return result;
@@ -121,7 +153,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
      */
     @Override
     public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
-        STBinary result = new STBinary();
+        STBinary result = new STBinary.binary_builder().build();
         if(this.getMyBoolean() == false)
         {
             return result;
@@ -150,7 +182,7 @@ public class STBoolean implements ScrabbleType, ISTLogicalOperationCompatible {
      */
     @Override
     public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
-        STBinary result = new STBinary();
+        STBinary result = new STBinary.binary_builder().build();
         if(this.getMyBoolean() == true)
         {
             StringBuffer strBf = new StringBuffer();

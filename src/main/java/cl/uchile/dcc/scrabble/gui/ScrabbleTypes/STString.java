@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.ScrabbleTypeFlyweight;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
@@ -11,6 +12,36 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
  */
 
 public class STString implements ScrabbleType {
+
+    public static class string_builder {
+        String myValue;
+
+        public string_builder( ) {
+            this.myValue = "";
+        }
+        public string_builder(String newString) {
+            this.myValue = newString;
+        }
+
+        /**
+         * Public constructor for a STFloat.
+         * The purpose is to save Memory:
+         * will only create a STInt if there is no other
+         * STInt created with the same value before.
+         */
+        public STString build() {
+            // check if there is already an STInt with this value created.
+            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
+            // if not
+            if (result == null) {
+                // Create a new STInt and add to the Dictionary.
+                result = new STString(myValue);
+                ScrabbleTypeFlyweight.addElement(myValue, result);
+            }
+            // it can only be a STInt
+            return (STString)result;
+        }
+    }
 
     private String myString;
 
@@ -28,7 +59,7 @@ public class STString implements ScrabbleType {
      * Default Constructor for a STString.
      * Creates a STString with an empty Java String.
      */
-    public STString() {
+    private STString() {
         this.myString = "";
     }
 
@@ -36,7 +67,7 @@ public class STString implements ScrabbleType {
      * Parameterized Constructor for a STString.
      * Creates STString with a given Java String.
      */
-    public STString(String newString) {
+    private STString(String newString) {
         this.myString = newString;
     }
 

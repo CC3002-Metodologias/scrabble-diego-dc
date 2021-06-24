@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class STIntTest extends AbstractSTNumberOpTests {
     private STInt positiveSTInt;
-    private STInt zeroSTInt = new STInt(0);
+    private STInt zeroSTInt = new STInt.int_builder(0).build();
     private STInt negativeSTInt;
 
     @BeforeEach

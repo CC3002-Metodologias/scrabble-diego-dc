@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.ScrabbleTypeFlyweight;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 
 /**
@@ -9,6 +10,38 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
  */
 
 public class STInt extends STNumber implements INumberBinaryCompatible {
+
+    public static class int_builder {
+        int myValue;
+
+        public int_builder( ) {
+            this.myValue = 0;
+        }
+
+
+        public int_builder(int newInt) {
+            this.myValue = newInt;
+        }
+
+        /**
+         * Public constructor for a STInt.
+         * The purpose is to save Memory:
+         * will only create a STInt if there is no other
+         * STInt created with the same value before.
+         */
+        public STInt build() {
+            // check if there is already an STInt with this value created.
+            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
+            // if not
+            if (result == null) {
+                // Create a new STInt and add to the Dictionary.
+                result = new STInt(myValue);
+                ScrabbleTypeFlyweight.addElement(myValue, result);
+            }
+            // it can only be a STInt
+            return (STInt)result;
+        }
+    }
 
     private int myInt;
 
@@ -26,20 +59,21 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
      * Default Constructor of a STInt
      * Creates a STInt with a (int) 0 value as default.
      */
-    public STInt()
+    private STInt()
     {
         this.myInt = 0;
     }
 
-
     /**
      * Parameterized Constructor for a STInt
      * Creates a STInt with a given int value.
+     * Private so it can only be created through the Builder.
      */
-    public STInt(int newInt)
+    private STInt(int newInt)
     {
         this.myInt = newInt;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -66,14 +100,14 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STString toSTString() {
-        STString STStringTransform = new STString(this.STtoString());
+        STString STStringTransform = new STString.string_builder(this.STtoString()).build();
         return STStringTransform;
     }
 
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString();
+        STString result = new STString.string_builder().build();
         STString thisToString = this.toSTString();
         result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
         return result;
@@ -81,7 +115,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STFloat toSTFloat() {
-        STFloat STFloatTransform = new STFloat(Double.valueOf(this.getMyInt()));
+        STFloat STFloatTransform = new STFloat.float_builder(Double.valueOf(this.getMyInt())).build();
         return STFloatTransform;
     }
 
@@ -108,7 +142,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
             strBf.append(myBinary);
             myBinary = findTwosComplement(strBf);
         }
-        STBinary newSTBinary = new STBinary(myBinary);
+        STBinary newSTBinary = new STBinary.binary_builder(myBinary).build();
         return newSTBinary;
     }
 
@@ -201,7 +235,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STNumber addToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
+        STFloat result = new STFloat.float_builder().build();
         result.setMyDouble(scrabbleFloat.getMyDouble() + this.getMyInt()); // we round the double to 4 decimals
         return result;
     }
@@ -224,7 +258,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STNumber subtractToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
+        STFloat result = new STFloat.float_builder().build();
         result.setMyDouble(scrabbleFloat.getMyDouble() - this.getMyInt());
         return result;
     }
@@ -247,7 +281,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STNumber multiplyToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
+        STFloat result = new STFloat.float_builder().build();
         result.setMyDouble(scrabbleFloat.getMyDouble() * this.getMyInt());
         return result;
     }
@@ -270,7 +304,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STNumber divideToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
+        STFloat result = new STFloat.float_builder().build();
         double value = scrabbleFloat.getMyDouble() / this.getMyInt();
         result.setMyDouble(Math.round(value * 1000d) / 1000d); // we round the double to 3 decimals
         return result;
