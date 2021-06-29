@@ -16,9 +16,12 @@ public class STString implements ScrabbleType {
     public static class string_builder {
         String myValue;
 
-        public string_builder( ) {
+        /** Default constructor - if no parameter is given, assigns to 'myValue' an empty String */
+        public string_builder() {
             this.myValue = "";
         }
+
+        /** Constructor string_builder */
         public string_builder(String newString) {
             this.myValue = newString;
         }
@@ -48,19 +51,6 @@ public class STString implements ScrabbleType {
     /** Getter. Returns the referenced Java String of this STString. */
     public String getMyString() {
         return myString;
-    }
-
-    /** Setter. Sets the given Java String to this STString. */
-    public void setMyString(String myString) {
-        this.myString = myString;
-    }
-
-    /**
-     * Default Constructor for a STString.
-     * Creates a STString with an empty Java String.
-     */
-    private STString() {
-        this.myString = "";
     }
 
     /**
@@ -109,8 +99,7 @@ public class STString implements ScrabbleType {
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString();
-        result.setMyString(scrabbleStr.getMyString() + this.getMyString());
+        STString result = new STString.string_builder(scrabbleStr.getMyString() + this.getMyString()).build();
         return result;
     }
 

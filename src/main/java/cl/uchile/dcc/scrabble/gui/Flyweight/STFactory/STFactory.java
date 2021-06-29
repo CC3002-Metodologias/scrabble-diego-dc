@@ -6,6 +6,13 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 
+/**
+ * Factory for ScrabbleTypes
+ * More efficient way to create Scrabble types.
+ *
+ * @author Diego Caviedes A.
+ */
+
 public class STFactory {
 
     private static STStringFactory STStringFactory = new STStringFactory();
@@ -13,7 +20,6 @@ public class STFactory {
     private static STFloatFactory STFloatFactory = new STFloatFactory();
     private static STIntFactory STIntFactory = new STIntFactory();
     private static STBinaryFactory STBinaryFactory = new STBinaryFactory();
-
 
     public static STString createString(String value)
     {

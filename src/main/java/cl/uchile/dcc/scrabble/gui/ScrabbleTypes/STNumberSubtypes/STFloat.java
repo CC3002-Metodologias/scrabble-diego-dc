@@ -13,30 +13,32 @@ public class STFloat extends STNumber{
     public static class float_builder {
         double myValue;
 
+        /** Default constructor - if no parameter is given, assigns to 'myValue' a (double)0.0 */
         public float_builder() {
             this.myValue = 0.0;
         }
 
+        /** Constructor float_builder */
         public float_builder(double newDouble) {
             this.myValue = newDouble;
         }
 
         /**
-         * Public constructor for a STFloat.
+         * Public builder for a STFloat.
          * The purpose is to save Memory:
          * will only create a STInt if there is no other
          * STInt created with the same value before.
          */
         public STFloat build() {
-            // check if there is already an STInt with this value created.
+            // check if there is already an STFloat with this value created.
             ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
             // if not
             if (result == null) {
-                // Create a new STInt and add to the Dictionary.
+                // Create a new STFloat and add to the Dictionary.
                 result = new STFloat(myValue);
                 ScrabbleTypeFlyweight.addElement(myValue, result);
             }
-            // it can only be a STInt
+            // it can only be a STFloat.
             return (STFloat)result;
         }
     }
@@ -48,18 +50,6 @@ public class STFloat extends STNumber{
         return myDouble;
     }
 
-    /** Setter. Sets the given double to this STFloat. */
-    public void setMyDouble(double myDouble) {
-        this.myDouble = myDouble;
-    }
-
-    /**
-     * Default Constructor of a STFloat
-     * Creates a STFloat with a (double) 0.0 value as default.
-     */
-    private STFloat(){
-        this.myDouble = 0.0;
-    }
 
     /**
      * Parameterized Constructor for a STFloat
@@ -105,9 +95,8 @@ public class STFloat extends STNumber{
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString.string_builder().build();
         STString thisToString = this.toSTString();
-        result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
+        STString result = new STString.string_builder(scrabbleStr.getMyString() + thisToString.getMyString()).build();
         return result;
     }
 
@@ -148,60 +137,52 @@ public class STFloat extends STNumber{
 
     @Override
     public STNumber addToInteger(STInt scrabbleInt) {
-        STFloat result = new STFloat();
-        result.setMyDouble(scrabbleInt.getMyInt() + this.getMyDouble());
+        STFloat result = new STFloat.float_builder(scrabbleInt.getMyInt() + this.getMyDouble()).build();
         return result;
     }
 
     @Override
     public STNumber addToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() + this.getMyDouble());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() + this.getMyDouble()).build();
         return result;
     }
 
 
     @Override
     public STNumber subtractToInteger(STInt scrabbleInt) {
-        STFloat result = new STFloat();
-        result.setMyDouble(scrabbleInt.getMyInt() - this.getMyDouble());
+        STFloat result = new STFloat.float_builder(scrabbleInt.getMyInt() - this.getMyDouble()).build();
         return result;
     }
 
     @Override
     public STNumber subtractToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() - this.getMyDouble());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() - this.getMyDouble()).build();
         return result;
     }
 
     @Override
     public STNumber multiplyToInteger(STInt scrabbleInt) {
-        STFloat result = new STFloat();
-        result.setMyDouble(scrabbleInt.getMyInt() * this.getMyDouble());
+        STFloat result = new STFloat.float_builder(scrabbleInt.getMyInt() * this.getMyDouble()).build();
         return result;
     }
 
     @Override
     public STNumber multiplyToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
-        result.setMyDouble(scrabbleFloat.getMyDouble() * this.getMyDouble());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() * this.getMyDouble()).build();
         return result;
     }
 
     @Override
     public STNumber divideToInteger(STInt scrabbleInt) {
-        STFloat result = new STFloat();
         double value = scrabbleInt.getMyInt() / this.getMyDouble();
-        result.setMyDouble(Math.round(value * 1000d) / 1000d);
+        STFloat result = new STFloat.float_builder(Math.round(value * 1000d) / 1000d).build();
         return result;
     }
 
     @Override
     public STNumber divideToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat();
         double value = scrabbleFloat.getMyDouble() / this.getMyDouble();
-        result.setMyDouble(Math.round(value * 1000d) / 1000d);
+        STFloat result = new STFloat.float_builder(Math.round(value * 1000d) / 1000d).build();
         return result;
     }
 

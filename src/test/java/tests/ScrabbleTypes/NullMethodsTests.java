@@ -1,6 +1,7 @@
 package tests.ScrabbleTypes;
 
 import cl.uchile.dcc.scrabble.gui.AST.Operations.STSubtraction;
+import cl.uchile.dcc.scrabble.gui.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.*;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
@@ -11,11 +12,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NullMethodsTests {
-    STString string_st = new STString("Hola");
-    STBoolean bool_st = new STBoolean(true);
-    STInt int_st = new STInt(1);
-    STFloat float_st = new STFloat(1.5);
-    STBinary binary_st = new STBinary("00000000000000000000000000000001");
+    STFactory stFactory = new STFactory();
+
+    STString string_st = STFactory.createString("Hola");
+    STBoolean bool_st = STFactory.createBoolean(true);
+    STInt int_st = STFactory.createInt(1);
+    STFloat float_st = STFactory.createFloat(1.5);
+    STBinary binary_st = STFactory.createBinary("00000000000000000000000000000001");
 
     void checkNullMethod(ScrabbleType actual)
     {

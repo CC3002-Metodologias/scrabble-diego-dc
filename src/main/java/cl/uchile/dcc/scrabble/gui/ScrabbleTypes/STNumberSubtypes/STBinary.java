@@ -14,10 +14,12 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public static class binary_builder {
         String myValue;
 
+        /** Default constructor - if no parameter is given, assigns to 'myValue' an (String)0//x32  */
         public binary_builder() {
             this.myValue = "00000000000000000000000000000000";
         }
 
+        /** Constructor string_builder */
         public binary_builder(String newBinary) {
             this.myValue = newBinary;
         }
@@ -27,17 +29,21 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
          * The purpose is to save Memory:
          * will only create a STInt if there is no other
          * STInt created with the same value before.
+         *
+         * New STBinary will be saved in the dictionary and
+         * the key will be the (string)value + "b"
+         * e.g : "00000000000000000000000000000000b"
          */
         public STBinary build() {
-            // check if there is already an STInt with this value created.
-            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
+            // check if there is already an STBinary with this value created.
+            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue + "b");
             // if not
             if (result == null) {
-                // Create a new STInt and add to the Dictionary.
+                // Create a new STBinary and add to the Dictionary. The key reference will be the value + 'b'.
                 result = new STBinary(myValue);
-                ScrabbleTypeFlyweight.addElement(myValue, result);
+                ScrabbleTypeFlyweight.addElement(myValue + "b", result);
             }
-            // it can only be a STInt
+            // it can only be a STBinary
             return (STBinary)result;
         }
     }
@@ -47,20 +53,6 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     /** Getter. Returns referenced Java String of this STBinary. */
     public String getMyString() {
         return myString;
-    }
-
-    /** Setter. Sets the given 32bit binary as a Java String to this STBinary. */
-    public void setMyString(String myString) {
-        this.myString = myString;
-    }
-
-    /**
-     * Default Constructor of a STBinary
-     * Creates a STBinary with a 0 in binary as a Java String value as default.
-     */
-    private STBinary()
-    {
-        this.myString = "00000000000000000000000000000000";
     }
 
     /**
@@ -104,9 +96,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString.string_builder().build();
         STString thisToString = this.toSTString();
-        result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
+        STString result = new STString.string_builder(scrabbleStr.getMyString() + thisToString.getMyString()).build();
         return result;
     }
 
@@ -205,8 +196,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber addToInteger(STInt scrabbleInt) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = new STInt.int_builder().build();
-        result.setMyInt(scrabbleInt.getMyInt() + binaryLikeInt.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() + binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -214,8 +204,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber addToFloat(STFloat scrabbleFloat) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STFloat result = new STFloat.float_builder().build();
-        result.setMyDouble(scrabbleFloat.getMyDouble() + binaryLikeInt.getMyInt());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() + binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -223,8 +212,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber addToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = scrabbleBinary.toSTInt();
-        result.setMyInt(result.getMyInt() + binaryLikeInt.getMyInt());
+        STInt binaryToInt = scrabbleBinary.toSTInt();
+        STInt result = new STInt.int_builder(binaryToInt.getMyInt() + binaryLikeInt.getMyInt()).build();
         return result.toSTBinary();
     }
 
@@ -232,8 +221,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber subtractToInteger(STInt scrabbleInt) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = new STInt.int_builder().build();
-        result.setMyInt(scrabbleInt.getMyInt() - binaryLikeInt.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() - binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -241,8 +229,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber subtractToFloat(STFloat scrabbleFloat) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STFloat result = new STFloat.float_builder().build();
-        result.setMyDouble(scrabbleFloat.getMyDouble() - binaryLikeInt.getMyInt());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() - binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -250,8 +237,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber subtractToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = scrabbleBinary.toSTInt();
-        result.setMyInt(result.getMyInt() - binaryLikeInt.getMyInt());
+        STInt binaryToInt = scrabbleBinary.toSTInt();
+        STInt result = new STInt.int_builder(binaryToInt.getMyInt() - binaryLikeInt.getMyInt()).build();
         return result.toSTBinary();
     }
 
@@ -259,8 +246,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber multiplyToInteger(STInt scrabbleInt) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = new STInt.int_builder().build();
-        result.setMyInt(scrabbleInt.getMyInt() * binaryLikeInt.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() * binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -268,8 +254,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber multiplyToFloat(STFloat scrabbleFloat) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STFloat result = new STFloat.float_builder().build();
-        result.setMyDouble(scrabbleFloat.getMyDouble() * binaryLikeInt.getMyInt());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() * binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -277,8 +262,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber multiplyToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = scrabbleBinary.toSTInt();
-        result.setMyInt(result.getMyInt() * binaryLikeInt.getMyInt());
+        STInt binaryToInt = scrabbleBinary.toSTInt();
+        STInt result = new STInt.int_builder(binaryToInt.getMyInt() * binaryLikeInt.getMyInt()).build();
         return result.toSTBinary();
     }
 
@@ -286,8 +271,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber divideToInteger(STInt scrabbleInt) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = new STInt.int_builder().build();
-        result.setMyInt(scrabbleInt.getMyInt() / binaryLikeInt.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() / binaryLikeInt.getMyInt()).build();
         return result;
     }
 
@@ -295,9 +279,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber divideToFloat(STFloat scrabbleFloat) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STFloat result = new STFloat.float_builder().build();
         double value = scrabbleFloat.getMyDouble() / binaryLikeInt.getMyInt();
-        result.setMyDouble(Math.round(value * 1000d) / 1000d); // we round the value to the 3rd decimal
+        STFloat result = new STFloat.float_builder(Math.round(value * 1000d) / 1000d).build(); // we round the value to the 3rd decimal
         return result;
     }
 
@@ -305,8 +288,8 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
     public STNumber divideToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = this.toSTInt();
-        STInt result = scrabbleBinary.toSTInt();
-        result.setMyInt(result.getMyInt() / binaryLikeInt.getMyInt());
+        STInt binaryToInt = scrabbleBinary.toSTInt();
+        STInt result = new STInt.int_builder(binaryToInt.getMyInt() / binaryLikeInt.getMyInt()).build();
         return result.toSTBinary();
     }
 
@@ -320,7 +303,6 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
      */
     @Override
     public ISTLogicalOperationCompatible negation() {
-        STBinary result = new STBinary();
         StringBuffer strBf = new StringBuffer();
         strBf.append(this.getMyString());
         for(int i = 0; i < strBf.length(); i++)
@@ -334,7 +316,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
                 strBf.replace(i,i+1,"0");
             }
         }
-        result.setMyString(strBf.toString());
+        STBinary result = new STBinary.binary_builder(strBf.toString()).build();
         return result;
     }
 
@@ -366,7 +348,6 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
      */
     @Override
     public STBinary conjunctionToBinary(STBinary scrabbleBinary) {
-        STBinary result = new STBinary();
         StringBuffer strBf = new StringBuffer();
         StringBuffer strBf2 = new StringBuffer();
         strBf.append(scrabbleBinary.getMyString());
@@ -378,7 +359,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
                 strBf.replace(i, i+1, "0");
             }
         }
-        result.setMyString(strBf.toString());
+        STBinary result = new STBinary.binary_builder(strBf.toString()).build();
         return result;
     }
 
@@ -395,13 +376,11 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
      */
     @Override
     public ISTLogicalOperationCompatible conjunctionToBoolean(STBoolean scrabbleBool) {
-        STBinary result = new STBinary();
         if(scrabbleBool.getMyBoolean() == false)
         {
-            return result;
+            return new STBinary.binary_builder().build();
         }
-        result.setMyString(this.getMyString());
-        return result;
+        return new STBinary.binary_builder(this.getMyString()).build();
     }
 
     /**
@@ -418,7 +397,6 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
      */
     @Override
     public STBinary disjunctionToBinary(STBinary scrabbleBinary) {
-        STBinary result = new STBinary();
         StringBuffer strBf = new StringBuffer();
         StringBuffer strBf2 = new StringBuffer();
         strBf.append(scrabbleBinary.getMyString());
@@ -430,7 +408,7 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
                 strBf.replace(i, i + 1, "1");
             }
         }
-        result.setMyString(strBf.toString());
+        STBinary result = new STBinary.binary_builder(strBf.toString()).build();
         return result;
     }
 
@@ -448,7 +426,6 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
      */
     @Override
     public ISTLogicalOperationCompatible disjunctionToBoolean(STBoolean scrabbleBool) {
-        STBinary result = new STBinary();
         if(scrabbleBool.getMyBoolean() == true)
         {
             StringBuffer strBf = new StringBuffer();
@@ -460,11 +437,9 @@ public class STBinary extends STNumber implements INumberBinaryCompatible, ISTLo
                     strBf.replace(i, i+1, "1");
                 }
             }
-            result.setMyString(strBf.toString());
-            return result;
+            return new STBinary.binary_builder(strBf.toString()).build();
         }
-        result.setMyString(this.getMyString());
-        return result;
+        return new STBinary.binary_builder(this.getMyString()).build();
     }
 
     // ------------------------------ Null Methods --------------------------

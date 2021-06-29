@@ -14,17 +14,18 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     public static class int_builder {
         int myValue;
 
-        public int_builder( ) {
+        /** Default constructor - if no parameter is given, assigns to 'myValue' a (int)0 */
+        public int_builder() {
             this.myValue = 0;
         }
 
-
+        /** Constructor int_builder */
         public int_builder(int newInt) {
             this.myValue = newInt;
         }
 
         /**
-         * Public constructor for a STInt.
+         * Public builder for a STInt.
          * The purpose is to save Memory:
          * will only create a STInt if there is no other
          * STInt created with the same value before.
@@ -50,19 +51,6 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
         return myInt;
     }
 
-    /** Setter. Sets the given int to this STInts. */
-    public void setMyInt(int myInt) {
-        this.myInt = myInt;
-    }
-
-    /**
-     * Default Constructor of a STInt
-     * Creates a STInt with a (int) 0 value as default.
-     */
-    private STInt()
-    {
-        this.myInt = 0;
-    }
 
     /**
      * Parameterized Constructor for a STInt
@@ -107,9 +95,8 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString.string_builder().build();
         STString thisToString = this.toSTString();
-        result.setMyString(scrabbleStr.getMyString() + thisToString.getMyString());
+        STString result = new STString.string_builder(scrabbleStr.getMyString() + thisToString.getMyString()).build();
         return result;
     }
 
@@ -228,15 +215,13 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
 
     @Override
     public STNumber addToInteger(STInt scrabbleInt) {
-        STInt result = new STInt();
-        result.setMyInt(scrabbleInt.getMyInt() + this.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() + this.getMyInt()).build();
         return result;
     }
 
     @Override
     public STNumber addToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat.float_builder().build();
-        result.setMyDouble(scrabbleFloat.getMyDouble() + this.getMyInt()); // we round the double to 4 decimals
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() + this.getMyInt()).build(); // we round the double to 4 decimals
         return result;
     }
 
@@ -244,22 +229,19 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     public STNumber addToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = scrabbleBinary.toSTInt();
-        STInt result = new STInt();
-        result.setMyInt(binaryLikeInt.getMyInt() + this.getMyInt());
+        STInt result = new STInt.int_builder(binaryLikeInt.getMyInt() + this.getMyInt()).build();
         return result.toSTBinary();
     }
 
     @Override
     public STNumber subtractToInteger(STInt scrabbleInt) {
-        STInt result = new STInt();
-        result.setMyInt(scrabbleInt.getMyInt() - this.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() - this.getMyInt()).build();
         return result;
     }
 
     @Override
     public STNumber subtractToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat.float_builder().build();
-        result.setMyDouble(scrabbleFloat.getMyDouble() - this.getMyInt());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() - this.getMyInt()).build();
         return result;
     }
 
@@ -267,22 +249,19 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     public STNumber subtractToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = scrabbleBinary.toSTInt();
-        STInt result = new STInt();
-        result.setMyInt(binaryLikeInt.getMyInt() - this.getMyInt());
+        STInt result = new STInt.int_builder(binaryLikeInt.getMyInt() - this.getMyInt()).build();
         return result.toSTBinary();
     }
 
     @Override
     public STNumber multiplyToInteger(STInt scrabbleInt) {
-        STInt result = new STInt();
-        result.setMyInt(scrabbleInt.getMyInt() * this.getMyInt());
+        STInt result = new STInt(scrabbleInt.getMyInt() * this.getMyInt());
         return result;
     }
 
     @Override
     public STNumber multiplyToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat.float_builder().build();
-        result.setMyDouble(scrabbleFloat.getMyDouble() * this.getMyInt());
+        STFloat result = new STFloat.float_builder(scrabbleFloat.getMyDouble() * this.getMyInt()).build();
         return result;
     }
 
@@ -290,23 +269,20 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     public STNumber multiplyToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = scrabbleBinary.toSTInt();
-        STInt result = new STInt();
-        result.setMyInt(binaryLikeInt.getMyInt() * this.getMyInt());
+        STInt result = new STInt.int_builder(binaryLikeInt.getMyInt() * this.getMyInt()).build();
         return result.toSTBinary();
     }
 
     @Override
     public STNumber divideToInteger(STInt scrabbleInt) {
-        STInt result = new STInt();
-        result.setMyInt(scrabbleInt.getMyInt() / this.getMyInt());
+        STInt result = new STInt.int_builder(scrabbleInt.getMyInt() / this.getMyInt()).build();
         return result;
     }
 
     @Override
     public STNumber divideToFloat(STFloat scrabbleFloat) {
-        STFloat result = new STFloat.float_builder().build();
         double value = scrabbleFloat.getMyDouble() / this.getMyInt();
-        result.setMyDouble(Math.round(value * 1000d) / 1000d); // we round the double to 3 decimals
+        STFloat result = new STFloat.float_builder(Math.round(value * 1000d) / 1000d).build(); // we round the double to 3 decimals
         return result;
     }
 
@@ -314,8 +290,7 @@ public class STInt extends STNumber implements INumberBinaryCompatible {
     public STNumber divideToBinary(STBinary scrabbleBinary) {
         STInt binaryLikeInt;
         binaryLikeInt = scrabbleBinary.toSTInt();
-        STInt result = new STInt();
-        result.setMyInt(binaryLikeInt.getMyInt() / this.getMyInt());
+        STInt result = new STInt.int_builder(binaryLikeInt.getMyInt() / this.getMyInt()).build();
         return result.toSTBinary();
     }
 
