@@ -11,7 +11,7 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
  * @author Diego Caviedes A.
  */
 
-public class STStringFactory extends STFactory{
+public class STStringFactory {
 
     /**
      * Creates or returns the reference to the expected STString
