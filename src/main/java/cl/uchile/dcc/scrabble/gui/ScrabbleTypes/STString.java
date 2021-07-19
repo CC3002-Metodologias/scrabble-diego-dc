@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.gui.ScrabbleTypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.ScrabbleTypeFlyweight;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
@@ -12,6 +13,39 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
 
 public class STString implements ScrabbleType {
 
+    public static class string_builder {
+        String myValue;
+
+        /** Default constructor - if no parameter is given, assigns to 'myValue' an empty String */
+        public string_builder() {
+            this.myValue = "";
+        }
+
+        /** Constructor string_builder */
+        public string_builder(String newString) {
+            this.myValue = newString;
+        }
+
+        /**
+         * Public constructor for a STFloat.
+         * The purpose is to save Memory:
+         * will only create a STInt if there is no other
+         * STInt created with the same value before.
+         */
+        public STString build() {
+            // check if there is already an STInt with this value created.
+            ScrabbleType result = ScrabbleTypeFlyweight.checkDictionary(myValue);
+            // if not
+            if (result == null) {
+                // Create a new STInt and add to the Dictionary.
+                result = new STString(myValue);
+                ScrabbleTypeFlyweight.addElement(myValue, result);
+            }
+            // it can only be a STInt
+            return (STString)result;
+        }
+    }
+
     private String myString;
 
     /** Getter. Returns the referenced Java String of this STString. */
@@ -19,24 +53,11 @@ public class STString implements ScrabbleType {
         return myString;
     }
 
-    /** Setter. Sets the given Java String to this STString. */
-    public void setMyString(String myString) {
-        this.myString = myString;
-    }
-
-    /**
-     * Default Constructor for a STString.
-     * Creates a STString with an empty Java String.
-     */
-    public STString() {
-        this.myString = "";
-    }
-
     /**
      * Parameterized Constructor for a STString.
      * Creates STString with a given Java String.
      */
-    public STString(String newString) {
+    private STString(String newString) {
         this.myString = newString;
     }
 
@@ -78,8 +99,7 @@ public class STString implements ScrabbleType {
 
     @Override
     public STString addToString(STString scrabbleStr) {
-        STString result = new STString();
-        result.setMyString(scrabbleStr.getMyString() + this.getMyString());
+        STString result = new STString.string_builder(scrabbleStr.getMyString() + this.getMyString()).build();
         return result;
     }
 

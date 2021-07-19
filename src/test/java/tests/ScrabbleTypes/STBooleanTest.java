@@ -1,5 +1,6 @@
 package tests.ScrabbleTypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
@@ -9,20 +10,29 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class STBooleanTest extends AbstractLogicOpTest {
-    STBoolean trueSTBoolean;
-    STBoolean falseSTBoolean;
+    private STFactory stFactory = new STFactory();
+    private STBoolean trueSTBoolean;
+    private STBoolean falseSTBoolean;
 
     @BeforeEach
     void setUp() {
-        trueSTBoolean = new STBoolean(true);
-        falseSTBoolean = new STBoolean(false);
+        trueSTBoolean = STFactory.createBoolean(true);
+        falseSTBoolean = STFactory.createBoolean(false);
+    }
+
+    @Test
+    protected void NotEquals()
+    {
+        assertNotEquals(trueSTBoolean, "true");
+        assertNotEquals(trueSTBoolean, falseSTBoolean);
+        assertNotEquals(trueSTBoolean, null);
     }
 
     @Override
     @Test
     protected void ConstructorTest() {
-        var expectedSTBoolean = new STBoolean(true);
-        var expectedNoParameterSTBoolean = new STBoolean();
+        var expectedSTBoolean = STFactory.createBoolean(true);
+        var expectedNoParameterSTBoolean = STFactory.createBoolean(false);
         checkConstructor(expectedSTBoolean, trueSTBoolean);
         checkConstructor(expectedNoParameterSTBoolean, falseSTBoolean);
     }
@@ -37,7 +47,7 @@ class STBooleanTest extends AbstractLogicOpTest {
     @Override
     @Test
     protected void toSTString() {
-        STString stString = new STString("true");
+        STString stString = STFactory.createString("true");
         checkToSTString(stString, trueSTBoolean);
     }
 
@@ -45,8 +55,8 @@ class STBooleanTest extends AbstractLogicOpTest {
     @Test
     protected void addToString()
     {
-        STString completeStr = new STString("This boolean is: false");
-        STString str = new STString("This boolean is: ");
+        STString completeStr = STFactory.createString("This boolean is: false");
+        STString str = STFactory.createString("This boolean is: ");
         checkAddToString(completeStr, str, falseSTBoolean);
     }
 
@@ -60,11 +70,11 @@ class STBooleanTest extends AbstractLogicOpTest {
     @Test
     protected void LogicOperationTests()
     {
-        STBinary stBinary = new STBinary("00000000000000000000000000110110"); // 54
-        STBinary stBinaryZero = new STBinary("00000000000000000000000000000000"); // 0
-        STBinary stBinaryOnes = new STBinary("11111111111111111111111111111111"); // -1
-        STBoolean TstBoolean = new STBoolean(true);
-        STBoolean FstBoolean = new STBoolean(false);
+        STBinary stBinary = STFactory.createBinary("00000000000000000000000000110110"); // 54
+        STBinary stBinaryZero = STFactory.createBinary("00000000000000000000000000000000"); // 0
+        STBinary stBinaryOnes = STFactory.createBinary("11111111111111111111111111111111"); // -1
+        STBoolean TstBoolean = STFactory.createBoolean(true);
+        STBoolean FstBoolean = STFactory.createBoolean(false);
 
         // Logical operations -> unary.
         checkNegation(FstBoolean, trueSTBoolean);

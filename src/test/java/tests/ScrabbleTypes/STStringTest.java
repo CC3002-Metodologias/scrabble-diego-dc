@@ -1,25 +1,36 @@
 package tests.ScrabbleTypes;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class STStringTest extends AbstractScrabbleTypeTests{
+    private STFactory stFactory = new STFactory();
     private STString aSTString;
-    private STString emptySTString = new STString("");
+    private STString emptySTString = STFactory.createString("");
 
     @BeforeEach
     void setUp()
     {
-        aSTString = new STString("hello, world!");
+        aSTString = STFactory.createString("hello, world!");
+    }
+
+    @Test
+    protected void NotEquals()
+    {
+        STString notEqual = STFactory.createString("hello, my world!");
+        assertNotEquals(aSTString, "hello");
+        assertNotEquals(aSTString, notEqual);
+        assertNotEquals(aSTString, null);
     }
 
     @Override
     @Test
     protected void ConstructorTest() {
-        var expectedSTStr = new STString("hello, world!");
-        var expectedNoParameterSTStr = new STString();
+        var expectedSTStr = STFactory.createString("hello, world!");
+        var expectedNoParameterSTStr = STFactory.createString("");
         checkConstructor(aSTString, aSTString);
         checkConstructor(expectedSTStr, aSTString);
         checkConstructor(expectedNoParameterSTStr, emptySTString);
@@ -41,16 +52,16 @@ class STStringTest extends AbstractScrabbleTypeTests{
     @Override
     @Test
     protected void addToString() {
-        STString completeStr = new STString("My String is: hello, world!");
-        STString str = new STString("My String is: ");
+        STString completeStr = STFactory.createString("My String is: hello, world!");
+        STString str = STFactory.createString("My String is: ");
         checkAddToString(completeStr, str, aSTString);
     }
 
     @Test
     void OperationTest()
     {
-        STString completeSTR = new STString("My string is: hello, world!");
-        STString str = new STString("My string is: ");
+        STString completeSTR = STFactory.createString("My string is: hello, world!");
+        STString str = STFactory.createString("My string is: ");
         assertEquals(completeSTR, str.add(aSTString), "Addition Failed. Expected: " + completeSTR.STtoString() + ", Actual: " + str.add(aSTString).STtoString());
     }
 

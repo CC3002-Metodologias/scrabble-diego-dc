@@ -1,5 +1,6 @@
 package tests.ScrabbleTypes.STNumberTests;
 
+import cl.uchile.dcc.scrabble.gui.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
@@ -9,26 +10,36 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class STFloatTest extends AbstractSTNumberOpTests {
+    STFactory stFactory = new STFactory();
     STFloat positiveSTFloat;
-    STFloat zeroSTFloat = new STFloat(0.0);
+    STFloat zeroSTFloat = stFactory.createFloat(0.0);
     STFloat negativeSTFloat;
 
 
 
     @BeforeEach
     void setUp() {
-        positiveSTFloat = new STFloat(2.1);
-        negativeSTFloat = new STFloat(-8.5);
+        positiveSTFloat = stFactory.createFloat(2.1);
+        negativeSTFloat = stFactory.createFloat(-8.5);
 
+    }
+
+    @Test
+    protected void NotEquals()
+    {
+        assertNotEquals(positiveSTFloat, "2.1");
+        assertNotEquals(positiveSTFloat, negativeSTFloat);
+        assertNotEquals(positiveSTFloat, null);
     }
 
     @Override
     @Test
     protected void ConstructorTest() {
-        var expectedSTFloat = new STFloat(2.1);
-        var expectedNoParameterSTFloat = new STFloat();
+        var expectedSTFloat = stFactory.createFloat(2.1);
+        var expectedNoParameterSTFloat = stFactory.createFloat(0.0);
         checkConstructor(expectedSTFloat, positiveSTFloat);
         checkConstructor(expectedNoParameterSTFloat, zeroSTFloat);
     }
@@ -45,8 +56,8 @@ class STFloatTest extends AbstractSTNumberOpTests {
     @Override
     @Test
     protected void toSTString() {
-        STString stString = new STString("2.1");
-        STString stStringNeg = new STString("-8.5");
+        STString stString = stFactory.createString("2.1");
+        STString stStringNeg = stFactory.createString("-8.5");
         checkToSTString(stString, positiveSTFloat);
         checkToSTString(stStringNeg, negativeSTFloat);
         }
@@ -54,8 +65,8 @@ class STFloatTest extends AbstractSTNumberOpTests {
     @Override
     @Test
     protected void addToString() {
-        STString completeStr = new STString("My float is: 2.1");
-        STString str = new STString("My float is: ");
+        STString completeStr = stFactory.createString("My float is: 2.1");
+        STString str = stFactory.createString("My float is: ");
         checkAddToString(completeStr, str, positiveSTFloat);
     }
 
@@ -117,32 +128,32 @@ class STFloatTest extends AbstractSTNumberOpTests {
     @Override
     @Test
     protected void NumericalOperationTests() {
-        STFloat stFloat = new STFloat(10.5);
-        STInt stInt = new STInt(5);
-        STBinary stBinary = new STBinary("00000000000000000000000000010100"); // 20
+        STFloat stFloat = stFactory.createFloat(10.5);
+        STInt stInt = stFactory.createInt(5);
+        STBinary stBinary = stFactory.createBinary("00000000000000000000000000010100"); // 20
 
         // Addition
-        STFloat addSTFloatResult = new STFloat(2.0);
-        STFloat addSTIntResult = new STFloat(-3.5);
-        STFloat addSTBinaryResult = new STFloat(11.5);
+        STFloat addSTFloatResult = stFactory.createFloat(2.0);
+        STFloat addSTIntResult = stFactory.createFloat(-3.5);
+        STFloat addSTBinaryResult = stFactory.createFloat(11.5);
         checkAddition(negativeSTFloat, stFloat, stInt, stBinary, addSTFloatResult, addSTIntResult, addSTBinaryResult);
 
         // Subtraction
-        STFloat subtractSTFloatResult = new STFloat(-8.4);
-        STFloat subtractSTIntResult = new STFloat(-2.9);
-        STFloat subtractSTBinaryResult = new STFloat(-17.9);
+        STFloat subtractSTFloatResult = stFactory.createFloat(-8.4);
+        STFloat subtractSTIntResult = stFactory.createFloat(-2.9);
+        STFloat subtractSTBinaryResult = stFactory.createFloat(-17.9);
         checkSubtraction(positiveSTFloat, stFloat, stInt, stBinary, subtractSTFloatResult, subtractSTIntResult, subtractSTBinaryResult);
 
         // Multiplication
-        STFloat multSTFloatResult = new STFloat(22.05);
-        STFloat multSTIntResult = new STFloat(10.5);
-        STFloat multSTBinaryResult = new STFloat(42.0);
+        STFloat multSTFloatResult = stFactory.createFloat(22.05);
+        STFloat multSTIntResult = stFactory.createFloat(10.5);
+        STFloat multSTBinaryResult = stFactory.createFloat(42.0);
         checkMultiplication(positiveSTFloat, stFloat, stInt, stBinary, multSTFloatResult, multSTIntResult, multSTBinaryResult);
 
         // Division
-        STFloat divSTFloatResult = new STFloat(0.20);
-        STFloat divSTIntResult = new STFloat(0.420);
-        STFloat divSTBinaryResult = new STFloat(0.105);
+        STFloat divSTFloatResult = stFactory.createFloat(0.20);
+        STFloat divSTIntResult = stFactory.createFloat(0.420);
+        STFloat divSTBinaryResult = stFactory.createFloat(0.105);
         checkDivision(positiveSTFloat, stFloat, stInt, stBinary, divSTFloatResult, divSTIntResult, divSTBinaryResult);
     }
 }
