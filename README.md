@@ -1,4 +1,4 @@
-# cl.uchile.dcc.scrabble.gui.ScrabbleTypes
+# cl.uchile.dcc.scrabble.model.ScrabbleTypes
 
 ![http://creativecommons.org/licenses/by/4.0/](https://i.creativecommons.org/l/by/4.0/88x31.png)
 

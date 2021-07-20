@@ -1,13 +1,13 @@
 package cl.uchile.dcc.scrabble.tests.AST;
 
-import cl.uchile.dcc.scrabble.gui.AST.*;
-import cl.uchile.dcc.scrabble.gui.AST.Operations.*;
-import cl.uchile.dcc.scrabble.gui.AST.Transformations.*;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
+import cl.uchile.dcc.scrabble.model.AST.*;
+import cl.uchile.dcc.scrabble.model.AST.Operations.*;
+import cl.uchile.dcc.scrabble.model.AST.Transformations.*;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

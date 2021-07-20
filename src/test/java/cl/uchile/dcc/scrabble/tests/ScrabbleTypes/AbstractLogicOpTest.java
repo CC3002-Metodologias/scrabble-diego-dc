@@ -1,7 +1,7 @@
 package cl.uchile.dcc.scrabble.tests.ScrabbleTypes;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ISTLogicalOperationCompatible;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTLogicalOperationCompatible;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

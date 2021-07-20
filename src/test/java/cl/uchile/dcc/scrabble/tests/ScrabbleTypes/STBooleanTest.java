@@ -1,8 +1,8 @@
 package cl.uchile.dcc.scrabble.tests.ScrabbleTypes;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STBoolean;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STBinary;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STString;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

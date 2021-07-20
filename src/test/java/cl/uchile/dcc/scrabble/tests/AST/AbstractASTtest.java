@@ -1,8 +1,7 @@
 package cl.uchile.dcc.scrabble.tests.AST;
 
-import cl.uchile.dcc.scrabble.gui.AST.AST_Operator;
-import cl.uchile.dcc.scrabble.gui.AST.Constant;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.ScrabbleType;
+import cl.uchile.dcc.scrabble.model.AST.AST_Operator;
+import cl.uchile.dcc.scrabble.model.AST.Constant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

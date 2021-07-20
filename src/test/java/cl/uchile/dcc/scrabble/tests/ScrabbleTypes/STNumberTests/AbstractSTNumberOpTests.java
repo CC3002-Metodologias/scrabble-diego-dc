@@ -1,7 +1,7 @@
 package cl.uchile.dcc.scrabble.tests.ScrabbleTypes.STNumberTests;
 
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumber;
-import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STFloat;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.tests.ScrabbleTypes.AbstractScrabbleTypeTests;
 import org.junit.jupiter.api.Test;
 
