@@ -15,8 +15,6 @@ import cl.uchile.dcc.scrabble.gui.ScrabbleTypes.STNumberSubtypes.STInt;
  * por falta de tiempo, no quedó otra opción que asumir las
  * siguientes operaciones validas para todos lo ScrabbleTypes.
  *
- * (Quiero saber como se hacía sin asumir esto uwu.)
- *
  *
  * @author Diego Caviedes A.
  */
