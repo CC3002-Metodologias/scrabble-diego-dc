@@ -3,6 +3,7 @@ package cl.uchile.dcc.scrabble.tests.ScrabbleTypes;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

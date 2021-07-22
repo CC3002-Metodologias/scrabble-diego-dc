@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.tests.ScrabbleTypes.STNumberTests;
 
+import cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat;
@@ -11,20 +12,30 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class STIntTest extends AbstractSTNumberOpTests {
+    private STFactory stFactory = new STFactory();
+
     private STInt positiveSTInt;
-    private STInt zeroSTInt = new STInt(0);
+    private STInt zeroSTInt = stFactory.createInt(0);
     private STInt negativeSTInt;
 
     @BeforeEach
     void setUp() {
-        positiveSTInt = new STInt(134);
-        negativeSTInt = new STInt(-21);
+        positiveSTInt = stFactory.createInt(134);
+        negativeSTInt = stFactory.createInt(-21);
+    }
+
+    @Test
+    protected void NotEquals()
+    {
+        assertNotEquals(positiveSTInt, "134");
+        assertNotEquals(positiveSTInt, negativeSTInt);
+        assertNotEquals(positiveSTInt, null);
     }
 
     @Override
     protected void ConstructorTest() {
-        var expectedSTInt = new STInt(134);
-        var expectedNoParameterSTInt = new STInt();
+        var expectedSTInt = stFactory.createInt(134);
+        var expectedNoParameterSTInt = stFactory.createInt(0);
         checkConstructor(expectedSTInt, positiveSTInt);
         checkConstructor(expectedNoParameterSTInt, zeroSTInt);
     }
@@ -43,8 +54,8 @@ class STIntTest extends AbstractSTNumberOpTests {
     @Override
     @Test
     protected void toSTString() {
-        STString stString = new STString("134");
-        STString zeroSTString = new STString("0");
+        STString stString = stFactory.createString("134");
+        STString zeroSTString = stFactory.createString("0");
         checkToSTString(stString, positiveSTInt);
         checkToSTString(zeroSTString, zeroSTString);
     }
@@ -52,15 +63,15 @@ class STIntTest extends AbstractSTNumberOpTests {
     @Override
     @Test
     protected void addToString() {
-        STString completeStr = new STString("My int is: 134");
-        STString str = new STString("My int is: ");
+        STString completeStr = stFactory.createString("My int is: 134");
+        STString str = stFactory.createString("My int is: ");
         checkAddToString(completeStr, str, positiveSTInt);
     }
 
     @Override
     @Test
     protected void toSTFloat() {
-        STFloat stFloat = new STFloat(134.0);
+        STFloat stFloat = stFactory.createFloat(134.0);
         checkToSTFloat(stFloat , positiveSTInt);
     }
 
@@ -72,9 +83,9 @@ class STIntTest extends AbstractSTNumberOpTests {
 
     @Test
     void toSTBinary() {
-        STBinary stBinary = new STBinary("00000000000000000000000010000110");
-        STBinary stBinary2 = new STBinary("00000000000000000000000000000000");
-        STBinary stBinary3 = new STBinary("11111111111111111111111111101011");
+        STBinary stBinary = stFactory.createBinary("00000000000000000000000010000110");
+        STBinary stBinary2 = stFactory.createBinary("00000000000000000000000000000000");
+        STBinary stBinary3 = stFactory.createBinary("11111111111111111111111111101011");
         assertEquals(positiveSTInt.toSTBinary(), stBinary, "expected:" + (positiveSTInt.toSTBinary()).getMyString());
         assertEquals(zeroSTInt.toSTBinary(), stBinary2, "expected:" + (zeroSTInt.toSTBinary()).getMyString());
         assertEquals(negativeSTInt.toSTBinary(), stBinary3, "expected:" + (negativeSTInt.toSTBinary()).getMyString());
@@ -130,32 +141,32 @@ class STIntTest extends AbstractSTNumberOpTests {
     @Override
     @Test
     protected void NumericalOperationTests() {
-        STFloat stFloat = new STFloat(5.5);
-        STInt stInt = new STInt(7);
-        STBinary stBinary = new STBinary("00000000000000000000000000010100"); // 20
+        STFloat stFloat = stFactory.createFloat(5.5);
+        STInt stInt = stFactory.createInt(7);
+        STBinary stBinary = stFactory.createBinary("00000000000000000000000000010100"); // 20
 
         // Addition
-        STFloat addSTFloatResult = new STFloat(-15.5);
-        STInt addSTIntResult = new STInt(-14);
-        STInt addSTBinaryResult = new STInt(-1);
+        STFloat addSTFloatResult = stFactory.createFloat(-15.5);
+        STInt addSTIntResult = stFactory.createInt(-14);
+        STInt addSTBinaryResult = stFactory.createInt(-1);
         checkAddition(negativeSTInt, stFloat, stInt, stBinary, addSTFloatResult, addSTIntResult, addSTBinaryResult);
 
         // Subtraction
-        STFloat subtractSTFloatResult = new STFloat(128.5);
-        STInt subtractSTIntResult = new STInt(127);
-        STInt subtractSTBinaryResult = new STInt(114);
+        STFloat subtractSTFloatResult = stFactory.createFloat(128.5);
+        STInt subtractSTIntResult = stFactory.createInt(127);
+        STInt subtractSTBinaryResult = stFactory.createInt(114);
         checkSubtraction(positiveSTInt, stFloat, stInt, stBinary, subtractSTFloatResult, subtractSTIntResult, subtractSTBinaryResult);
 
         // Multiplication
-        STFloat multSTFloatResult = new STFloat(737);
-        STInt multSTIntResult = new STInt(938);
-        STInt multSTBinaryResult = new STInt(2680);
+        STFloat multSTFloatResult = stFactory.createFloat(737);
+        STInt multSTIntResult = stFactory.createInt(938);
+        STInt multSTBinaryResult = stFactory.createInt(2680);
         checkMultiplication(positiveSTInt, stFloat, stInt, stBinary, multSTFloatResult, multSTIntResult, multSTBinaryResult);
 
         // Division
-        STFloat divSTFloatResult = new STFloat(24.364);
-        STInt divSTIntResult = new STInt(19);
-        STInt divSTBinaryResult = new STInt(6);
+        STFloat divSTFloatResult = stFactory.createFloat(24.364);
+        STInt divSTIntResult = stFactory.createInt(19);
+        STInt divSTBinaryResult = stFactory.createInt(6);
         checkDivision(positiveSTInt, stFloat, stInt, stBinary, divSTFloatResult, divSTIntResult, divSTBinaryResult);
     }
 }

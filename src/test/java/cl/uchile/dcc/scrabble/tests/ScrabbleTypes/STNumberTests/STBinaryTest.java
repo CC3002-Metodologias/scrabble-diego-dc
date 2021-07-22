@@ -1,33 +1,43 @@
 package cl.uchile.dcc.scrabble.tests.ScrabbleTypes.STNumberTests;
 
+import cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString;
-import cl.uchile.dcc.scrabble.tests.ScrabbleTypes.AbstractLogicOpTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import cl.uchile.dcc.scrabble.tests.ScrabbleTypes.AbstractLogicOpTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class STBinaryTest extends AbstractLogicOpTest {
+    STFactory stFactory = new STFactory();
     STBinary positiveSTBinary;
-    STBinary zeroSTBinary = new STBinary("00000000000000000000000000000000"); // 0
+    STBinary zeroSTBinary = stFactory.createBinary("00000000000000000000000000000000"); // 0
     STBinary negativeSTBinary;
 
     @BeforeEach
     void setUp() {
-        positiveSTBinary = new STBinary("00000000000000000000000000010101"); // 21
-        negativeSTBinary = new STBinary("11111111111111111111111111111000"); // -8
+        positiveSTBinary = stFactory.createBinary("00000000000000000000000000010101"); // 21
+        negativeSTBinary = stFactory.createBinary("11111111111111111111111111111000"); // -8
+    }
+
+    @Test
+    protected void NotEquals()
+    {
+        assertNotEquals(positiveSTBinary, "2.1");
+        assertNotEquals(positiveSTBinary, negativeSTBinary);
+        assertNotEquals(positiveSTBinary, null);
     }
 
     @Override
     @Test
     protected void ConstructorTest() {
-         var expectedSTBinary = new STBinary("00000000000000000000000000010101");
-         var expectedNoParameterSTBinary = new STBinary();
+         var expectedSTBinary = stFactory.createBinary("00000000000000000000000000010101");
+         var expectedNoParameterSTBinary = stFactory.createBinary("00000000000000000000000000000000");
          checkConstructor(expectedSTBinary, positiveSTBinary);
          checkConstructor(expectedNoParameterSTBinary, zeroSTBinary);
     }
@@ -46,8 +56,8 @@ class STBinaryTest extends AbstractLogicOpTest {
     @Override
     @Test
     protected void toSTString() {
-        STString stString = new STString("00000000000000000000000000010101");
-        STString negSTString = new STString("11111111111111111111111111111000");
+        STString stString = stFactory.createString("00000000000000000000000000010101");
+        STString negSTString = stFactory.createString("11111111111111111111111111111000");
         checkToSTString(stString, positiveSTBinary);
         checkToSTString(negSTString, negativeSTBinary);
     }
@@ -55,16 +65,16 @@ class STBinaryTest extends AbstractLogicOpTest {
     @Override
     @Test
     protected void addToString() {
-        STString completeStr = new STString("My binary is: 00000000000000000000000000010101");
-        STString str = new STString("My binary is: ");
+        STString completeStr = stFactory.createString("My binary is: 00000000000000000000000000010101");
+        STString str = stFactory.createString("My binary is: ");
         checkAddToString(completeStr, str, positiveSTBinary);
     }
 
     @Test
     void toSTFloat() {
-        STFloat positiveSTFloat = new STFloat(21.0);
-        STFloat negativeSTFloat = new STFloat(-8.0);
-        STFloat zeroSTFloat = new STFloat();
+        STFloat positiveSTFloat = stFactory.createFloat(21.0);
+        STFloat negativeSTFloat = stFactory.createFloat(-8.0);
+        STFloat zeroSTFloat = stFactory.createFloat(0);
         assertEquals(positiveSTFloat, positiveSTBinary.toSTFloat(),
                 "Transformation Failed. Expected: " + positiveSTFloat.STtoString() + ", Actual: " + positiveSTBinary.toSTInt().STtoString());
         assertEquals(negativeSTFloat, negativeSTBinary.toSTFloat(),
@@ -75,9 +85,9 @@ class STBinaryTest extends AbstractLogicOpTest {
 
     @Test
     void toSTInt() {
-        STInt positiveSTInt = new STInt(21);
-        STInt negativeSTInt = new STInt(-8);
-        STInt zeroSTInt = new STInt();
+        STInt positiveSTInt = stFactory.createInt(21);
+        STInt negativeSTInt = stFactory.createInt(-8);
+        STInt zeroSTInt = stFactory.createInt(0);
         assertEquals(positiveSTInt, positiveSTBinary.toSTInt(),
                 "Transformation Failed. Expected: " + positiveSTInt.STtoString() + ", Actual: " + positiveSTBinary.toSTInt().STtoString());
         assertEquals(negativeSTInt, negativeSTBinary.toSTInt(),
@@ -88,20 +98,20 @@ class STBinaryTest extends AbstractLogicOpTest {
 
     @Test
     void toSTBinary() {
-        STBinary sameBinary = new STBinary("00000000000000000000000000010101");
+        STBinary sameBinary = stFactory.createBinary("00000000000000000000000000010101");
         assertEquals(sameBinary, positiveSTBinary.toSTBinary());
     }
 
     @Override
     @Test
     protected void LogicOperationTests() {
-        STBinary stBinaryZero = new STBinary("00000000000000000000000000000000"); // 0
-        STBinary stBinaryOnes = new STBinary("11111111111111111111111111111111"); // -1
-        STBinary stBinaryOpposite = new STBinary("11111111111111111111111111101010"); // negation of PositiveSTBinary
-        STBinary stBinaryConjunction = new STBinary("00000000000000000000000000010000"); // PosSTB and NegSTB
-        STBinary stBinaryDisjunction = new STBinary("11111111111111111111111111111101"); // PosSTB or NegSTB
-        STBoolean TstBoolean = new STBoolean(true);
-        STBoolean FstBoolean = new STBoolean(false);
+        STBinary stBinaryZero = stFactory.createBinary("00000000000000000000000000000000"); // 0
+        STBinary stBinaryOnes = stFactory.createBinary("11111111111111111111111111111111"); // -1
+        STBinary stBinaryOpposite = stFactory.createBinary("11111111111111111111111111101010"); // negation of PositiveSTBinary
+        STBinary stBinaryConjunction = stFactory.createBinary("00000000000000000000000000010000"); // PosSTB and NegSTB
+        STBinary stBinaryDisjunction = stFactory.createBinary("11111111111111111111111111111101"); // PosSTB or NegSTB
+        STBoolean TstBoolean = stFactory.createBoolean(true);
+        STBoolean FstBoolean = stFactory.createBoolean(false);
 
         // Logical operations -> unary.
         checkNegation(stBinaryOpposite, positiveSTBinary);
@@ -168,27 +178,27 @@ class STBinaryTest extends AbstractLogicOpTest {
 
     @Test
     protected void NumericalOperationTests() {
-        STInt stInt = new STInt(9);
-        STBinary stBinary = new STBinary("00000000000000000000000000100010"); // 34
+        STInt stInt = stFactory.createInt(9);
+        STBinary stBinary = stFactory.createBinary("00000000000000000000000000100010"); // 34
 
         // Addition
-        STBinary addSTIntResult = new STBinary("00000000000000000000000000000001"); // 1
-        STBinary addSTBinaryResult = new STBinary("00000000000000000000000000011010"); // 26
+        STBinary addSTIntResult =stFactory.createBinary("00000000000000000000000000000001"); // 1
+        STBinary addSTBinaryResult = stFactory.createBinary("00000000000000000000000000011010"); // 26
         checkAddition(negativeSTBinary, stInt, stBinary, addSTIntResult, addSTBinaryResult);
 
         // Subtraction
-        STBinary subtractSTIntResult  = new STBinary("00000000000000000000000000001100"); // 12
-        STBinary subtractSTBinaryResult = new STBinary("11111111111111111111111111110011"); // -13
+        STBinary subtractSTIntResult  = stFactory.createBinary("00000000000000000000000000001100"); // 12
+        STBinary subtractSTBinaryResult = stFactory.createBinary("11111111111111111111111111110011"); // -13
         checkSubtraction(positiveSTBinary, stInt, stBinary, subtractSTIntResult, subtractSTBinaryResult);
 
         // Multiplication
-        STBinary multSTIntResult  = new STBinary("00000000000000000000000010111101"); // 189
-        STBinary multSTBinaryResult = new STBinary("00000000000000000000001011001010"); // 714
+        STBinary multSTIntResult  = stFactory.createBinary("00000000000000000000000010111101"); // 189
+        STBinary multSTBinaryResult = stFactory.createBinary("00000000000000000000001011001010"); // 714
         checkMultiplication(positiveSTBinary, stInt, stBinary, multSTIntResult, multSTBinaryResult);
 
         // Division
-        STBinary divSTIntResult  = new STBinary("00000000000000000000000000000010"); // 2
-        STBinary divSTBinaryResult = new STBinary("00000000000000000000000000000000"); // 0
+        STBinary divSTIntResult  = stFactory.createBinary("00000000000000000000000000000010"); // 2
+        STBinary divSTBinaryResult = stFactory.createBinary("00000000000000000000000000000000"); // 0
         checkDivision(positiveSTBinary, stInt, stBinary, divSTIntResult, divSTBinaryResult);
     }
 }

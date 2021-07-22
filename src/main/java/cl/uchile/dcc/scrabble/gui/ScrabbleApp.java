@@ -1,5 +1,9 @@
 package cl.uchile.dcc.scrabble.gui;
 
+import cl.uchile.dcc.scrabble.controller.ScrabbleController;
+import cl.uchile.dcc.scrabble.model.AST.Constant;
+import cl.uchile.dcc.scrabble.model.AST.Operations.STAddition;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
@@ -112,6 +116,11 @@ public class ScrabbleApp extends Application {
     private void setScrabbleGetInputScene(Stage stage, Group group) throws FileNotFoundException {
         group.getChildren().clear();
 
+        var Label = new Label("" + ScrabbleController.printEquation());
+        Label.setLayoutX(500);
+        Label.setLayoutY(50);
+        group.getChildren().add(Label);
+
         String stringInput;
 
         var Input = new TextField();
@@ -141,6 +150,8 @@ public class ScrabbleApp extends Application {
     private void goToGetInput(Stage stage, Group group, ActionEvent e)
     {
         playSound(e);
+
+
         try {
             setScrabbleGetInputScene(stage, group);
         } catch (FileNotFoundException fileNotFoundException) {

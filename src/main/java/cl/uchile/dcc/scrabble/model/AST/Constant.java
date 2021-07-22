@@ -1,5 +1,7 @@
 package cl.uchile.dcc.scrabble.model.AST;
 
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTLogicalOperationCompatible;
+import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType;
 
 /**

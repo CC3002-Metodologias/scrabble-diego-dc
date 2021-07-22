@@ -3,6 +3,7 @@ package cl.uchile.dcc.scrabble.tests.AST;
 import cl.uchile.dcc.scrabble.model.AST.*;
 import cl.uchile.dcc.scrabble.model.AST.Operations.*;
 import cl.uchile.dcc.scrabble.model.AST.Transformations.*;
+import cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STFactory;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AST_Test extends AbstractASTtest{
+    STFactory stFactory = new STFactory();
+
     AST_Operator AST1;
     AST_Operator AST2;
     AST_Operator AST3;
@@ -20,49 +23,49 @@ class AST_Test extends AbstractASTtest{
     @BeforeEach
     void setUp() {
         AST1 = new STAddition(
-                        new Constant(new STInt(1)),
-                        new Constant(new STInt(1))
+                        new Constant(stFactory.createInt(1)),
+                        new Constant(stFactory.createInt(1))
                      ); // 1 + 1 -> 2
 
         AST2 = new STAddition(
-                        new Constant(new STString("Test Numero: ")),
+                        new Constant(stFactory.createString("Test Numero: ")),
                         new STDivision(
                                 new STMultiplication(
                                         new STSubtraction(
-                                                new Constant(new STInt(4)),
+                                                new Constant(stFactory.createInt(4)),
                                                 new toSTFloat(
-                                                    new Constant(new STInt(2))
+                                                    new Constant(stFactory.createInt(2))
                                                 )
                                         ),
-                                        new Constant(new STFloat(1.5))
+                                        new Constant(stFactory.createFloat(1.5))
                                         ),
-                                new Constant(new STInt(2))
+                                new Constant(stFactory.createInt(2))
                         )
                     );     // "Test Numero:" + ((4-2.toFloat) * 1.5)/2 -> "Test Numero: 1.5"
 
         AST3 = new ST_AND(
                         new STAddition(
-                                new Constant(new STBinary("00000000000000000000000000000010")),
+                                new Constant(stFactory.createBinary("00000000000000000000000000000010")),
                                 new toSTBinary(
-                                        new Constant(new STInt(3))
+                                        new Constant(stFactory.createInt(3))
                                 )
                         ),
                         new ST_OR(
-                                new Constant(new STBoolean(true)),
-                                new Constant(new STBoolean(false))
+                                new Constant(stFactory.createBoolean(true)),
+                                new Constant(stFactory.createBoolean(false))
                         )
                     );  // (00000000000000000000000000000010 + 3.toBinary) and (true or false) -> 00000000000000000000000000000101 (5)
 
         AST4 = new toSTString(
                     new STAddition(
-                            new Constant(new STInt(2)),
+                            new Constant(stFactory.createInt(2)),
                             new toSTInt(
                                     new ST_OR(
                                             new toSTBoolean(
-                                                    new Constant(new STBoolean(false))
+                                                    new Constant(stFactory.createBoolean(false))
                                             ),
                                             new STNegation(
-                                                    new Constant(new STBinary("00000000000000000000000000000101"))
+                                                    new Constant(stFactory.createBinary("00000000000000000000000000000101"))
                                             )
                                     )
                             )
@@ -75,10 +78,10 @@ class AST_Test extends AbstractASTtest{
     @Test
     public void AST_test()
     {
-        Constant expected1 = new Constant(new STInt(2));
-        Constant expected2 = new Constant(new STString("Test Numero: 1.5"));
-        Constant expected3 = new Constant(new STBinary("00000000000000000000000000000101"));
-        Constant expected4 = new Constant(new STString("-4"));
+        Constant expected1 = new Constant(stFactory.createInt(2));
+        Constant expected2 = new Constant(stFactory.createString("Test Numero: 1.5"));
+        Constant expected3 = new Constant(stFactory.createBinary("00000000000000000000000000000101"));
+        Constant expected4 = new Constant(stFactory.createString("-4"));
 
         checkAST(expected1, AST1);
         checkAST(expected2, AST2);

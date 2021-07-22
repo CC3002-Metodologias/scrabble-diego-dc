@@ -1,5 +1,6 @@
 package cl.uchile.dcc.scrabble.model.ScrabbleTypes;
 
+
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat;
 import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt;
@@ -12,6 +13,8 @@ import cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt;
  * con las interfaces y restricciones de T1, y principalmente
  * por falta de tiempo, no quedó otra opción que asumir las
  * siguientes operaciones validas para todos lo ScrabbleTypes.
+ *
+ * (Quiero saber como se hacía sin asumir esto uwu.)
  *
  *
  * @author Diego Caviedes A.
