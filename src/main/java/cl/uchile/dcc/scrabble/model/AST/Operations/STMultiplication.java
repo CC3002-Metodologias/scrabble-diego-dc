@@ -10,6 +10,7 @@ import cl.uchile.dcc.scrabble.model.AST.Constant;
  */
 
 public class STMultiplication implements AST_Operator {
+    private AST_Operator parentNode;
     private AST_Operator x;
     private AST_Operator y;
 
@@ -17,6 +18,36 @@ public class STMultiplication implements AST_Operator {
     public STMultiplication(AST_Operator x, AST_Operator y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public AST_Operator getParentNode() {
+        return this.parentNode;
+    }
+
+    @Override
+    public void SetParentNode(AST_Operator operator) {
+        this.parentNode = operator;
+    }
+
+    @Override
+    public void addChild(AST_Operator operator) {
+        if(this.x == null)
+        {
+            this.x = operator;
+            return;
+        }
+        if(this.y == null)
+        {
+            this.y = operator;
+        }
+        return;
+    }
+
+    @Override
+    public boolean emptyChild() {
+        if(this.x != null && this.y != null){return false;}
+        return true;
     }
 
     @Override

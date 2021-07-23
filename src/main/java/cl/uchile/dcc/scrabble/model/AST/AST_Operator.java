@@ -9,6 +9,14 @@ package cl.uchile.dcc.scrabble.model.AST;
 
 public interface AST_Operator {
 
+    AST_Operator getParentNode();
+
+    void SetParentNode(AST_Operator operator);
+
+    void addChild(AST_Operator operator);
+
+    boolean emptyChild();
+
     /** Each node of the AST must return a result
      *
      * @return

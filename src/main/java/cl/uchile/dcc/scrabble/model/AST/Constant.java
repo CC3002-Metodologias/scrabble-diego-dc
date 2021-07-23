@@ -13,6 +13,7 @@ import cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType;
 
 
 public class Constant implements AST_IConstant {
+    AST_Operator parentNode;
     ScrabbleType myST;
 
     /** Constructor for a Constant */
@@ -35,6 +36,26 @@ public class Constant implements AST_IConstant {
         Constant cte = (Constant) o;
         // field comparison
         return this.myST.equals(cte.myST);
+    }
+
+    @Override
+    public AST_Operator getParentNode() {
+        return this.parentNode;
+    }
+
+    @Override
+    public void SetParentNode(AST_Operator operator) {
+        this.parentNode = operator;
+    }
+
+    @Override
+    public void addChild(AST_Operator operator) {
+        return;
+    }
+
+    @Override
+    public boolean emptyChild() {
+        return false;
     }
 
     @Override
