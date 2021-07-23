@@ -1,0 +1,170 @@
+
+.button{
+    -fx-background-color: #d2c08e;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-radius: 30;
+}
+
+.button:hover
+{
+    -fx-background-color: #ded3b5;
+}
+
+.button:pressed
+{
+    -fx-background-color: #d2c08e;
+}
+
+.label
+{
+    -fx-font-size: 62px;
+    -fx-font-family: Impact;
+}
+
+#result_Label
+{
+    -fx-font-size: 62px;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Impact;
+}
+
+#operation_button
+{
+    -fx-background-color: rgba(194, 115, 64, 0.81);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-radius: 30;
+    -fx-font-family: Impact;
+}
+#operation_button:hover
+{
+    -fx-background-color: rgba(206, 187, 160, 0.94);
+}
+#operation_button:pressed
+{
+    -fx-background-color: rgba(194, 115, 64, 0.81);
+}
+
+
+#transform_button
+{
+    -fx-background-color: rgba(248, 233, 95, 0.81);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-radius: 30;
+    -fx-font-family: Impact;
+}
+#transform_button:hover
+{
+    -fx-background-color: rgba(206, 187, 160, 0.94);
+}
+#transform_button:pressed
+{
+    -fx-background-color: rgba(248, 233, 95, 0.81);
+}
+
+
+#sttype_button
+{
+    -fx-background-color: rgba(255, 255, 255, 0.91);
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+    -fx-background-radius: 30;
+    -fx-font-family: Impact;
+}
+#sttype_button:hover
+{
+    -fx-background-color: rgba(206, 187, 160, 0.94);
+}
+#sttype_button:pressed
+{
+    -fx-background-color: rgba(255, 255, 255, 0.91);
+}
+
+
+#calculator_button
+{
+    -fx-background-color: rgba(194, 115, 64, 0.81);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-background-radius: 30;
+    -fx-font-family: Impact;
+}
+#calculator_button:hover
+{
+    -fx-background-color: rgba(206, 187, 160, 0.94);
+}
+#calculator_button:pressed
+{
+    -fx-background-color: rgba(194, 115, 64, 0.81);
+}
+
+#ok_button
+{
+    -fx-background-color: rgba(181, 219, 116, 0.86);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 21px;
+    -fx-background-radius: 30;
+}
+#ok_button:hover
+{
+    -fx-background-color: rgb(187, 212, 140);
+}
+#ok_button:pressed
+{
+    -fx-background-color: rgba(181, 219, 116, 0.86);
+}
+
+#calculate_button
+{
+    -fx-background-color: rgba(181, 219, 116, 0.86);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 21px;
+    -fx-background-radius: 30;
+    -fx-font-family: Impact;
+}
+
+#calculate_button:hover
+{
+    -fx-background-color: rgb(187, 212, 140);
+}
+
+#calculate_button:pressed
+{
+    -fx-background-color: rgba(181, 219, 116, 0.86);
+}
+
+#false_button
+{
+    -fx-background-color: rgba(201, 52, 52, 0.86);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 30px;
+    -fx-background-radius: 50;
+    -fx-font-family: Impact;
+}
+#false_button:hover
+{
+    -fx-background-color: rgba(241, 133, 133, 0.86);
+}
+#false_button:pressed
+{
+    -fx-background-color: rgba(201, 52, 52, 0.86);
+}
+
+#true_button
+{
+    -fx-background-color: rgba(145, 208, 33, 0.86);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 30px;
+    -fx-background-radius: 50;
+    -fx-font-family: Impact;
+}
+#true_button:hover
+{
+    -fx-background-color: rgba(178, 215, 118, 0.86);
+}
+#true_button
+{
+    -fx-background-color: rgba(145, 208, 33, 0.86);
+}

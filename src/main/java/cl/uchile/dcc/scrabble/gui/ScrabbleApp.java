@@ -48,12 +48,17 @@ public class ScrabbleApp extends Application {
         backgroundGroup = new Group();
         group2 = new Group();
 
-        group2.setStyle("-fx-background-color: transparent;");
+        String stylesheet = getClass().getResource("/Style.css").toExternalForm();
+        String stylesheet2 = getClass().getResource("/Style2.css").toExternalForm();
+
 
         scene1 = new Scene(group1, 600, 600);
         scene2 = new Scene(backgroundGroup, 1000, 550);
 
+        scene1.getStylesheets().addAll(stylesheet);
+        scene2.getStylesheets().addAll(stylesheet2);
         // ---------Start Scene-----------
+
 
         setStartScene(stage, group1);
 
@@ -80,16 +85,21 @@ public class ScrabbleApp extends Application {
     private void setStartScene(Stage stage, Group group) throws FileNotFoundException {
 
         var label = new Label("Scrabble");
-        label.setLayoutX(300);
-        label.setLayoutY(100);
+        label.setLayoutX(200);
+        label.setLayoutY(50);
+
 
         var background1 =
                 new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "background1.jpg")));
         background1.fitWidthProperty().bind(stage.widthProperty());
         background1.fitHeightProperty().bind(stage.heightProperty());
 
-        var StartButton = setupButton(300, 550 , "START");
-        StartButton.setOnAction(e -> stage.setScene(scene2));
+        var StartButton = setupButton(205, 520 , "START", "MYID", 200, 50);
+        StartButton.setId("start_button");
+        StartButton.setOnAction(e -> {
+            playSound(e);
+            stage.setScene(scene2);
+        });
 
         group.getChildren().addAll(background1, StartButton, label);
     }
@@ -98,19 +108,19 @@ public class ScrabbleApp extends Application {
     {
         group.getChildren().clear();
 
-        Button bt6 = setupButton(300,450, "Add");
-        Button bt7 = setupButton(400,450, "Subtract");
-        Button bt8 = setupButton(500,450, "Multiply");
-        Button bt9 = setupButton(600,450, "Divide");
-        Button bt10 = setupButton(700,450, "Negate");
-        Button bt11 = setupButton(800,450, "AND");
-        Button bt12 = setupButton(900,450, "OR");
+        Button bt6 = operationSetupButton(300,475, "Add");
+        Button bt7 = operationSetupButton(400,475, "Subtract");
+        Button bt8 = operationSetupButton(500,475, "Multiply");
+        Button bt9 = operationSetupButton(600,475, "Divide");
+        Button bt10 = operationSetupButton(700,475, "Negate");
+        Button bt11 = operationSetupButton(800,475, "AND");
+        Button bt12 = operationSetupButton(900,475, "OR");
 
-        Button bt13 = setupButton(400,400, "toString");
-        Button bt14 = setupButton(500,400, "toBoolean");
-        Button bt15 = setupButton(600,400, "toFloat");
-        Button bt16 = setupButton(700,400, "toInt");
-        Button bt17 = setupButton(800,400, "toBinary");
+        Button bt13 = transformSetupButton(400,420, "toString");
+        Button bt14 = transformSetupButton(500,420, "toBoolean");
+        Button bt15 = transformSetupButton(600,420, "toFloat");
+        Button bt16 = transformSetupButton(700,420, "toInt");
+        Button bt17 = transformSetupButton(800,420, "toBinary");
 
         bt6.setOnAction(e -> StartCalculation(stage,group,e,"+"));
         bt7.setOnAction(e -> StartCalculation(stage,group,e, "-"));
@@ -137,27 +147,27 @@ public class ScrabbleApp extends Application {
         lb.setLayoutX(500);
         lb.setLayoutY(100);
 
-        Button bt1 = setupButton(400,400, "String");
-        Button bt2 = setupButton(500,400, "Bool");
-        Button bt3 = setupButton(600,400, "Float");
-        Button bt4 = setupButton(700,400, "Int");
-        Button bt5 = setupButton(800,400, "Binary");
+        Button bt1 = sttypeSetupButton(400,420, "String");
+        Button bt2 = sttypeSetupButton(500,420, "Bool");
+        Button bt3 = sttypeSetupButton(600,420, "Float");
+        Button bt4 = sttypeSetupButton(700,420, "Int");
+        Button bt5 = sttypeSetupButton(800,420, "Binary");
 
-        Button bt6 = setupButton(300,450, "Add");
-        Button bt7 = setupButton(400,450, "Subtract");
-        Button bt8 = setupButton(500,450, "Multiply");
-        Button bt9 = setupButton(600,450, "Divide");
-        Button bt10 = setupButton(700,450, "Negate");
-        Button bt11 = setupButton(800,450, "AND");
-        Button bt12 = setupButton(900,450, "OR");
+        Button bt6 = operationSetupButton(300,475, "Add");
+        Button bt7 = operationSetupButton(400,475, "Subtract");
+        Button bt8 = operationSetupButton(500,475, "Multiply");
+        Button bt9 = operationSetupButton(600,475, "Divide");
+        Button bt10 = operationSetupButton(700,475, "Negate");
+        Button bt11 = operationSetupButton(800,475, "AND");
+        Button bt12 = operationSetupButton(900,475, "OR");
 
-        Button bt13 = setupButton(400,350, "toString");
-        Button bt14 = setupButton(500,350, "toBoolean");
-        Button bt15 = setupButton(600,350, "toFloat");
-        Button bt16 = setupButton(700,350, "toInt");
-        Button bt17 = setupButton(800,350, "toBinary");
+        Button bt13 = transformSetupButton(400,365, "toString");
+        Button bt14 = transformSetupButton(500,365, "toBoolean");
+        Button bt15 = transformSetupButton(600,365, "toFloat");
+        Button bt16 = transformSetupButton(700,365, "toInt");
+        Button bt17 = transformSetupButton(800,365, "toBinary");
 
-        Button calculateButton = setupButton( 700, 200, "CALCULATE");
+        Button calculateButton = setupButton( 525, 300, "CALCULATE", "calculate_button", 200, 50);
 
         bt1.setOnAction(e -> goToGetInputString(stage,group,e));
         bt2.setOnAction(e -> goToGetInputBoolean(stage,group,e));
@@ -183,9 +193,10 @@ public class ScrabbleApp extends Application {
         group.getChildren().clear();
 
         var Input = new TextField();
-        Input.setLayoutX(600);
-        Input.setLayoutY(400);
-        var okBtn = setupButton(600,500, "Ok");
+        Input.setPrefSize(500,50);
+        Input.setLayoutX(425);
+        Input.setLayoutY(250);
+        var okBtn = setupButton(425,320, "Ok", "ok_button", 500, 70);
 
         okBtn.setOnAction(e-> {
             controller.addString(Input.getText());
@@ -200,8 +211,8 @@ public class ScrabbleApp extends Application {
     private void setGetInputSceneForBoolean(Stage stage, Group group) throws FileNotFoundException {
         group.getChildren().clear();
 
-        var falseBtn = setupButton(500, 300, "FALSE");
-        var trueBtn = setupButton(700, 300, " TRUE");
+        var falseBtn = setupButton(450, 250, "FALSE", "false_button", 175, 175);
+        var trueBtn = setupButton(700, 250, " TRUE", "true_button", 175, 175);
 
         falseBtn.setOnAction(e-> {
             controller.addBoolean(false);
@@ -227,18 +238,18 @@ public class ScrabbleApp extends Application {
         lbl.setLayoutX(600);
         lbl.setLayoutY(50);
 
-        var btn0 = setupButton(600, 350, "0");
-        var btn1 = setupButton(500, 200, "1");
-        var btn2 = setupButton(600, 200, "2");
-        var btn3 = setupButton(700, 200, "3");
-        var btn4 = setupButton(500, 250, "4");
-        var btn5 = setupButton(600, 250, "5");
-        var btn6 = setupButton(700, 250, "6");
-        var btn7 = setupButton(500, 300, "7");
-        var btn8 = setupButton(600, 300, "8");
-        var btn9 = setupButton(700, 300, "9");
-        var okBtn = setupButton(700,350,"OK");
-        var dotBtn = setupButton(500, 350, ".");
+        var btn0 = calculatorSetupButton(600, 430, "0");
+        var btn1 = calculatorSetupButton(450, 250, "1");
+        var btn2 = calculatorSetupButton(600, 250, "2");
+        var btn3 = calculatorSetupButton(750, 250, "3");
+        var btn4 = calculatorSetupButton(450, 310, "4");
+        var btn5 = calculatorSetupButton(600, 310, "5");
+        var btn6 = calculatorSetupButton(750, 310, "6");
+        var btn7 = calculatorSetupButton(450, 370, "7");
+        var btn8 = calculatorSetupButton(600, 370, "8");
+        var btn9 = calculatorSetupButton(750, 370, "9");
+        var okBtn = calculatorSetupButton(750,430,"OK");
+        var dotBtn = calculatorSetupButton(450, 430, ".");
 
         btn0.setOnAction(e -> number_click("0", lbl));
         btn1.setOnAction(e -> number_click("1", lbl));
@@ -270,17 +281,18 @@ public class ScrabbleApp extends Application {
         lbl.setLayoutX(600);
         lbl.setLayoutY(50);
 
-        var btn0 = setupButton(600, 350, "0");
-        var btn1 = setupButton(500, 200, "1");
-        var btn2 = setupButton(600, 200, "2");
-        var btn3 = setupButton(700, 200, "3");
-        var btn4 = setupButton(500, 250, "4");
-        var btn5 = setupButton(600, 250, "5");
-        var btn6 = setupButton(700, 250, "6");
-        var btn7 = setupButton(500, 300, "7");
-        var btn8 = setupButton(600, 300, "8");
-        var btn9 = setupButton(700, 300, "9");
-        var okBtn = setupButton(700,350,"OK");
+        var btn0 = calculatorSetupButton(600, 430, "0");
+        var btn1 = calculatorSetupButton(450, 250, "1");
+        var btn2 = calculatorSetupButton(600, 250, "2");
+        var btn3 = calculatorSetupButton(750, 250, "3");
+        var btn4 = calculatorSetupButton(450, 310, "4");
+        var btn5 = calculatorSetupButton(600, 310, "5");
+        var btn6 = calculatorSetupButton(750, 310, "6");
+        var btn7 = calculatorSetupButton(450, 370, "7");
+        var btn8 = calculatorSetupButton(600, 370, "8");
+        var btn9 = calculatorSetupButton(750, 370, "9");
+        var okBtn = calculatorSetupButton(750,430,"OK");
+
 
         btn0.setOnAction(e -> number_click("0", lbl));
         btn1.setOnAction(e -> number_click("1", lbl));
@@ -310,9 +322,10 @@ public class ScrabbleApp extends Application {
         WarningLabel.setLayoutY(350);
 
         var Input = new TextField();
-        Input.setLayoutX(600);
-        Input.setLayoutY(400);
-        var okBtn = setupButton(600,500, "Ok");
+        Input.setPrefSize(500,50);
+        Input.setLayoutX(425);
+        Input.setLayoutY(250);
+        var okBtn = setupButton(425,320, "Ok", "ok_button", 500, 70);
 
         okBtn.setOnAction(e-> {
             controller.addBinary(Input.getText());
@@ -416,14 +429,52 @@ public class ScrabbleApp extends Application {
         goToAllButtons(stage, group, e);
     }
 
-    private @NotNull Button setupButton(int x, int y, String myText) {
+    private @NotNull Button setupButton(int x, int y, String myText, String myId, double v, double v1) {
         var button = new Button("" + myText);
         button.setLayoutX(x);
         button.setLayoutY(y);
+        button.setPrefSize(v,v1);
         button.setFocusTraversable(false);
-        button.setOnAction(ScrabbleApp::playSound);
+        button.setId(myId);
         return button;
     }
+    private @NotNull Button operationSetupButton(int x, int y, String myText) {
+        var button = new Button("" + myText);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+        button.setPrefSize(90, 40);
+        button.setFocusTraversable(false);
+        button.setId("operation_button");
+        return button;
+    }
+    private @NotNull Button transformSetupButton(int x, int y, String myText) {
+        var button = new Button("" + myText);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+        button.setPrefSize(90, 40);
+        button.setFocusTraversable(false);
+        button.setId("transform_button");
+        return button;
+    }
+    private @NotNull Button sttypeSetupButton(int x, int y, String myText) {
+        var button = new Button("" + myText);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+        button.setPrefSize(90, 40);
+        button.setFocusTraversable(false);
+        button.setId("sttype_button");
+        return button;
+    }
+    private @NotNull Button calculatorSetupButton(int x, int y, String myText) {
+        var button = new Button("" + myText);
+        button.setLayoutX(x);
+        button.setLayoutY(y);
+        button.setPrefSize(150, 50);
+        button.setFocusTraversable(false);
+        button.setId("calculator_button");
+        return button;
+    }
+
 
 
 
@@ -443,7 +494,6 @@ public class ScrabbleApp extends Application {
 
     private void number_click(String myStr, Label lbl)
     {
-
         currentValue = currentValue + myStr;
         lbl.setText(currentValue);
     }

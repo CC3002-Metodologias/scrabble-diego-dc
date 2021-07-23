@@ -61,8 +61,10 @@ public class STDivision implements AST_Operator {
 
     @Override
     public String printNode() {
-        String left = this.x.printNode();
-        String right = this.y.printNode();
+        String left = "";
+        String right = "";
+        if(this.x != null){  left = this.x.printNode();}
+        if(this.y != null){  right = this.y.printNode();}
         return left + " / " +  right;
     }
 

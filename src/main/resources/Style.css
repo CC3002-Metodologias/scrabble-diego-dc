@@ -1,0 +1,24 @@
+
+.button{
+    -fx-background-color: #d2c08e;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Impact;
+    -fx-font-size: 2em;
+    -fx-background-radius: 30;
+}
+
+.button:hover
+{
+    -fx-background-color: #ded3b5;
+}
+
+.button:pressed
+{
+    -fx-background-color: #d2c08e;
+}
+
+.label
+{
+    -fx-font-size: 62px;
+    -fx-font-family: Impact;
+}
