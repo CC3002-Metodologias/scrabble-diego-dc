@@ -142,7 +142,6 @@ public class ScrabbleApp extends Application {
         group.getChildren().addAll(bt6, bt7, bt8, bt9, bt10, bt11, bt12, bt13, bt14, bt15, bt16, bt17);
     }
 
-
     private void setScrabbleTypeScene(Stage stage, Group group) throws FileNotFoundException {
         group.getChildren().clear();
 
@@ -191,8 +190,8 @@ public class ScrabbleApp extends Application {
 
         calculateButton.setOnAction(e->{lb.setText(controller.getResult());});
         clearButton.setOnAction(e->{
-            currentValue = "";
-            goToStartingButtons(stage, group);
+            equationLabel.setText("");
+            goToStartingButtons(stage, group, e);
         });
 
         group.getChildren().addAll(lb, clearButton, calculateButton, bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt10, bt11, bt12, bt13, bt14, bt15, bt16, bt17);
@@ -244,8 +243,8 @@ public class ScrabbleApp extends Application {
         this.currentValue = "";
 
         var lbl = new Label("");
-        lbl.setLayoutX(600);
-        lbl.setLayoutY(50);
+        lbl.setLayoutX(500);
+        lbl.setLayoutY(150);
 
         var btn0 = calculatorSetupButton(600, 430, "0");
         var btn1 = calculatorSetupButton(450, 250, "1");
@@ -287,8 +286,8 @@ public class ScrabbleApp extends Application {
         this.currentValue = "";
 
         var lbl = new Label("");
-        lbl.setLayoutX(600);
-        lbl.setLayoutY(50);
+        lbl.setLayoutX(500);
+        lbl.setLayoutY(150);
 
         var btn0 = calculatorSetupButton(600, 430, "0");
         var btn1 = calculatorSetupButton(450, 250, "1");
@@ -406,7 +405,6 @@ public class ScrabbleApp extends Application {
         }
     }
 
-
     private void goToGetInputString(Stage stage, Group group, ActionEvent e)
     {
         playSound(e);
@@ -472,6 +470,7 @@ public class ScrabbleApp extends Application {
         button.setId(myId);
         return button;
     }
+
     private @NotNull Button operationSetupButton(int x, int y, String myText) {
         var button = new Button("" + myText);
         button.setLayoutX(x);
@@ -481,6 +480,7 @@ public class ScrabbleApp extends Application {
         button.setId("operation_button");
         return button;
     }
+
     private @NotNull Button transformSetupButton(int x, int y, String myText) {
         var button = new Button("" + myText);
         button.setLayoutX(x);
@@ -490,6 +490,7 @@ public class ScrabbleApp extends Application {
         button.setId("transform_button");
         return button;
     }
+
     private @NotNull Button sttypeSetupButton(int x, int y, String myText) {
         var button = new Button("" + myText);
         button.setLayoutX(x);
@@ -499,6 +500,7 @@ public class ScrabbleApp extends Application {
         button.setId("sttype_button");
         return button;
     }
+
     private @NotNull Button calculatorSetupButton(int x, int y, String myText) {
         var button = new Button("" + myText);
         button.setLayoutX(x);
@@ -508,9 +510,6 @@ public class ScrabbleApp extends Application {
         button.setId("calculator_button");
         return button;
     }
-
-
-
 
     private static void playSound(ActionEvent event) {
         String audioFilePath = RESOURCE_PATH + "buttonSound0.wav";

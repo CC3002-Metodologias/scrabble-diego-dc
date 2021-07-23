@@ -242,7 +242,7 @@
     -fx-font-family: Impact;
 }
 
-finalResult_label
+#finalResult_label
 {
     -fx-font-size: 32px;
     -fx-text-fill: rgb(255, 255, 255);
