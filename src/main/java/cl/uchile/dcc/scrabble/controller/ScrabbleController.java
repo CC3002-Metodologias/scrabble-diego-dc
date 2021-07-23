@@ -7,57 +7,69 @@ import cl.uchile.dcc.scrabble.model.AST.Transformations.*;
 import cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STFactory;
 
 public class ScrabbleController {
-    private ASTBuilder builder = new ASTBuilder();
+    private ASTBuilder builder;
     STFactory stFactory = new STFactory();
 
     public void createCalc(String str)
     {
         if(str == "+")
         {
+            builder = new ASTBuilder();
             builder.createTree(new STAddition(null,null));
         }
         if(str == "-")
         {
+            builder = new ASTBuilder();
             builder.createTree(new STSubtraction(null,null));
         }
         if(str == "*")
         {
+            builder = new ASTBuilder();
             builder.createTree(new STMultiplication(null,null));
         }
         if(str == "~")
         {
+            builder = new ASTBuilder();
             builder.createTree(new STNegation(null));
         }
         if(str == "AND")
         {
+            builder = new ASTBuilder();
             builder.createTree(new ST_AND(null,null));
         }
         if(str == "OR")
         {
+            builder = new ASTBuilder();
             builder.createTree(new ST_OR(null,null));
         }
         if(str == "/")
         {
+            builder = new ASTBuilder();
             builder.createTree(new STDivision(null,null));
         }
         if(str == "toBinary")
         {
+            builder = new ASTBuilder();
             builder.createTree(new toSTBinary(null));
         }
         if(str == "toBoolean")
         {
+            builder = new ASTBuilder();
             builder.createTree(new toSTBoolean(null));
         }
         if(str == "toFloat")
         {
+            builder = new ASTBuilder();
             builder.createTree(new toSTFloat(null));
         }
         if(str == "toInt")
         {
+            builder = new ASTBuilder();
             builder.createTree(new toSTInt(null));
         }
         if(str == "toString")
         {
+            builder = new ASTBuilder();
             builder.createTree(new toSTString(null));
         }
     }

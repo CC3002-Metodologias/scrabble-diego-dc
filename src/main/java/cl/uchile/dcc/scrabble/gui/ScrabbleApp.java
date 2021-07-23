@@ -34,6 +34,7 @@ public class ScrabbleApp extends Application {
     private Scene scene2;
     private Label equationLabel = new Label("");
     private String currentValue = "";
+    private String BinaryValue = "";
 
 
     public static void main(String[] args) {
@@ -67,8 +68,10 @@ public class ScrabbleApp extends Application {
         // We set the background
         var background2 =
                 new ImageView(new Image(new FileInputStream(RESOURCE_PATH + "background_calculator_yellow.jpg")));
-        equationLabel.setLayoutX(500);
-        equationLabel.setLayoutY(50);
+        equationLabel.setPrefSize(900, 45);
+        equationLabel.setLayoutX(50);
+        equationLabel.setLayoutY(20);
+        equationLabel.setId("result_label");
         // Then we just adjust group2
         backgroundGroup.getChildren().addAll(background2,equationLabel, group2);
 
@@ -144,8 +147,9 @@ public class ScrabbleApp extends Application {
         group.getChildren().clear();
 
         Label lb = new Label("");
-        lb.setLayoutX(500);
-        lb.setLayoutY(100);
+        lb.setId("finalResult_label");
+        lb.setLayoutX(380);
+        lb.setLayoutY(125);
 
         Button bt1 = sttypeSetupButton(400,420, "String");
         Button bt2 = sttypeSetupButton(500,420, "Bool");
@@ -168,6 +172,7 @@ public class ScrabbleApp extends Application {
         Button bt17 = transformSetupButton(800,365, "toBinary");
 
         Button calculateButton = setupButton( 525, 300, "CALCULATE", "calculate_button", 200, 50);
+        Button clearButton = setupButton( 25, 435, "CLEAR", "clear_button", 85, 85);
 
         bt1.setOnAction(e -> goToGetInputString(stage,group,e));
         bt2.setOnAction(e -> goToGetInputBoolean(stage,group,e));
@@ -185,8 +190,12 @@ public class ScrabbleApp extends Application {
 
 
         calculateButton.setOnAction(e->{lb.setText(controller.getResult());});
+        clearButton.setOnAction(e->{
+            currentValue = "";
+            goToStartingButtons(stage, group);
+        });
 
-        group.getChildren().addAll(lb,calculateButton, bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt10, bt11, bt12, bt13, bt14, bt15, bt16, bt17);
+        group.getChildren().addAll(lb, clearButton, calculateButton, bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt10, bt11, bt12, bt13, bt14, bt15, bt16, bt17);
     }
 
     private void setGetInputSceneForString(Stage stage, Group group) throws FileNotFoundException {
@@ -317,25 +326,50 @@ public class ScrabbleApp extends Application {
     private void setGetInputSceneForBinary(Stage stage, Group group) throws FileNotFoundException {
         group.getChildren().clear();
 
-        var WarningLabel = new Label("Insert a 32bit Binary as a String. Ex: '00000000000000000000000000000000'.");
-        WarningLabel.setLayoutX(600);
-        WarningLabel.setLayoutY(350);
+        BinaryValue = "";
 
-        var Input = new TextField();
-        Input.setPrefSize(500,50);
-        Input.setLayoutX(425);
-        Input.setLayoutY(250);
-        var okBtn = setupButton(425,320, "Ok", "ok_button", 500, 70);
+        var WarningLabel = new Label("Insert a 32bit Binary as a String. Ex: '00000000000000000000000000000000'.");
+        WarningLabel.setLayoutX(445);
+        WarningLabel.setLayoutY(500);
+        WarningLabel.setId("warning_label");
+
+        var currentNum = new Label("");
+        currentNum.setPrefSize(500,50);
+        currentNum.setLayoutX(440);
+        currentNum.setLayoutY(185);
+        currentNum.setId("binary_label");
+
+        var countLabel = new Label("CurrentBits: ");
+        countLabel.setLayoutX(625);
+        countLabel.setLayoutY(225);
+        countLabel.setId("wrongCount_label");
+
+        var num0 = setupButton(450,250, "0", "num0_button", 175, 175);
+        var num1 = setupButton(700,250, "1", "num1_button", 175, 175);
+        var okBtn = setupButton(420,435, "Ok", "ok_button", 500, 60);
+
+        num0.setOnAction(e-> {
+            BinaryValue = BinaryValue + "0";
+            currentNum.setText(BinaryValue);
+            checkBinaryCount(countLabel, BinaryValue.length());
+        } );
+
+        num1.setOnAction(e-> {
+            BinaryValue = BinaryValue + "1";
+            currentNum.setText(BinaryValue);
+            checkBinaryCount(countLabel, BinaryValue.length());
+        } );
 
         okBtn.setOnAction(e-> {
-            controller.addBinary(Input.getText());
+            controller.addBinary(BinaryValue);
             equationLabel.setText(controller.printEquation());
             goToAllButtons(stage, group, e);
         } );
 
-        group.getChildren().addAll(Input, okBtn, WarningLabel);
+        group.getChildren().addAll(currentNum, num0, num1, okBtn, WarningLabel, countLabel);
 
     }
+
 
 
 
@@ -498,5 +532,16 @@ public class ScrabbleApp extends Application {
         lbl.setText(currentValue);
     }
 
+    private void checkBinaryCount(Label label, int length)
+    {
+        if(length > 32 || length < 32)
+        {
+            label.setId("wrongCount_label");
+            label.setText("CurrentBits: " + length);
+            return;
+        }
+        label.setId("correctCount_label");
+        label.setText("CurrentBits: " + length);
+    }
 
 }

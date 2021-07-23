@@ -18,7 +18,7 @@
 
 .label
 {
-    -fx-font-size: 62px;
+    -fx-font-size: 45px;
     -fx-font-family: Impact;
 }
 
@@ -102,7 +102,7 @@
 
 #ok_button
 {
-    -fx-background-color: rgba(181, 219, 116, 0.86);
+    -fx-background-color: rgba(152, 203, 51, 0.86);
     -fx-text-fill: #ffffff;
     -fx-font-size: 21px;
     -fx-background-radius: 30;
@@ -113,7 +113,7 @@
 }
 #ok_button:pressed
 {
-    -fx-background-color: rgba(181, 219, 116, 0.86);
+    -fx-background-color: rgba(154, 205, 61, 0.86);
 }
 
 #calculate_button
@@ -167,4 +167,98 @@
 #true_button
 {
     -fx-background-color: rgba(145, 208, 33, 0.86);
+}
+
+#num0_button
+{
+    -fx-background-color: rgba(255, 255, 255, 0.91);
+    -fx-text-fill: #000000;
+    -fx-font-size: 30px;
+    -fx-background-radius: 50;
+    -fx-font-family: Impact;
+}
+#num0_button:hover
+{
+    -fx-background-color: rgba(206, 187, 160, 0.94);
+}
+#num0_button:pressed
+{
+    -fx-background-color: rgba(255, 255, 255, 0.91);
+}
+
+#num1_button
+{
+    -fx-background-color: rgba(255, 255, 255, 0.91);
+    -fx-text-fill: #000000;
+    -fx-font-size: 30px;
+    -fx-background-radius: 50;
+    -fx-font-family: Impact;
+}
+#num1_button:hover
+{
+    -fx-background-color: rgba(206, 187, 160, 0.94);
+}
+#num1_button:pressed
+{
+    -fx-background-color: rgba(255, 255, 255, 0.91);
+}
+
+#clear_button
+{
+    -fx-background-color: rgba(191, 20, 20, 0.86);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 21px;
+    -fx-background-radius: 60;
+    -fx-font-family: Impact;
+}
+#clear_button:hover
+{
+    -fx-background-color: rgba(220, 109, 109, 0.86);
+}
+#clear_button:pressed
+{
+    -fx-background-color: rgba(191, 20, 20, 0.86);
+}
+
+#binary_label
+{
+    -fx-font-size: 28px;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-family: Impact;
+}
+
+#warning_label
+{
+    -fx-font-size: 12px;
+    -fx-text-fill: rgba(213, 61, 61, 0.89);
+    -fx-font-family: Impact;
+}
+
+#result_label
+{
+    -fx-font-size: 16px;
+    -fx-background-color: rgba(147, 111, 38, 0.89);
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-family: Impact;
+}
+
+finalResult_label
+{
+    -fx-font-size: 32px;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-font-family: Impact;
+}
+
+#wrongCount_label
+{
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(213, 61, 61, 0.92);
+    -fx-font-family: Impact;
+}
+
+#correctCount_label
+{
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(35, 193, 24, 0.97);
+    -fx-font-family: Impact;
 }
