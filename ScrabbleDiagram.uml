@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/diegc/Documents/Proyectos git/Metodologías de Diseño y Programación/scrabble-diego-dc/src/main/java/cl/uchile/dcc/scrabble</OriginalElement>
+  <nodes>
+    <node x="164.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.STDivision</node>
+    <node x="1605.0" y="642.0">cl.uchile.dcc.scrabble.controller.ASTBuilder</node>
+    <node x="0.0" y="718.0">cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STFactory</node>
+    <node x="214.7628205128205" y="0.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.AST_Simplifier</node>
+    <node x="370.75961538461536" y="328.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary</node>
+    <node x="1429.0" y="642.0">cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STIntFactory</node>
+    <node x="0.0" y="642.0">cl.uchile.dcc.scrabble.model.Flyweight.ScrabbleTypeFlyweight</node>
+    <node x="1250.0" y="642.0">cl.uchile.dcc.scrabble.gui.ScrabbleApp</node>
+    <node x="456.0" y="642.0">cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STBooleanFactory</node>
+    <node x="242.0" y="642.0">cl.uchile.dcc.scrabble.controller.ScrabbleController</node>
+    <node x="399.0" y="245.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible</node>
+    <node x="121.29166666666669" y="328.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean</node>
+    <node x="508.84722222222223" y="404.0">cl.uchile.dcc.scrabble.model.AST.AST_Operator</node>
+    <node x="1060.0" y="642.0">cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STFloatFactory</node>
+    <node x="637.0" y="162.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTNumber</node>
+    <node x="302.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.STAddition</node>
+    <node x="1128.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Transformations.toSTBoolean</node>
+    <node x="671.0128205128206" y="328.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat</node>
+    <node x="0.0" y="162.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString</node>
+    <node x="0.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.AST_IConstant</node>
+    <node x="1280.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Transformations.toSTFloat</node>
+    <node x="17.5" y="566.0">cl.uchile.dcc.scrabble.model.AST.Constant</node>
+    <node x="816.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.STMultiplication</node>
+    <node x="217.2628205128205" y="81.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType</node>
+    <node x="1412.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.STSubtraction</node>
+    <node x="1572.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.ST_AND</node>
+    <node x="567.0128205128206" y="328.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt</node>
+    <node x="445.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Transformations.toSTBinary</node>
+    <node x="666.0" y="642.0">cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STStringFactory</node>
+    <node x="1696.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.STNegation</node>
+    <node x="585.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Operations.ST_OR</node>
+    <node x="863.0" y="642.0">cl.uchile.dcc.scrabble.model.Flyweight.STFactory.STBinaryFactory</node>
+    <node x="639.0" y="245.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber</node>
+    <node x="698.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Transformations.toSTInt</node>
+    <node x="126.0" y="245.0">cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTLogicalOperationCompatible</node>
+    <node x="989.0" y="485.0">cl.uchile.dcc.scrabble.model.AST.Transformations.toSTString</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible" relationship="REALIZATION">
+      <point x="-21.0" y="-15.5" />
+      <point x="588.0128205128206" y="307.0" />
+      <point x="509.0" y="307.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType" relationship="REALIZATION">
+      <point x="-29.75" y="-15.5" />
+      <point x="151.04166666666669" y="307.0" />
+      <point x="115.5" y="307.0" />
+      <point x="115.5" y="142.0" />
+      <point x="84.0" y="142.0" />
+      <point x="84.0" y="132.0" />
+      <point x="251.5128205128205" y="132.0" />
+      <point x="-34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber" relationship="GENERALIZATION">
+      <point x="35.333333333333314" y="-15.5" />
+      <point x="459.09294871794873" y="297.0" />
+      <point x="699.0" y="297.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STFloat" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber" relationship="GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="720.5128205128206" y="297.0" />
+      <point x="699.0" y="297.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.STNegation" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1759.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.STDivision" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="223.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTNumber" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="699.0" y="142.0" />
+      <point x="514.0128205128206" y="142.0" />
+      <point x="514.0128205128206" y="132.0" />
+      <point x="320.0128205128205" y="132.0" />
+      <point x="34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Transformations.toSTBoolean" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1194.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="509.0" y="142.0" />
+      <point x="514.0128205128206" y="142.0" />
+      <point x="514.0128205128206" y="132.0" />
+      <point x="320.0128205128205" y="132.0" />
+      <point x="34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STString" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="52.5" y="142.0" />
+      <point x="84.0" y="142.0" />
+      <point x="84.0" y="132.0" />
+      <point x="251.5128205128205" y="132.0" />
+      <point x="-34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Transformations.toSTBinary" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="505.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.ST_AND" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1624.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.STSubtraction" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="-5.6843418860808015E-14" y="-15.5" />
+      <point x="1482.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTLogicalOperationCompatible" relationship="REALIZATION">
+      <point x="-35.33333333333337" y="-15.5" />
+      <point x="388.426282051282" y="307.0" />
+      <point x="252.5" y="307.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.STMultiplication" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="892.5" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.STAddition" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="363.5" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STBinary" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.INumberBinaryCompatible" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="423.75961538461536" y="307.0" />
+      <point x="509.0" y="307.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Transformations.toSTString" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1048.5" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Constant" target="cl.uchile.dcc.scrabble.model.AST.AST_IConstant" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Operations.ST_OR" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="631.5" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Transformations.toSTFloat" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="1336.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumberSubtypes.STInt" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber" relationship="GENERALIZATION">
+      <point x="21.0" y="-15.5" />
+      <point x="630.0128205128206" y="297.0" />
+      <point x="699.0" y="297.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STNumber" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTNumber" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.AST_IConstant" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="72.0" y="455.0" />
+      <point x="543.8472222222222" y="455.0" />
+      <point x="-35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.STBoolean" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTLogicalOperationCompatible" relationship="REALIZATION">
+      <point x="29.75" y="-15.5" />
+      <point x="210.54166666666669" y="307.0" />
+      <point x="252.5" y="307.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.AST.Transformations.toSTInt" target="cl.uchile.dcc.scrabble.model.AST.AST_Operator" relationship="REALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="747.0" y="465.0" />
+      <point x="970.5" y="465.0" />
+      <point x="970.5" y="455.0" />
+      <point x="613.8472222222222" y="455.0" />
+      <point x="35.0" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ISTLogicalOperationCompatible" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="252.5" y="142.0" />
+      <point x="514.0128205128206" y="142.0" />
+      <point x="514.0128205128206" y="132.0" />
+      <point x="320.0128205128205" y="132.0" />
+      <point x="34.25" y="15.5" />
+    </edge>
+    <edge source="cl.uchile.dcc.scrabble.model.ScrabbleTypes.ScrabbleType" target="cl.uchile.dcc.scrabble.model.ScrabbleTypes.AST_Simplifier" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5195439739413681" showDependencies="false" x="1180.4670846394984" y="374.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -22,7 +22,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX ScrabbleApp
+ *
+ * @Author: Diego Caviedes Aguirre
  */
 public class ScrabbleApp extends Application {
     private static final String RESOURCE_PATH = "src/main/resources/";
