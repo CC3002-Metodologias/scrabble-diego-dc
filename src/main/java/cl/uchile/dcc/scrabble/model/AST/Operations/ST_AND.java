@@ -67,4 +67,13 @@ public class ST_AND implements AST_Operator {
         return left + " and " +  right;
     }
 
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        String right = " ";
+        if(this.x != null){  left = this.x.printNodeAsCode();}
+        if(this.y != null){  right = this.y.printNodeAsCode();}
+        return "AND(" + left + ", " +  right + ")";
+    }
+
 }

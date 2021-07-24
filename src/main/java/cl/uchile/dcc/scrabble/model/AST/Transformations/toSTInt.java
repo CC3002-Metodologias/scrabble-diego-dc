@@ -57,6 +57,16 @@ public class toSTInt implements AST_Operator{
         {
             left = this.child.printNode();
         }
-        return left + ".toInt";
+        return "(" + left + ").toInt";
+    }
+
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        if(this.child != null)
+        {
+            left = this.child.printNodeAsCode();
+        }
+        return "toInt(" + left + ")";
     }
 }

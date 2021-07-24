@@ -57,6 +57,16 @@ public class toSTBinary implements AST_Operator{
         {
             left = this.child.printNode();
         }
-        return left + ".toBinary";
+        return "(" + left + ").toBinary";
+    }
+
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        if(this.child != null)
+        {
+            left = this.child.printNodeAsCode();
+        }
+        return "toBinary(" + left + ")";
     }
 }

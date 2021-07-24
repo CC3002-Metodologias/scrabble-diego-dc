@@ -21,6 +21,8 @@ public class ASTBuilder {
 
     public String printTree(){ return this.rootNode.printNode();}
 
+    public String printTreeAsCode(){ return this.rootNode.printNodeAsCode();}
+
     public void add(AST_Operator new_node)
     {
         if(this.currentNode.emptyChild())
@@ -57,5 +59,13 @@ public class ASTBuilder {
         }
     }
 
+    public boolean checkCompletedTree()
+    {
+        if(this.rootNode.emptyChild() || this.currentNode.emptyChild())
+        {
+            return false;
+        }
+        return true;
+    }
 
 }

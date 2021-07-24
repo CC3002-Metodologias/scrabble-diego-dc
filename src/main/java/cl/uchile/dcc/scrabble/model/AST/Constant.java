@@ -69,6 +69,11 @@ public class Constant implements AST_IConstant {
     }
 
     @Override
+    public String printNodeAsCode() {
+        return this.myST.STtoString();
+    }
+
+    @Override
     public ScrabbleType toST() {
         return myST;
     }

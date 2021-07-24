@@ -57,6 +57,16 @@ public class toSTFloat implements AST_Operator{
         {
             left = this.child.printNode();
         }
-        return left + ".toFloat";
+        return "(" + left + ").toFloat";
+    }
+
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        if(this.child != null)
+        {
+            left = this.child.printNodeAsCode();
+        }
+        return "toFloat(" + left + ")";
     }
 }

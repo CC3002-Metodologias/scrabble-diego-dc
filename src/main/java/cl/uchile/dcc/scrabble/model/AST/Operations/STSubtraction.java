@@ -67,5 +67,14 @@ public class STSubtraction implements AST_Operator {
         return left + " - " +  right;
     }
 
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        String right = " ";
+        if(this.x != null){  left = this.x.printNodeAsCode();}
+        if(this.y != null){  right = this.y.printNodeAsCode();}
+        return "Subtract(" + left + ", " +  right + ")";
+    }
+
 
 }

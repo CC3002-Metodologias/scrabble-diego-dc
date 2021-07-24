@@ -57,6 +57,16 @@ public class toSTBoolean implements AST_Operator{
         {
             left = this.child.printNode();
         }
-        return left + ".toBoolean";
+        return "(" + left + ").toBoolean";
+    }
+
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        if(this.child != null)
+        {
+            left = this.child.printNodeAsCode();
+        }
+        return "toBoolean(" + left + ")";
     }
 }

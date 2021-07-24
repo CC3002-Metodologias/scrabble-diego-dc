@@ -220,6 +220,24 @@
     -fx-background-color: rgba(191, 20, 20, 0.86);
 }
 
+#changeView_button
+{
+    -fx-background-color: rgba(78, 78, 78, 0.91);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+    -fx-background-radius: 10;
+    -fx-font-family: Impact;
+}
+#changeView_button:hover
+{
+    -fx-background-color: rgba(144, 143, 143, 0.91);
+}
+
+#changeView_button:pressed
+{
+    -fx-background-color: rgba(78, 78, 78, 0.91);
+}
+
 #binary_label
 {
     -fx-font-size: 28px;

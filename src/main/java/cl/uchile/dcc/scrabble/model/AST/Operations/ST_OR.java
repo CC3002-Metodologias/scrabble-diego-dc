@@ -67,4 +67,13 @@ public class ST_OR implements AST_Operator {
         return left + " or " +  right;
     }
 
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        String right = " ";
+        if(this.x != null){  left = this.x.printNodeAsCode();}
+        if(this.y != null){  right = this.y.printNodeAsCode();}
+        return "OR(" + left + ", " +  right + ")";
+    }
+
 }

@@ -35,6 +35,7 @@ public class ScrabbleApp extends Application {
     private Label equationLabel = new Label("");
     private String currentValue = "";
     private String BinaryValue = "";
+    private boolean viewEquationAsEquation;
 
 
     public static void main(String[] args) {
@@ -84,6 +85,9 @@ public class ScrabbleApp extends Application {
     }
 
 
+
+
+    // ------------- Methods to set different Scenes(groups) ------------
 
     private void setStartScene(Stage stage, Group group) throws FileNotFoundException {
 
@@ -172,6 +176,7 @@ public class ScrabbleApp extends Application {
 
         Button calculateButton = setupButton( 525, 300, "CALCULATE", "calculate_button", 200, 50);
         Button clearButton = setupButton( 25, 435, "CLEAR", "clear_button", 85, 85);
+        Button changeVisualisationBtn = setupButton( 800, 70, "View as an Equation", "changeView_button", 150, 30);
 
         bt1.setOnAction(e -> goToGetInputString(stage,group,e));
         bt2.setOnAction(e -> goToGetInputBoolean(stage,group,e));
@@ -187,14 +192,26 @@ public class ScrabbleApp extends Application {
         bt11.setOnAction(e -> addOperatorAction(stage, group,e ,"AND") );
         bt12.setOnAction(e -> addOperatorAction(stage, group,e ,"OR") );
 
+        bt13.setOnAction(e -> addOperatorAction(stage, group,e ,"toString") );
+        bt14.setOnAction(e -> addOperatorAction(stage, group,e ,"toBoolean") );
+        bt15.setOnAction(e -> addOperatorAction(stage, group,e ,"toFloat") );
+        bt16.setOnAction(e -> addOperatorAction(stage, group,e ,"toInt") );
+        bt17.setOnAction(e -> addOperatorAction(stage, group,e ,"toBinary") );
+
 
         calculateButton.setOnAction(e->{lb.setText(controller.getResult());});
         clearButton.setOnAction(e->{
             equationLabel.setText("");
             goToStartingButtons(stage, group, e);
         });
+        changeVisualisationBtn.setOnAction(e->{
+            playSound(e);
+            changeView(changeVisualisationBtn);
+        });
 
-        group.getChildren().addAll(lb, clearButton, calculateButton, bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt10, bt11, bt12, bt13, bt14, bt15, bt16, bt17);
+        checkCompleteEquation(calculateButton, group);
+
+        group.getChildren().addAll(lb,changeVisualisationBtn, clearButton, bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt10, bt11, bt12, bt13, bt14, bt15, bt16, bt17);
     }
 
     private void setGetInputSceneForString(Stage stage, Group group) throws FileNotFoundException {
@@ -208,7 +225,7 @@ public class ScrabbleApp extends Application {
 
         okBtn.setOnAction(e-> {
             controller.addString(Input.getText());
-            equationLabel.setText(controller.printEquation());
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
             goToAllButtons(stage, group, e);
         } );
 
@@ -224,13 +241,13 @@ public class ScrabbleApp extends Application {
 
         falseBtn.setOnAction(e-> {
             controller.addBoolean(false);
-            equationLabel.setText(controller.printEquation());
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
             goToAllButtons(stage, group, e);
         } );
 
         trueBtn.setOnAction(e-> {
             controller.addBoolean(true);
-            equationLabel.setText(controller.printEquation());
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
             goToAllButtons(stage, group, e);
         } );
 
@@ -259,21 +276,21 @@ public class ScrabbleApp extends Application {
         var okBtn = calculatorSetupButton(750,430,"OK");
         var dotBtn = calculatorSetupButton(450, 430, ".");
 
-        btn0.setOnAction(e -> number_click("0", lbl));
-        btn1.setOnAction(e -> number_click("1", lbl));
-        btn2.setOnAction(e -> number_click("2", lbl));
-        btn3.setOnAction(e -> number_click("3", lbl));
-        btn4.setOnAction(e -> number_click("4", lbl));
-        btn5.setOnAction(e -> number_click("5", lbl));
-        btn6.setOnAction(e -> number_click("6", lbl));
-        btn7.setOnAction(e -> number_click("7", lbl));
-        btn8.setOnAction(e -> number_click("8", lbl));
-        btn9.setOnAction(e -> number_click("9", lbl));
-        dotBtn.setOnAction(e -> number_click(".", lbl));
+        btn0.setOnAction(e -> number_click("0", lbl, e));
+        btn1.setOnAction(e -> number_click("1", lbl, e));
+        btn2.setOnAction(e -> number_click("2", lbl, e));
+        btn3.setOnAction(e -> number_click("3", lbl, e));
+        btn4.setOnAction(e -> number_click("4", lbl, e));
+        btn5.setOnAction(e -> number_click("5", lbl, e));
+        btn6.setOnAction(e -> number_click("6", lbl, e));
+        btn7.setOnAction(e -> number_click("7", lbl, e));
+        btn8.setOnAction(e -> number_click("8", lbl, e));
+        btn9.setOnAction(e -> number_click("9", lbl, e));
+        dotBtn.setOnAction(e -> number_click(".", lbl, e));
 
         okBtn.setOnAction(e-> {
             controller.addFloat(Double.parseDouble(this.currentValue));
-            equationLabel.setText(controller.printEquation());
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
             goToAllButtons(stage, group, e);
         } );
 
@@ -302,20 +319,20 @@ public class ScrabbleApp extends Application {
         var okBtn = calculatorSetupButton(750,430,"OK");
 
 
-        btn0.setOnAction(e -> number_click("0", lbl));
-        btn1.setOnAction(e -> number_click("1", lbl));
-        btn2.setOnAction(e -> number_click("2", lbl));
-        btn3.setOnAction(e -> number_click("3", lbl));
-        btn4.setOnAction(e -> number_click("4", lbl));
-        btn5.setOnAction(e -> number_click("5", lbl));
-        btn6.setOnAction(e -> number_click("6", lbl));
-        btn7.setOnAction(e -> number_click("7", lbl));
-        btn8.setOnAction(e -> number_click("8", lbl));
-        btn9.setOnAction(e -> number_click("9", lbl));
+        btn0.setOnAction(e -> number_click("0", lbl, e));
+        btn1.setOnAction(e -> number_click("1", lbl, e));
+        btn2.setOnAction(e -> number_click("2", lbl, e));
+        btn3.setOnAction(e -> number_click("3", lbl, e));
+        btn4.setOnAction(e -> number_click("4", lbl, e));
+        btn5.setOnAction(e -> number_click("5", lbl, e));
+        btn6.setOnAction(e -> number_click("6", lbl, e));
+        btn7.setOnAction(e -> number_click("7", lbl, e));
+        btn8.setOnAction(e -> number_click("8", lbl, e));
+        btn9.setOnAction(e -> number_click("9", lbl, e));
 
         okBtn.setOnAction(e-> {
             controller.addInt(Integer.parseInt(this.currentValue));
-            equationLabel.setText(controller.printEquation());
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
             goToAllButtons(stage, group, e);
         } );
 
@@ -348,12 +365,14 @@ public class ScrabbleApp extends Application {
         var okBtn = setupButton(420,435, "Ok", "ok_button", 500, 60);
 
         num0.setOnAction(e-> {
+            playSound(e);
             BinaryValue = BinaryValue + "0";
             currentNum.setText(BinaryValue);
             checkBinaryCount(countLabel, BinaryValue.length());
         } );
 
         num1.setOnAction(e-> {
+            playSound(e);
             BinaryValue = BinaryValue + "1";
             currentNum.setText(BinaryValue);
             checkBinaryCount(countLabel, BinaryValue.length());
@@ -361,7 +380,7 @@ public class ScrabbleApp extends Application {
 
         okBtn.setOnAction(e-> {
             controller.addBinary(BinaryValue);
-            equationLabel.setText(controller.printEquation());
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
             goToAllButtons(stage, group, e);
         } );
 
@@ -374,6 +393,7 @@ public class ScrabbleApp extends Application {
 
 
 
+    // ------------------ Buttons Functionalities ----------------------------
 
     private void goToStartingButtons(Stage stage, Group group, ActionEvent e)
     {
@@ -386,7 +406,7 @@ public class ScrabbleApp extends Application {
         playSound(e);
 
         controller.createCalc(str);
-        equationLabel.setText(controller.printEquation());
+        equationLabel.setText(controller.printEquation(viewEquationAsEquation));
 
         try {
             setScrabbleTypeScene(stage, group);
@@ -458,8 +478,72 @@ public class ScrabbleApp extends Application {
     private void addOperatorAction(Stage stage, Group group, ActionEvent e, String str)
     {
         controller.addOperator(str);
+        equationLabel.setText(controller.printEquation(viewEquationAsEquation));
         goToAllButtons(stage, group, e);
+
     }
+
+    private static void playSound(ActionEvent event) {
+        String audioFilePath = RESOURCE_PATH + "buttonSound0.wav";
+        try {
+            var sound = AudioSystem.getClip();
+            try (var audioInputStream = AudioSystem.getAudioInputStream(
+                    new File(audioFilePath))) {
+                sound.open(audioInputStream);
+                sound.start();
+            }
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void number_click(String myStr, Label lbl, ActionEvent e)
+    {
+        playSound(e);
+        currentValue = currentValue + myStr;
+        lbl.setText(currentValue);
+    }
+
+    private void checkBinaryCount(Label label, int length)
+    {
+        if(length > 32 || length < 32)
+        {
+            label.setId("wrongCount_label");
+            label.setText("CurrentBits: " + length);
+            return;
+        }
+        label.setId("correctCount_label");
+        label.setText("CurrentBits: " + length);
+    }
+
+    private void changeView(Button btn)
+    {
+        if(viewEquationAsEquation)
+        {
+            viewEquationAsEquation = false;
+            btn.setText("View as an Equation");
+            equationLabel.setText(controller.printEquation(viewEquationAsEquation));
+            return;
+        }
+        viewEquationAsEquation = true;
+        btn.setText("View as Pseudo-Code");
+        equationLabel.setText(controller.printEquation(viewEquationAsEquation));
+    }
+
+    private void checkCompleteEquation(Button btn, Group group)
+    {
+        if(controller.checkCompletedTree())
+        {
+            group.getChildren().add(btn);
+            return;
+        }
+        group.getChildren().remove(btn);
+
+    }
+
+
+
+    // ----------------- Useful Methods for the App -------------------------
 
     private @NotNull Button setupButton(int x, int y, String myText, String myId, double v, double v1) {
         var button = new Button("" + myText);
@@ -511,36 +595,5 @@ public class ScrabbleApp extends Application {
         return button;
     }
 
-    private static void playSound(ActionEvent event) {
-        String audioFilePath = RESOURCE_PATH + "buttonSound0.wav";
-        try {
-            var sound = AudioSystem.getClip();
-            try (var audioInputStream = AudioSystem.getAudioInputStream(
-                    new File(audioFilePath))) {
-                sound.open(audioInputStream);
-                sound.start();
-            }
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void number_click(String myStr, Label lbl)
-    {
-        currentValue = currentValue + myStr;
-        lbl.setText(currentValue);
-    }
-
-    private void checkBinaryCount(Label label, int length)
-    {
-        if(length > 32 || length < 32)
-        {
-            label.setId("wrongCount_label");
-            label.setText("CurrentBits: " + length);
-            return;
-        }
-        label.setId("correctCount_label");
-        label.setText("CurrentBits: " + length);
-    }
 
 }

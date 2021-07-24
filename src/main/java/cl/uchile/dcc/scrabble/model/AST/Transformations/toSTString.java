@@ -57,6 +57,16 @@ public class toSTString implements AST_Operator{
         {
             left = this.child.printNode();
         }
-        return left + ".toString";
+        return "(" + left + ").toString";
+    }
+
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        if(this.child != null)
+        {
+            left = this.child.printNodeAsCode();
+        }
+        return "toString(" + left + ")";
     }
 }

@@ -19,6 +19,11 @@ public abstract class AbstractASTtest {
         assertEquals(expected, actual, "Expected result: " + expected + ", Actual result: " + actual);
     }
 
+    protected void checkASTasCodeString(String expected, String actual)
+    {
+        assertEquals(expected, actual, "Expected result: " + expected + ", Actual result: " + actual);
+    }
+
     public abstract void AST_test();
 
     public abstract void AST_toString_test();

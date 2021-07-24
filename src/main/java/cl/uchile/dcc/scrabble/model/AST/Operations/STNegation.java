@@ -57,6 +57,16 @@ public class STNegation implements AST_Operator {
         {
             left = this.child.printNode();
         }
-        return left + ".negation";
+        return "(" + left + ").negation";
+    }
+
+    @Override
+    public String printNodeAsCode() {
+        String left = " ";
+        if(this.child != null)
+        {
+            left = this.child.printNodeAsCode();
+        }
+        return "Negate(" + left + ")";
     }
 }

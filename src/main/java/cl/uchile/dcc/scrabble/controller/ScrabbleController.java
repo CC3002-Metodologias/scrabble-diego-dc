@@ -92,6 +92,18 @@ public class ScrabbleController {
         {
             builder.add(new STDivision(null,null));
         }
+        if(str == "~")
+        {
+            builder.add(new STNegation(null));
+        }
+        if(str == "AND")
+        {
+            builder.add(new ST_AND(null,null));
+        }
+        if(str == "OR")
+        {
+            builder.add(new ST_OR(null,null));
+        }
         if(str == "toBinary")
         {
             builder.add(new toSTBinary(null));
@@ -145,9 +157,15 @@ public class ScrabbleController {
         return result.printNode();
     }
 
-    public String printEquation()
+    public String printEquation(boolean bool)
     {
-        return builder.printTree();
+        if (bool){ return builder.printTree(); }
+        return builder.printTreeAsCode();
+    }
+
+    public boolean checkCompletedTree()
+    {
+        return builder.checkCompletedTree();
     }
 
 }
