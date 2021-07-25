@@ -63,12 +63,14 @@ The whole project was made with Intellij and it is recommended to run the files 
 	> **Note**: If you are wondering why you start selecting the *Operations* and/or *Transformations* first instead of a Data Type, go to the **Logic Section** and check the tree representation and the pseudo code to understand what type of equation you will be writting in this calculator. Alternatively, just press any button and see it by yourself!
 
 **USING THE CALCULATOR**
+
 - If you check at the top, the Scrabble calculator will show you in each step what are you currently calculating.
 - In this part you will be free to writte any equation you want, but be aware that the Scrabble Calculator follows all the restrictions mentioned at the **Logic Section**. (Go check the restrictions to avoid invalid equations).
 	>**Note**: In case you writte an invalid equation, the calculator will not give you a result.
 - In case you make a mistake, do not worry! Just press the "***Clear Button***" at your bottom left corner, to have a fresh start again.
 
 **INTELLIGENT ASSISTANCE**
+
 To help you as much as we can, we created certain functionalities that will tell you if you are doing things right.
 - The first thing you will notice, is that there is no button to get a result, but dont be alarmed. The ***CALCULATE BUTTON*** will only appear once you have a completed *Operation* or *Transformation* in your input, this will avoid that you calculate something without a Data Type in the first place.
 - Just under the *Output* *Label* you will notice a "***View as an Equation Button***", press this if you prefer to see your equation in a conventional way.
