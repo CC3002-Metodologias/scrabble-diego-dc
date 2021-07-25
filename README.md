@@ -27,17 +27,17 @@ Since the program is in Java each type will be represented by a native data type
 
 This types can interact with each other and be transformed when necessary, but only the following transformations will be allowed:
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](transforms.png)
 
 The same way, operations between this types will have restrictions:
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](operations.png)
 
 > **Note**: **Negation** is not mentioned. **Negation** can only be aplied to *Logical* *Types* as **Binary** or **Boolean**.+
 
 Finally, each equation created in the App will be seen as a tree and handled in the same way. Example:
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](AST_tree.png)
 
 # Program
 Specs:
@@ -60,7 +60,7 @@ The whole project was made with Intellij and it is recommended to run the files 
 - To start using the **Scrabble** **App** just press "**START**" in the main window, this will open the calculator ready to use.
 
 - The *App* will guide you, and invite you to do a correct use of the calculator. The first thing you will see, are all the buttons with the available *Operations* and *Transformations*, select the desired path to follow and you will start writting your first equation.
-> **Note**: If you are wondering why you start selecting the *Operations* and/or *Transformations* first instead of a Data Type, go to the **Logic Section** and check the tree representation and the pseudo code to understand what type of equation you will be writting in this calculator. Alternatively, just press any button and see it by yourself!
+	> **Note**: If you are wondering why you start selecting the *Operations* and/or *Transformations* first instead of a Data Type, go to the **Logic Section** and check the tree representation and the pseudo code to understand what type of equation you will be writting in this calculator. Alternatively, just press any button and see it by yourself!
 
 **USING THE CALCULATOR**
 - If you check at the top, the Scrabble calculator will show you in each step what are you currently calculating.
